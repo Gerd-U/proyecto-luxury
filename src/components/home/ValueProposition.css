@@ -1,0 +1,43 @@
+.value-section {
+  padding: 80px 20px;
+  text-align: center;
+  background-color: #f4f4f8;
+}
+
+.value-section h2 {
+  font-size: 2.5rem;
+  color: #222;
+  margin-bottom: 20px;
+}
+
+.value-description {
+  max-width: 650px;
+  margin: 0 auto 45px;
+  color: #666;
+  line-height: 1.7;
+}
+
+.value-container {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.value-card {
+  background: white;
+  padding: 35px 25px;
+  border-radius: 10px;
+  width: 280px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.value-card h3 {
+  color: #b89558;
+  margin-bottom: 15px;
+}
+
+.value-card p {
+  color: #555;
+  line-height: 1.6;
+}
