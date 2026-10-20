@@ -1,7 +1,11 @@
-import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import logo from '../../assets/logo.svg';
-import './Header.css';
+import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+
+//COLOCAR IMAGEN DE LOGO EN LA CARPETA ASSETS Y CAMBIAR EL NOMBRE DE LA MARCA
+import logo from "../../assets/hero.png";
+
+//CSS COMENTADO POR QUE TODAVIA NO ESTA CREADO
+//import "./Header.css";
 
 interface NavItem {
   to: string;
@@ -9,10 +13,10 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { to: '/', label: 'Inicio' },
-  { to: '/apartamentos', label: 'Apartamentos' },
-  { to: '/favoritos', label: 'Favoritos' },
-  { to: '/contacto', label: 'Contacto' },
+  { to: "/", label: "Inicio" },
+  { to: "/apartamentos", label: "Apartamentos" },
+  { to: "/favoritos", label: "Favoritos" },
+  { to: "/contacto", label: "Contacto" },
 ];
 
 function Header() {
@@ -36,8 +40,8 @@ function Header() {
 
         <button
           type="button"
-          className={`header__toggle ${isMenuOpen ? 'is-open' : ''}`}
-          aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+          className={`header__toggle ${isMenuOpen ? "is-open" : ""}`}
+          aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={isMenuOpen}
           aria-controls="main-nav"
           onClick={toggleMenu}
@@ -49,7 +53,7 @@ function Header() {
 
         <nav
           id="main-nav"
-          className={`header__nav ${isMenuOpen ? 'is-open' : ''}`}
+          className={`header__nav ${isMenuOpen ? "is-open" : ""}`}
           aria-label="Navegación principal"
         >
           <ul className="header__list">
@@ -57,9 +61,11 @@ function Header() {
               <li key={item.to}>
                 <NavLink
                   to={item.to}
-                  end={item.to === '/'}
+                  end={item.to === "/"}
                   className={({ isActive }) =>
-                    isActive ? 'header__link header__link--active' : 'header__link'
+                    isActive
+                      ? "header__link header__link--active"
+                      : "header__link"
                   }
                   onClick={closeMenu}
                 >
