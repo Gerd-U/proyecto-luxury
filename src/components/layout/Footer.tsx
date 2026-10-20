@@ -1,10 +1,12 @@
-import { Link } from 'react-router-dom';
-import './Footer.css';
+import { Link } from "react-router-dom";
+
+//CSS COMENTADO POR QUE TODAVIA NO ESTA CREADO
+//import './Footer.css';
 
 interface ContactItem {
   label: string;
   value: string;
-  href?: string; 
+  href?: string;
 }
 
 interface SocialLink {
@@ -13,15 +15,19 @@ interface SocialLink {
 }
 
 const CONTACT_ITEMS: ContactItem[] = [
-  { label: 'Teléfono', value: '+506 2222-0000', href: 'tel:+50622220000' },
-  { label: 'Correo', value: 'info@tumarca.com', href: 'mailto:info@tumarca.com' },
-  { label: 'Oficina', value: 'Escazú, San José, Costa Rica' },
+  { label: "Teléfono", value: "+506 2222-0000", href: "tel:+50622220000" },
+  {
+    label: "Correo",
+    value: "info@tumarca.com",
+    href: "mailto:info@tumarca.com",
+  },
+  { label: "Oficina", value: "Escazú, San José, Costa Rica" },
 ];
 
 const SOCIAL_LINKS: SocialLink[] = [
-  { name: 'Instagram', url: 'https://instagram.com' },
-  { name: 'Facebook', url: 'https://facebook.com' },
-  { name: 'WhatsApp', url: 'https://wa.me/50622220000' },
+  { name: "Instagram", url: "https://instagram.com" },
+  { name: "Facebook", url: "https://facebook.com" },
+  { name: "WhatsApp", url: "https://wa.me/50622220000" },
 ];
 
 function Footer() {
@@ -33,7 +39,8 @@ function Footer() {
         <section className="footer__col">
           <h2 className="footer__title">Nombre de tu marca</h2>
           <p className="footer__text">
-            Una frase corta de la empresa, la misma idea de tu propuesta de valor.
+            Una frase corta de la empresa, la misma idea de tu propuesta de
+            valor.
           </p>
           <Link to="/contacto" className="footer__cta">
             Agendar una visita
@@ -78,8 +85,12 @@ function Footer() {
       </div>
 
       <div className="footer__bottom">
-        <p>© {currentYear} Nombre de tu marca. Todos los derechos reservados.</p>
-        <p className="footer__note">Proyecto académico, UCR Sede de Occidente.</p>
+        <p>
+          © {currentYear} Nombre de tu marca. Todos los derechos reservados.
+        </p>
+        <p className="footer__note">
+          Proyecto académico, UCR Sede de Occidente.
+        </p>
       </div>
     </footer>
   );
