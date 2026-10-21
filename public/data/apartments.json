@@ -1,0 +1,371 @@
+[
+  {
+    "id": 1,
+    "name": "Residencia Bambú",
+    "location": "Escazú, San José",
+    "price": 3800,
+    "image": "/images/apartments/apt-01.jpg",
+    "description": "Residencia de tres niveles rodeada de jardín de bambú, con luz natural en cada ambiente y un rincón de meditación en la terraza. Diseñada para quienes quieren la ciudad cerca sin perder la calma.",
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "area": 210,
+    "amenities": [
+      "Sauna privado",
+      "Estudio de yoga",
+      "Jardín de meditación",
+      "Seguridad 24/7",
+      "Estacionamiento para 2 vehículos"
+    ],
+    "featured": true
+  },
+  {
+    "id": 2,
+    "name": "Penthouse Lumbre",
+    "location": "Escazú, San José",
+    "price": 7500,
+    "image": "/images/apartments/apt-02.jpg",
+    "description": "Penthouse en el último piso de una torre boutique, con ventanales de piso a techo, terraza panorámica y vista a las montañas del Valle Central.",
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "area": 320,
+    "amenities": [
+      "Terraza panorámica",
+      "Piscina climatizada",
+      "Gimnasio",
+      "Spa en el edificio",
+      "Seguridad 24/7",
+      "Ascensor privado"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Loft Cafetal",
+    "location": "Santa Ana, San José",
+    "price": 1600,
+    "image": "/images/apartments/apt-03.jpg",
+    "description": "Loft de techos altos en una antigua zona cafetalera, con cocina abierta, suelos de madera y acceso a senderos para caminar al amanecer.",
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "area": 72,
+    "amenities": [
+      "Cocina equipada",
+      "Internet de fibra óptica",
+      "Coworking comunitario",
+      "Estacionamiento",
+      "Senderos naturales"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Casa Ceiba",
+    "location": "Santa Ana, San José",
+    "price": 4200,
+    "image": "/images/apartments/apt-04.jpg",
+    "description": "Casa-apartamento junto a una ceiba centenaria, con patio interior, huerta de hierbas y una sala de lectura frente al jardín.",
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "area": 240,
+    "amenities": [
+      "Huerta de hierbas",
+      "Patio interior",
+      "Piscina de agua salada",
+      "Seguridad 24/7",
+      "Estacionamiento para 2 vehículos"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Apartamento Parque Rohrmoser",
+    "location": "Rohrmoser, San José",
+    "price": 2100,
+    "image": "/images/apartments/apt-05.jpg",
+    "description": "Apartamento luminoso frente al Parque de la Paz, a pocos minutos de embajadas, restaurantes y oficinas. Ideal para quien quiere vivir en la ciudad sin ruido.",
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "area": 110,
+    "amenities": [
+      "Vista al parque",
+      "Gimnasio",
+      "Salón social",
+      "Seguridad 24/7",
+      "Estacionamiento"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Residencia Cariari Golf",
+    "location": "Cariari, Heredia",
+    "price": 3100,
+    "image": "/images/apartments/apt-06.jpg",
+    "description": "Residencia en condominio frente al campo de golf, con terraza amplia, cocina de diseño y acceso directo a áreas verdes para correr o caminar.",
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "area": 190,
+    "amenities": [
+      "Vista al campo de golf",
+      "Piscina",
+      "Gimnasio",
+      "Seguridad 24/7",
+      "Cancha de tenis"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Suite Marea Alta",
+    "location": "Tamarindo, Guanacaste",
+    "price": 3400,
+    "image": "/images/apartments/apt-07.jpg",
+    "description": "Suite a pocos pasos de la playa, con terraza abierta al atardecer, ventilación natural y acabados en madera clara y piedra.",
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "area": 125,
+    "amenities": [
+      "Vista al mar",
+      "Acceso a la playa",
+      "Piscina de agua salada",
+      "Terraza",
+      "Aire acondicionado"
+    ],
+    "featured": true
+  },
+  {
+    "id": 8,
+    "name": "Villa Surf y Yoga",
+    "location": "Tamarindo, Guanacaste",
+    "price": 6200,
+    "image": "/images/apartments/apt-08.jpg",
+    "description": "Villa pensada para el bienestar: sala de yoga con vista al jardín, piscina privada y espacio para guardar tablas, a minutos de las olas.",
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "area": 280,
+    "amenities": [
+      "Estudio de yoga",
+      "Piscina privada",
+      "Jardín tropical",
+      "Cocina de chef",
+      "Seguridad 24/7",
+      "Almacén de tablas de surf"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Penthouse Pacífico",
+    "location": "Jacó, Puntarenas",
+    "price": 4900,
+    "image": "/images/apartments/apt-09.jpg",
+    "description": "Penthouse con balcón corrido frente al océano, cocina integrada y acceso a una piscina infinita en la azotea del edificio.",
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "area": 200,
+    "amenities": [
+      "Vista al mar",
+      "Piscina infinita",
+      "Gimnasio",
+      "Seguridad 24/7",
+      "Estacionamiento para 2 vehículos"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Estudio Arena",
+    "location": "Jacó, Puntarenas",
+    "price": 1400,
+    "image": "/images/apartments/apt-10.jpg",
+    "description": "Estudio compacto y fresco a una cuadra de la playa, con diseño minimalista, cocina equipada y balcón para tomar el café al aire libre.",
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "area": 58,
+    "amenities": [
+      "Balcón",
+      "Cocina equipada",
+      "Aire acondicionado",
+      "Internet de fibra óptica",
+      "Acceso a piscina compartida"
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Mirador Manuel Antonio",
+    "location": "Manuel Antonio, Puntarenas",
+    "price": 5800,
+    "image": "/images/apartments/apt-11.jpg",
+    "description": "Apartamento sobre la colina con vista abierta al Pacífico y a la selva, terraza con hamaca y despertares con sonidos del bosque.",
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "area": 230,
+    "amenities": [
+      "Vista al mar",
+      "Piscina de agua salada",
+      "Jardín de meditación",
+      "Terraza con hamaca",
+      "Seguridad 24/7"
+    ],
+    "featured": true
+  },
+  {
+    "id": 12,
+    "name": "Casa Selva",
+    "location": "Manuel Antonio, Puntarenas",
+    "price": 3600,
+    "image": "/images/apartments/apt-12.jpg",
+    "description": "Casa en plena naturaleza, rodeada de árboles y fauna local, con sala abierta al exterior, ducha al aire libre y baño de vapor.",
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "area": 140,
+    "amenities": [
+      "Baño de vapor",
+      "Ducha al aire libre",
+      "Piscina",
+      "Senderos privados",
+      "Cocina equipada"
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Santuario Nosara",
+    "location": "Nosara, Guanacaste",
+    "price": 3900,
+    "image": "/images/apartments/apt-13.jpg",
+    "description": "Apartamento dentro de una comunidad enfocada en el bienestar, con clases de yoga a pocos pasos, jardín de plantas medicinales y cocina saludable.",
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "area": 150,
+    "amenities": [
+      "Estudio de yoga comunitario",
+      "Jardín medicinal",
+      "Piscina",
+      "Bicicletas incluidas",
+      "Cocina equipada"
+    ]
+  },
+  {
+    "id": 14,
+    "name": "Cabaña Niebla",
+    "location": "Monteverde, Puntarenas",
+    "price": 2300,
+    "image": "/images/apartments/apt-14.jpg",
+    "description": "Cabaña de madera entre el bosque nuboso, con chimenea, terraza cubierta y vistas a la niebla que baja cada tarde.",
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "area": 95,
+    "amenities": [
+      "Chimenea",
+      "Terraza cubierta",
+      "Vista a la montaña",
+      "Jacuzzi exterior",
+      "Internet satelital"
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Residencia Cielo",
+    "location": "Monteverde, Puntarenas",
+    "price": 3500,
+    "image": "/images/apartments/apt-15.jpg",
+    "description": "Residencia de tres habitaciones con grandes ventanales al bosque, sala de lectura y cocina abierta pensada para reuniones largas.",
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "area": 180,
+    "amenities": [
+      "Vista al bosque",
+      "Chimenea",
+      "Sauna",
+      "Biblioteca",
+      "Estacionamiento"
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Terraza Volcán",
+    "location": "La Fortuna, Alajuela",
+    "price": 2900,
+    "image": "/images/apartments/apt-16.jpg",
+    "description": "Apartamento con vista directa al volcán Arenal, terraza con tina de agua caliente y acceso a aguas termales cercanas.",
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "area": 130,
+    "amenities": [
+      "Vista al volcán",
+      "Tina de agua caliente",
+      "Terraza",
+      "Cocina equipada",
+      "Estacionamiento"
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Casa Sol",
+    "location": "Santa Teresa, Puntarenas",
+    "price": 4600,
+    "image": "/images/apartments/apt-17.jpg",
+    "description": "Casa de estilo costero con espacios abiertos, jardín con palmeras, ducha exterior y estudio de yoga al aire libre.",
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "area": 200,
+    "amenities": [
+      "Estudio de yoga al aire libre",
+      "Piscina privada",
+      "Jardín con palmeras",
+      "Ducha exterior",
+      "Acceso a la playa"
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Hacienda Orgánica",
+    "location": "Atenas, Alajuela",
+    "price": 5200,
+    "image": "/images/apartments/apt-18.jpg",
+    "description": "Hacienda amplia en el clima más agradable del país, con huerta orgánica, gallinero, taller de cocina y espacios para retiros de bienestar.",
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "area": 380,
+    "amenities": [
+      "Huerta orgánica",
+      "Piscina",
+      "Sauna",
+      "Salón de yoga",
+      "Cocina de campo",
+      "Seguridad 24/7"
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Ático Cascadas",
+    "location": "Dominical, Puntarenas",
+    "price": 2700,
+    "image": "/images/apartments/apt-19.jpg",
+    "description": "Ático a poca distancia de las cascadas de la zona, con terraza elevada, brisa constante y vista a la selva y el mar.",
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "area": 120,
+    "amenities": [
+      "Vista al mar",
+      "Terraza elevada",
+      "Piscina compartida",
+      "Cocina equipada",
+      "Estacionamiento"
+    ]
+  },
+  {
+    "id": 20,
+    "name": "Gran Villa Ojochal",
+    "location": "Ojochal, Puntarenas",
+    "price": 9500,
+    "image": "/images/apartments/apt-20.jpg",
+    "description": "Villa de cinco habitaciones sobre una colina frente al océano, con piscina infinita, spa privado, sala de yoga y jardín tropical diseñado por paisajistas.",
+    "bedrooms": 5,
+    "bathrooms": 5,
+    "area": 420,
+    "amenities": [
+      "Spa privado",
+      "Piscina infinita",
+      "Estudio de yoga",
+      "Vista al mar",
+      "Gimnasio privado",
+      "Seguridad 24/7",
+      "Jardín tropical"
+    ],
+    "featured": true
+  }
+]
