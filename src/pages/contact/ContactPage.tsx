@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import { useSearchParams } from "react-router-dom";
+import "./ContactPage.css";
 
 function ContactPage() {
   const [searchParams] = useSearchParams();

@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import type { Apartment } from '../../types/apartment';
 import { formatPrice } from '../../utils/formatPrice';
+import './ApartmentCard.css';
 
 interface ApartmentCardProps {
   apartment: Apartment;

@@ -3,7 +3,7 @@ import "./ValueProposition.css";
 function ValueProposition() {
   return (
     <section className="value-section">
-      <h2>¿Por qué elegirnos?</h2>
+      <h2 className="value-title">¿Por qué elegirnos?</h2>
       <p className="value-description">
         Ofrecemos espacios exclusivos diseñados para brindar comodidad,
         elegancia y bienestar.

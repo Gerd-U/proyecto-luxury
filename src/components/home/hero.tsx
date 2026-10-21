@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./hero.css";
 
 function Hero() {
@@ -5,7 +6,7 @@ function Hero() {
     <section className="hero">
       <div className="hero-content">
         <h1>
-          Disfruta la vida que <span className="highlight"> tú </span>mereces
+          Disfruta la vida que <span className="highlight">tú</span> mereces
         </h1>
 
         <p>
@@ -13,9 +14,9 @@ function Hero() {
           elegancia y calidad de vida.
         </p>
 
-        <a href="/apartamentos" className="hero-button">
+        <Link to="/apartamentos" className="hero-button">
           Explorar apartamentos
-        </a>
+        </Link>
       </div>
     </section>
   );
