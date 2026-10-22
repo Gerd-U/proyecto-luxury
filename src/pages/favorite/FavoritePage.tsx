@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./FavoritesPage.css";
 
 function FavoritesPage() {
   //Context de favoritos

@@ -1,43 +1,59 @@
 .value-section {
-  padding: 80px 20px;
+  padding: var(--espacio-grande) var(--espacio-pequeno);
+  background-color: var(--color-arena);
   text-align: center;
-  background-color: #f4f4f8;
 }
 
 .value-section h2 {
-  font-size: 2.5rem;
-  color: #222;
-  margin-bottom: 20px;
+  margin-bottom: var(--espacio-pequeno);
+  color: var(--color-texto-claro);
 }
 
 .value-description {
   max-width: 650px;
-  margin: 0 auto 45px;
-  color: #666;
+  margin: 0 auto var(--espacio-grande);
   line-height: 1.7;
 }
 
 .value-container {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espacio-mediano);
+  max-width: var(--ancho-max);
+  margin: 0 auto;
 }
 
 .value-card {
-  background: white;
-  padding: 35px 25px;
-  border-radius: 10px;
-  width: 280px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  padding: var(--espacio-mediano);
+  border-top: 3px solid var(--color-dorado);
+  border-radius: var(--radio);
+  background-color: var(--color-blanco);
+  box-shadow: var(--sombra);
 }
 
 .value-card h3 {
-  color: #b89558;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
+  color: var(--color-turquesa);
 }
 
 .value-card p {
-  color: #555;
   line-height: 1.6;
+}
+
+.value-section .value-title {
+  color: var(--color-texto);
+}
+
+.value-section .value-description {
+  color: var(--color-texto-suave);
+}
+
+@media (min-width: 768px) {
+  .value-section {
+    padding: var(--espacio-grande) var(--espacio-mediano);
+  }
+
+  .value-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

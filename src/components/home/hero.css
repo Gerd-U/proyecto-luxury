@@ -1,69 +1,65 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&display=swap");
-
 .hero {
-  min-height: 85vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 80px 24px;
-  box-sizing: border-box;
-
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)),
-    url("/images/home/hero.jpg") center / cover no-repeat;
-
-  color: white;
+  min-height: 70vh;
+  padding: var(--espacio-grande) var(--espacio-pequeno);
+  background-image: linear-gradient(rgba(8, 90, 105, 0.55), rgba(30, 43, 45, 0.7)), url("/images/home/hero.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   text-align: center;
 }
 
 .hero-content {
   width: 100%;
-  max-width: 850px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
 .hero-content h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  line-height: 1.2;
-  margin: 0 0 24px;
-  color: white;
+  margin-bottom: var(--espacio-pequeno);
+  color: var(--color-texto-claro);
+}
+
+.highlight {
+  font-style: italic;
+  color: var(--color-dorado);
 }
 
 .hero-content p {
-  font-size: 1.15rem;
+  max-width: 600px;
+  margin: 0 auto var(--espacio-mediano);
+  font-size: 1rem;
   line-height: 1.8;
-  margin: 0 auto 35px;
-  max-width: 650px;
-  color: #e8e8e8;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .hero-button {
   display: inline-block;
-  padding: 15px 30px;
-  background: #c5a46d;
-  color: #171717;
-  text-decoration: none;
+  padding: 14px 32px;
+  border-radius: var(--radio);
+  background-color: var(--color-dorado);
+  color: var(--color-texto);
+  font-size: 0.85rem;
   font-weight: 600;
-  border-radius: 5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
   transition: background-color 0.3s;
 }
 
 .hero-button:hover {
-  background: #e2c38d;
+  background-color: var(--color-dorado-oscuro);
+  color: var(--color-texto);
 }
 
-@media (max-width: 600px) {
+@media (min-width: 768px) {
   .hero {
-    min-height: 70vh;
+    min-height: 85vh;
+    padding: var(--espacio-grande) var(--espacio-mediano);
   }
 
   .hero-content p {
-    font-size: 1rem;
+    font-size: 1.15rem;
   }
-}
-.highlight {
-  font-family: "Playfair Display", serif;
-  color: #c5a46d;
-  font-style: italic;
-  font-weight: bold;
 }

@@ -1,0 +1,123 @@
+.contact-header {
+  padding: var(--espacio-grande) var(--espacio-pequeno);
+  background-color: var(--color-turquesa);
+  text-align: center;
+}
+
+.contact-header h1 {
+  margin-bottom: 12px;
+  color: var(--color-texto-claro);
+}
+
+.contact-header p {
+  max-width: 600px;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.contact-content {
+  padding: var(--espacio-grande) var(--espacio-pequeno);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-pequeno);
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--espacio-mediano);
+  border-top: 3px solid var(--color-dorado);
+  border-radius: var(--radio);
+  background-color: var(--color-blanco);
+  box-shadow: var(--sombra);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-texto-suave);
+}
+
+.form-group input {
+  padding: 12px 14px;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  background-color: var(--color-blanco);
+  color: var(--color-texto);
+}
+
+.form-group textarea {
+  padding: 12px 14px;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  background-color: var(--color-blanco);
+  color: var(--color-texto);
+  resize: vertical;
+}
+
+.form-group input:focus {
+  border-color: var(--color-turquesa);
+  outline: none;
+}
+
+.form-group textarea:focus {
+  border-color: var(--color-turquesa);
+  outline: none;
+}
+
+.form-group .input-error {
+  border-color: var(--color-error);
+}
+
+.form-error {
+  font-size: 0.85rem;
+  color: var(--color-error);
+}
+
+.form-note {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--color-texto-suave);
+}
+
+.contact-button {
+  align-self: flex-start;
+  margin-top: 8px;
+  padding: 12px 32px;
+  border: none;
+  border-radius: var(--radio);
+  background-color: var(--color-turquesa);
+  color: var(--color-texto-claro);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.contact-button:hover {
+  background-color: var(--color-turquesa-oscuro);
+}
+
+.form-success {
+  padding: 12px 16px;
+  border-left: 4px solid var(--color-exito);
+  border-radius: var(--radio);
+  background-color: rgba(78, 143, 107, 0.1);
+  color: var(--color-exito);
+  font-weight: 500;
+}
+
+@media (min-width: 768px) {
+  .contact-form {
+    padding: var(--espacio-grande);
+  }
+}

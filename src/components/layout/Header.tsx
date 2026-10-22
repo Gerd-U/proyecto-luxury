@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-
-//COLOCAR IMAGEN DE LOGO EN LA CARPETA ASSETS Y CAMBIAR EL NOMBRE DE LA MARCA
-import logo from "../../assets/hero.png";
-
-//CSS COMENTADO POR QUE TODAVIA NO ESTA CREADO
-//import "./Header.css";
+import "./Header.css";
 
 interface NavItem {
   to: string;
@@ -34,8 +29,7 @@ function Header() {
     <header className="header">
       <div className="header__container">
         <Link to="/" className="header__brand" onClick={closeMenu}>
-          <img src={logo} alt="" className="header__logo" />
-          <span className="header__name">Nombre de tu marca</span>
+          <span className="header__name">Luxury</span>
         </Link>
 
         <button
