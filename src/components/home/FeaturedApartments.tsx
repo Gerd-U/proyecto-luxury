@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import FavoriteButton from "../apartments/FavoriteButton";
 import ApartmentList from "../apartments/ApartmentList";
 import type { Apartment } from "../../types/apartment";
 import "./FeaturedApartments.css";
@@ -51,13 +52,18 @@ function useApartments(): Apartment[] {
 
         const data: unknown = await response.json();
         if (!Array.isArray(data) || !data.every(isApartment)) {
-          throw new Error("El archivo de apartamentos tiene un formato inválido.");
+          throw new Error(
+            "El archivo de apartamentos tiene un formato inválido.",
+          );
         }
 
         setApartments(data);
       } catch (error) {
         if (!controller.signal.aborted) {
-          console.error("No se pudieron cargar los apartamentos destacados.", error);
+          console.error(
+            "No se pudieron cargar los apartamentos destacados.",
+            error,
+          );
         }
       }
     }
@@ -83,7 +89,12 @@ function FeaturedApartments() {
       </p>
 
       <div className="featured-container">
-        <ApartmentList apartments={featuredApartments} />
+        <ApartmentList
+          apartments={featuredApartments}
+          renderActions={(apartment) => (
+            <FavoriteButton apartmentId={apartment.id} />
+          )}
+        />
       </div>
     </section>
   );

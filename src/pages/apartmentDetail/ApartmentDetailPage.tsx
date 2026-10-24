@@ -5,6 +5,7 @@ import ErrorMessage from "../../components/ui/ErrorMessage";
 import Loader from "../../components/ui/Loader";
 import type { Apartment } from "../../types/apartment";
 import { formatPrice } from "../../utils/formatPrice";
+import FavoriteButton from "../../components/apartments/FavoriteButton";
 import "./ApartmentDetailPage.css";
 
 function isApartment(value: unknown): value is Apartment {
@@ -62,13 +63,15 @@ function ApartmentDetailPage() {
 
         const data: unknown = await response.json();
         if (!Array.isArray(data) || !data.every(isApartment)) {
-          throw new Error("El archivo de apartamentos tiene un formato inválido.");
+          throw new Error(
+            "El archivo de apartamentos tiene un formato inválido.",
+          );
         }
 
         const apartmentId = Number(id);
         setApartment(
           Number.isSafeInteger(apartmentId)
-            ? data.find((item) => item.id === apartmentId) ?? null
+            ? (data.find((item) => item.id === apartmentId) ?? null)
             : null,
         );
       } catch (loadError) {
@@ -144,6 +147,7 @@ function ApartmentDetailPage() {
               </ul>
 
               <div className="apartment-detail-actions">
+                <FavoriteButton apartmentId={apartment.id} />
                 <Link
                   to={`/contacto?propiedad=${encodeURIComponent(apartment.name)}`}
                   className="apartment-contact-button"

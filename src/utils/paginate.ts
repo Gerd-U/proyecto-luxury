@@ -1,6 +1,9 @@
-export const ITEMS_PER_PAGE = 3;
+export const ITEMS_PER_PAGE = 5;
 
-export function getTotalPages(totalItems: number, pageSize: number = ITEMS_PER_PAGE): number {
+export function getTotalPages(
+  totalItems: number,
+  pageSize: number = ITEMS_PER_PAGE,
+): number {
   return Math.max(1, Math.ceil(totalItems / pageSize));
 }
 
