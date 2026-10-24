@@ -109,7 +109,7 @@ function ContactPage() {
 
           {enviado && (
             <p className="form-success" role="status">
-              Formulario validado.
+              Mensaje enviado correctamente, Gracias por contactarnos.
             </p>
           )}
         </form>
