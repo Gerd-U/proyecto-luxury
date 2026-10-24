@@ -7,6 +7,7 @@ import EmptyState from "../../components/ui/EmptyState";
 import ErrorMessage from "../../components/ui/ErrorMessage";
 import Loader from "../../components/ui/Loader";
 import Pagination from "../../components/ui/Pagination";
+import FavoriteButton from "../../components/apartments/FavoriteButton";
 import {
   DEFAULT_FILTERS,
   type Apartment,
@@ -71,7 +72,9 @@ function ApartmentsPage() {
 
         const data: unknown = await response.json();
         if (!Array.isArray(data) || !data.every(isApartment)) {
-          throw new Error("El archivo de apartamentos tiene un formato inválido.");
+          throw new Error(
+            "El archivo de apartamentos tiene un formato inválido.",
+          );
         }
 
         setApartments(data);
@@ -173,7 +176,12 @@ function ApartmentsPage() {
           />
         ) : (
           <>
-            <ApartmentList apartments={visibleApartments} />
+            <ApartmentList
+              apartments={visibleApartments}
+              renderActions={(apartment) => (
+                <FavoriteButton apartmentId={apartment.id} />
+              )}
+            />
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}
