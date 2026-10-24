@@ -174,3 +174,46 @@ select {
     padding: 0 var(--espacio-mediano);
   }
 }
+
+/* ===== Inicio rediseñado: tokens derivados de la paleta ===== */
+:root {
+  /* color del contorno de foco; en secciones oscuras se cambia a dorado */
+  --color-foco: var(--color-turquesa-oscuro);
+
+  /* curvas de animación: arranca rápido y frena suave */
+  --curva-salida: cubic-bezier(0.22, 1, 0.36, 1);
+  /* telón: arranca lento, acelera y frena (para el loader) */
+  --curva-telon: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* ===== Foco visible para quien navega con teclado ===== */
+:focus-visible {
+  outline: 2px solid var(--color-foco);
+  outline-offset: 3px;
+}
+
+/* ===== Texto solo para lectores de pantalla ===== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===== Respeto a "reducir movimiento" del sistema ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+}
