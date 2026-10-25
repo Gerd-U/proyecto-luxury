@@ -1,16 +1,18 @@
 import type { ReactNode } from 'react';
+import './Ui.css';
 
 interface EmptyStateProps {
   title: string;
   message?: string;
-  /** Botón o enlace opcional, por ejemplo "Limpiar filtros" */
   action?: ReactNode;
+  icon?: ReactNode;
 }
 
-export default function EmptyState({ title, message, action }: EmptyStateProps) {
+export default function EmptyState({ title, message, action, icon }: EmptyStateProps) {
   return (
     <div className="empty-state">
-      <h3 className="empty-state__title">{title}</h3>
+      {icon && <div className="empty-state__icon">{icon}</div>}
+      <h2 className="empty-state__title">{title}</h2>
       {message && <p className="empty-state__message">{message}</p>}
       {action && <div className="empty-state__action">{action}</div>}
     </div>

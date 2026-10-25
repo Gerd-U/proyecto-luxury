@@ -1,3 +1,5 @@
+import './Ui.css';
+
 interface ErrorMessageProps {
   message: string;
   onRetry?: () => void;

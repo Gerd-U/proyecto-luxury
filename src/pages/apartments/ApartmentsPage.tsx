@@ -1,120 +1,158 @@
-import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { useMemo, useRef, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import BrandMark from "../../components/brand/BrandMark";
+import ApartmentCardSkeleton from "../../components/apartments/ApartmentCardSkeleton";
 import ApartmentList from "../../components/apartments/ApartmentList";
 import FilterBar from "../../components/apartments/FilterBar";
-import FavoriteButton from "../../components/apartments/FavoriteButton";
 import EmptyState from "../../components/ui/EmptyState";
 import ErrorMessage from "../../components/ui/ErrorMessage";
-import Loader from "../../components/ui/Loader";
 import Pagination from "../../components/ui/Pagination";
 import { useApartments } from "../../hooks/useApartments";
 import { DEFAULT_FILTERS, type ApartmentFilters } from "../../types/apartment";
-import { getTotalPages, paginate } from "../../utils/paginate";
-import "../../components/apartments/FilterBar.css";
+import {
+  buildParams,
+  countActiveFilters,
+  filterApartments,
+  getLocations,
+  getPriceBounds,
+  readFiltersFromParams,
+  readPageFromParams,
+} from "../../utils/filterApartments";
+import { ITEMS_PER_PAGE, getTotalPages, paginate } from "../../utils/paginate";
 import "./ApartmentsPage.css";
+
+const FILTERS_ID = "filtros-catalogo";
 
 function ApartmentsPage() {
   const { apartments, isLoading, error, retry } = useApartments();
-  const [filters, setFilters] = useState<ApartmentFilters>(DEFAULT_FILTERS);
-  const [currentPage, setCurrentPage] = useState(1);
+  // La URL conserva los filtros al volver del detalle.
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [isPanelOpen, setIsPanelOpen] = useState<boolean>(false);
+  const resultsRef = useRef<HTMLDivElement | null>(null);
 
-  const locations = useMemo(
-    () =>
-      [...new Set(apartments.map((apartment) => apartment.location))].sort(
-        (first, second) => first.localeCompare(second, "es"),
-      ),
-    [apartments],
+  const filters = useMemo(() => readFiltersFromParams(searchParams), [searchParams]);
+  const requestedPage = readPageFromParams(searchParams);
+
+  const locations = useMemo(() => getLocations(apartments), [apartments]);
+  const priceBounds = useMemo(() => getPriceBounds(apartments), [apartments]);
+
+  const filteredApartments = useMemo(
+    () => filterApartments(apartments, filters),
+    [apartments, filters],
   );
 
-  const filteredApartments = useMemo(() => {
-    const search = filters.search.trim().toLocaleLowerCase();
-
-    return apartments.filter((apartment) => {
-      const matchesSearch =
-        !search ||
-        apartment.name.toLocaleLowerCase().includes(search) ||
-        apartment.location.toLocaleLowerCase().includes(search);
-      const matchesLocation =
-        !filters.location || apartment.location === filters.location;
-      const matchesBedrooms =
-        filters.bedrooms === null || apartment.bedrooms >= filters.bedrooms;
-      const matchesPrice =
-        filters.maxPrice === null || apartment.price <= filters.maxPrice;
-
-      return (
-        matchesSearch && matchesLocation && matchesBedrooms && matchesPrice
-      );
-    });
-  }, [apartments, filters]);
-
   const totalPages = getTotalPages(filteredApartments.length);
+  // Evita mostrar una página vacía si cambian los resultados.
+  const currentPage = Math.min(requestedPage, totalPages);
   const visibleApartments = paginate(filteredApartments, currentPage);
+  const activeCount = countActiveFilters(filters);
 
-  const updateFilters = (nextFilters: ApartmentFilters) => {
-    setFilters(nextFilters);
-    setCurrentPage(1);
+  const firstShown = (currentPage - 1) * ITEMS_PER_PAGE + 1;
+  const lastShown = firstShown + visibleApartments.length - 1;
+
+  // Los filtros nuevos empiezan en la primera página.
+  const updateFilters = (nextFilters: ApartmentFilters): void => {
+    setSearchParams(buildParams(nextFilters, 1), { replace: true });
+  };
+
+  const clearFilters = (): void => {
+    updateFilters(DEFAULT_FILTERS);
+  };
+
+  const changePage = (page: number): void => {
+    setSearchParams(buildParams(filters, page));
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    resultsRef.current?.scrollIntoView({
+      behavior: reduceMotion ? "auto" : "smooth",
+      block: "start",
+    });
   };
 
   return (
-    <div className="apartments-page">
-      <section className="apartments-header">
-        <h1>Encuentra tu próximo hogar</h1>
-        <p>
-          Explora nuestra colección de apartamentos exclusivos y encuentra el
-          espacio ideal para tus gustos.
+    <div className="catalog">
+      <header className="catalog__header">
+        <h1 className="catalog__title">Residencias</h1>
+        <p className="catalog__intro">
+          Apartamentos, penthouses y casas en venta en el Valle Central y el
+          Pacífico, elegidos uno por uno.
         </p>
-      </section>
-
-      <section className="apartments-catalog">
-        <FilterBar
-          filters={filters}
-          locations={locations}
-          onChange={updateFilters}
-        />
-
-        {isLoading ? (
-          <Loader />
-        ) : error ? (
-          <ErrorMessage message={error} onRetry={retry} />
-        ) : filteredApartments.length === 0 ? (
-          <EmptyState
-            title="No encontramos apartamentos"
-            message="Probá cambiar o limpiar los filtros."
-            action={
-              <button
-                className="filter-bar__clear"
-                type="button"
-                onClick={() => updateFilters(DEFAULT_FILTERS)}
-              >
-                Limpiar filtros
-              </button>
-            }
-          />
-        ) : (
-          <>
-            <ApartmentList
-              apartments={visibleApartments}
-              renderActions={(apartment) => (
-                <FavoriteButton apartmentId={apartment.id} />
-              )}
-            />
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={setCurrentPage}
-            />
-          </>
-        )}
-      </section>
-
-      <section className="apartments-contact">
-        <h2>¿Necesitas asesoramiento o ayuda de algun tipo?</h2>
-        <p>
-          Nuestro equipo puede ayudarte a encontrar el apartamento que estás
-          buscando.
+        <p className="catalog__count" aria-live="polite">
+          {isLoading
+            ? "Cargando el catálogo…"
+            : error
+              ? "Catálogo no disponible"
+              : `${filteredApartments.length} de ${apartments.length} residencias`}
         </p>
-        <Link to="/contacto" className="apartments-contact-button">
-          Contáctanos
+      </header>
+
+      <div className="catalog__layout">
+        <aside className="catalog__filters">
+          <button
+            type="button"
+            className="catalog__filters-toggle"
+            aria-expanded={isPanelOpen}
+            aria-controls={FILTERS_ID}
+            onClick={() => setIsPanelOpen((open) => !open)}
+          >
+            <span>Filtros{activeCount > 0 ? ` (${activeCount})` : ""}</span>
+            <span className="catalog__filters-icon" aria-hidden="true">
+              {isPanelOpen ? "−" : "+"}
+            </span>
+          </button>
+
+          <div className={`catalog__panel ${isPanelOpen ? "is-open" : ""}`}>
+            <FilterBar
+              id={FILTERS_ID}
+              filters={filters}
+              locations={locations}
+              priceBounds={priceBounds}
+              activeCount={activeCount}
+              onChange={updateFilters}
+              onClear={clearFilters}
+            />
+          </div>
+        </aside>
+
+        <section className="catalog__results" ref={resultsRef} aria-label="Resultados">
+          {isLoading ? (
+            <ApartmentCardSkeleton />
+          ) : error ? (
+            <ErrorMessage message={error} onRetry={retry} />
+          ) : filteredApartments.length === 0 ? (
+            <EmptyState
+              icon={<BrandMark size={72} />}
+              title="Ninguna residencia coincide"
+              message={`Prueba con menos filtros: hay ${activeCount} activos. También puedes buscar por zona o por amenidad, como "piscina".`}
+              action={
+                <button type="button" className="catalog__clear" onClick={clearFilters}>
+                  Limpiar filtros
+                </button>
+              }
+            />
+          ) : (
+            <>
+              <p className="catalog__range">
+                Mostrando {firstShown}–{lastShown} de {filteredApartments.length}
+              </p>
+              <ApartmentList apartments={visibleApartments} />
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={changePage}
+              />
+            </>
+          )}
+        </section>
+      </div>
+
+      <section className="catalog__contact">
+        <h2>¿No ves la que buscas?</h2>
+        <p>
+          Tenemos residencias que no publicamos. Cuéntanos qué necesitas y te
+          mostramos opciones en privado.
+        </p>
+        <Link to="/contacto" className="catalog__contact-button">
+          Hablar con un asesor
         </Link>
       </section>
     </div>
