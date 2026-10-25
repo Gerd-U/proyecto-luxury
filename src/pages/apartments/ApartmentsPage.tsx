@@ -1,103 +1,22 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import ApartmentList from "../../components/apartments/ApartmentList";
-import "../../components/apartments/FilterBar.css";
 import FilterBar from "../../components/apartments/FilterBar";
+import FavoriteButton from "../../components/apartments/FavoriteButton";
 import EmptyState from "../../components/ui/EmptyState";
 import ErrorMessage from "../../components/ui/ErrorMessage";
 import Loader from "../../components/ui/Loader";
 import Pagination from "../../components/ui/Pagination";
-import FavoriteButton from "../../components/apartments/FavoriteButton";
-import {
-  DEFAULT_FILTERS,
-  type Apartment,
-  type ApartmentFilters,
-} from "../../types/apartment";
+import { useApartments } from "../../hooks/useApartments";
+import { DEFAULT_FILTERS, type ApartmentFilters } from "../../types/apartment";
 import { getTotalPages, paginate } from "../../utils/paginate";
+import "../../components/apartments/FilterBar.css";
 import "./ApartmentsPage.css";
 
-function isApartment(value: unknown): value is Apartment {
-  if (typeof value !== "object" || value === null) {
-    return false;
-  }
-
-  return (
-    "id" in value &&
-    typeof value.id === "number" &&
-    "name" in value &&
-    typeof value.name === "string" &&
-    "location" in value &&
-    typeof value.location === "string" &&
-    "price" in value &&
-    typeof value.price === "number" &&
-    "image" in value &&
-    typeof value.image === "string" &&
-    "description" in value &&
-    typeof value.description === "string" &&
-    "bedrooms" in value &&
-    typeof value.bedrooms === "number" &&
-    "bathrooms" in value &&
-    typeof value.bathrooms === "number" &&
-    "area" in value &&
-    typeof value.area === "number" &&
-    "amenities" in value &&
-    Array.isArray(value.amenities) &&
-    value.amenities.every((amenity) => typeof amenity === "string") &&
-    (!("featured" in value) || typeof value.featured === "boolean")
-  );
-}
-
 function ApartmentsPage() {
-  const [apartments, setApartments] = useState<Apartment[]>([]);
+  const { apartments, isLoading, error, retry } = useApartments();
   const [filters, setFilters] = useState<ApartmentFilters>(DEFAULT_FILTERS);
   const [currentPage, setCurrentPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [loadAttempt, setLoadAttempt] = useState(0);
-
-  useEffect(() => {
-    const controller = new AbortController();
-
-    async function loadApartments() {
-      setIsLoading(true);
-      setError(null);
-
-      try {
-        const response = await fetch("/data/apartments.json", {
-          signal: controller.signal,
-        });
-        if (!response.ok) {
-          throw new Error(`Error al cargar apartamentos (${response.status})`);
-        }
-
-        const data: unknown = await response.json();
-        if (!Array.isArray(data) || !data.every(isApartment)) {
-          throw new Error(
-            "El archivo de apartamentos tiene un formato inválido.",
-          );
-        }
-
-        setApartments(data);
-      } catch (loadError) {
-        if (controller.signal.aborted) {
-          return;
-        }
-
-        setError(
-          loadError instanceof Error
-            ? loadError.message
-            : "No se pudieron cargar los apartamentos.",
-        );
-      } finally {
-        if (!controller.signal.aborted) {
-          setIsLoading(false);
-        }
-      }
-    }
-
-    void loadApartments();
-    return () => controller.abort();
-  }, [loadAttempt]);
 
   const locations = useMemo(
     () =>
@@ -137,7 +56,7 @@ function ApartmentsPage() {
   };
 
   return (
-    <main className="apartments-page">
+    <div className="apartments-page">
       <section className="apartments-header">
         <h1>Encuentra tu próximo hogar</h1>
         <p>
@@ -156,10 +75,7 @@ function ApartmentsPage() {
         {isLoading ? (
           <Loader />
         ) : error ? (
-          <ErrorMessage
-            message={error}
-            onRetry={() => setLoadAttempt((attempt) => attempt + 1)}
-          />
+          <ErrorMessage message={error} onRetry={retry} />
         ) : filteredApartments.length === 0 ? (
           <EmptyState
             title="No encontramos apartamentos"
@@ -197,12 +113,11 @@ function ApartmentsPage() {
           Nuestro equipo puede ayudarte a encontrar el apartamento que estás
           buscando.
         </p>
-
         <Link to="/contacto" className="apartments-contact-button">
           Contáctanos
         </Link>
       </section>
-    </main>
+    </div>
   );
 }
 

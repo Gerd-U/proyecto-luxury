@@ -2,7 +2,7 @@ import "./NotFoundPage.css";
 
 function NotFoundPage() {
   return (
-    <main className="notfound">
+    <div className="notfound">
       <div className="notfound-content">
         <h1>404</h1>
         <h2>Página no encontrada</h2>
@@ -13,7 +13,7 @@ function NotFoundPage() {
           Volver a la página principal
         </a>
       </div>
-    </main>
+    </div>
   );
 }
 

@@ -1,14 +1,22 @@
 import Hero from "../../components/home/hero";
 import ValueProposition from "../../components/home/ValueProposition";
 import FeaturedApartments from "../../components/home/FeaturedApartments";
+import { useApartments } from "../../hooks/useApartments";
 
 function HomePage() {
+  const { apartments, isLoading, error, retry } = useApartments();
+
   return (
-    <main>
-      <Hero />
+    <div className="home">
+      <Hero isReady={true} apartments={apartments} />
       <ValueProposition />
-      <FeaturedApartments />
-    </main>
+      <FeaturedApartments
+        apartments={apartments}
+        isLoading={isLoading}
+        error={error}
+        onRetry={retry}
+      />
+    </div>
   );
 }
 

@@ -6,38 +6,8 @@ import Loader from "../../components/ui/Loader";
 import type { Apartment } from "../../types/apartment";
 import { formatPrice } from "../../utils/formatPrice";
 import FavoriteButton from "../../components/apartments/FavoriteButton";
+import { isApartment } from "../../utils/isApartment";
 import "./ApartmentDetailPage.css";
-
-function isApartment(value: unknown): value is Apartment {
-  if (typeof value !== "object" || value === null) {
-    return false;
-  }
-
-  return (
-    "id" in value &&
-    typeof value.id === "number" &&
-    "name" in value &&
-    typeof value.name === "string" &&
-    "location" in value &&
-    typeof value.location === "string" &&
-    "price" in value &&
-    typeof value.price === "number" &&
-    "image" in value &&
-    typeof value.image === "string" &&
-    "description" in value &&
-    typeof value.description === "string" &&
-    "bedrooms" in value &&
-    typeof value.bedrooms === "number" &&
-    "bathrooms" in value &&
-    typeof value.bathrooms === "number" &&
-    "area" in value &&
-    typeof value.area === "number" &&
-    "amenities" in value &&
-    Array.isArray(value.amenities) &&
-    value.amenities.every((amenity) => typeof amenity === "string") &&
-    (!("featured" in value) || typeof value.featured === "boolean")
-  );
-}
 
 function ApartmentDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -94,7 +64,7 @@ function ApartmentDetailPage() {
   }, [id]);
 
   return (
-    <main className="apartment-detail-page">
+    <div className="apartment-detail-page">
       <section className="apartment-detail-header">
         <Link to="/apartamentos" className="back-link">
           ← Volver al catalogo
@@ -165,7 +135,7 @@ function ApartmentDetailPage() {
           action={<Link to="/apartamentos">Volver al catálogo</Link>}
         />
       )}
-    </main>
+    </div>
   );
 }
 

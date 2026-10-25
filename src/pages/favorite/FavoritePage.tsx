@@ -57,7 +57,7 @@ function FavoritesPage() {
   );
 
   return (
-    <main className="favorites-page">
+    <div className="favorites-page">
       <section className="favorites-header">
         <h1>Mis apartamentos favoritos</h1>
         <p>
@@ -91,7 +91,7 @@ function FavoritesPage() {
           </div>
         )}
       </section>
-    </main>
+    </div>
   );
 }
 
