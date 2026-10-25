@@ -2,13 +2,14 @@ export interface Apartment {
   id: number;
   name: string;
   location: string;
-  /** Precio mensual en USD */
+  /** Precio en USD. */
   price: number;
   image: string;
+  gallery?: string[];
   description: string;
   bedrooms: number;
   bathrooms: number;
-  /** Área en metros cuadrados */
+  /** Área en m². */
   area: number;
   amenities: string[];
   featured?: boolean;
@@ -16,11 +17,10 @@ export interface Apartment {
 
 export interface ApartmentFilters {
   search: string;
-  /** Cadena vacía = todas las ubicaciones */
   location: string;
-  /** null = sin filtro de habitaciones */
+  /** null significa que no hay mínimo. */
   bedrooms: number | null;
-  /** null = sin precio máximo */
+  /** null significa que no hay máximo. */
   maxPrice: number | null;
 }
 

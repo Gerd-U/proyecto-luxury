@@ -4,6 +4,9 @@ import { isApartment } from "../utils/isApartment";
 
 const DATA_URL = "/data/apartments.json";
 
+// Evita volver a cargar el catálogo al abrir otra página.
+let cachedApartments: Apartment[] | null = null;
+
 export interface UseApartmentsResult {
   apartments: Apartment[];
   isLoading: boolean;
@@ -12,37 +15,45 @@ export interface UseApartmentsResult {
 }
 
 export function useApartments(): UseApartmentsResult {
-  const [apartments, setApartments] = useState<Apartment[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [apartments, setApartments] = useState<Apartment[]>(
+    () => cachedApartments ?? [],
+  );
+  const [isLoading, setIsLoading] = useState<boolean>(
+    () => cachedApartments === null,
+  );
   const [error, setError] = useState<string | null>(null);
   const [attempt, setAttempt] = useState<number>(0);
 
   useEffect(() => {
+    if (cachedApartments !== null && attempt === 0) {
+      return;
+    }
+
+    // Cancela la petición si el componente se desmonta.
     const controller = new AbortController();
 
     async function loadApartments(): Promise<void> {
       try {
         const response = await fetch(DATA_URL, { signal: controller.signal });
-
         if (!response.ok) {
-          throw new Error(`Error al cargar apartamentos (${response.status})`);
+          throw new Error(`No pudimos cargar el catálogo (error ${response.status}).`);
         }
 
-        const data: unknown = await response.json();
-
+        // Sustituye el error técnico por un mensaje claro.
+        const data: unknown = await response.json().catch(() => {
+          throw new Error("No pudimos leer el catálogo. Intenta de nuevo en un momento.");
+        });
         if (!Array.isArray(data) || !data.every(isApartment)) {
-          throw new Error(
-            "El archivo de apartamentos tiene un formato inválido.",
-          );
+          throw new Error("El catálogo tiene datos incompletos o con un formato inválido.");
         }
 
+        cachedApartments = data;
         setApartments(data);
         setError(null);
       } catch (loadError) {
         if (controller.signal.aborted) {
           return;
         }
-
         setError(
           loadError instanceof Error
             ? loadError.message
@@ -60,6 +71,7 @@ export function useApartments(): UseApartmentsResult {
   }, [attempt]);
 
   const retry = (): void => {
+    cachedApartments = null;
     setIsLoading(true);
     setError(null);
     setAttempt((current) => current + 1);
