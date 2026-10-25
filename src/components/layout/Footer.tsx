@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import BrandMark from "../brand/BrandMark";
 import "./Footer.css";
 
 interface FooterLink {
@@ -17,7 +18,7 @@ interface SocialLink {
   url: string;
 }
 
-const BRAND_NAME = "Nombre de tu marca";
+const BRAND_NAME = "Residencias La Guaria";
 
 const NAV_LINKS: FooterLink[] = [
   { label: "Inicio", to: "/" },
@@ -28,7 +29,7 @@ const NAV_LINKS: FooterLink[] = [
 
 const CONTACT_ITEMS: ContactItem[] = [
   { label: "Teléfono", value: "+506 2222-0000", href: "tel:+50622220000" },
-  { label: "Correo", value: "info@tumarca.com", href: "mailto:info@tumarca.com" },
+  { label: "Correo", value: "hola@laguaria.cr", href: "mailto:hola@laguaria.cr" },
   { label: "Oficina", value: "Escazú, San José" },
 ];
 
@@ -38,26 +39,37 @@ const SOCIAL_LINKS: SocialLink[] = [
   { name: "WhatsApp", url: "https://wa.me/50622220000" },
 ];
 
+const PHOTO_CREDITS: string[] = [
+  "Meg von Haartman",
+  "Polina Kuzovkova",
+  "Rosemary Media",
+  "You Le",
+];
+
 function Footer() {
   const currentYear: number = new Date().getFullYear();
 
   return (
     <footer className="footer">
+      <div className="footer__cta">
+        <p className="footer__cta-text">¿Quieres conocer una residencia en persona?</p>
+        <Link to="/contacto" className="footer__cta-button">
+          Agendar una visita
+        </Link>
+      </div>
+
       <div className="footer__container">
-        <section className="footer__brand">
-          <h2 className="footer__name">{BRAND_NAME}</h2>
+        <section className="footer__brand" aria-label={BRAND_NAME}>
+          <BrandMark size={44} className="footer__mark" />
           <p className="footer__text">
-            Apartamentos de lujo rodeados de naturaleza, pensados para vivir con
-            calma y elegancia.
+            Residencias de lujo en el Valle Central y el Pacífico de Costa
+            Rica, elegidas y atendidas de cerca.
           </p>
-          <Link to="/contacto" className="footer__cta">
-            Agendar una visita
-          </Link>
         </section>
 
         <div className="footer__columns">
           <section className="footer__col">
-            <h3 className="footer__title">Explorar</h3>
+            <h2 className="footer__title">Explorar</h2>
             <ul className="footer__list">
               {NAV_LINKS.map((link) => (
                 <li key={link.to}>
@@ -70,7 +82,7 @@ function Footer() {
           </section>
 
           <section className="footer__col">
-            <h3 className="footer__title">Contacto</h3>
+            <h2 className="footer__title">Contacto</h2>
             <ul className="footer__list">
               {CONTACT_ITEMS.map((item) => (
                 <li key={item.label}>
@@ -88,7 +100,7 @@ function Footer() {
           </section>
 
           <section className="footer__col">
-            <h3 className="footer__title">Síguenos</h3>
+            <h2 className="footer__title">Síguenos</h2>
             <ul className="footer__list">
               {SOCIAL_LINKS.map((social) => (
                 <li key={social.name}>
@@ -97,6 +109,7 @@ function Footer() {
                     className="footer__link"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`${social.name} (se abre en otra pestaña)`}
                   >
                     {social.name}
                   </a>
@@ -107,9 +120,25 @@ function Footer() {
         </div>
       </div>
 
+      {/* El nombre a todo el ancho cierra la página, como una firma. */}
+      <p className="footer__signature" aria-hidden="true">
+        La Guaria
+      </p>
+
       <div className="footer__bottom">
-        <p>© {currentYear} {BRAND_NAME}. Todos los derechos reservados.</p>
-        <p>Proyecto académico, UCR Sede de Occidente</p>
+        <p>© {currentYear} {BRAND_NAME}. Proyecto académico, UCR Sede de Occidente.</p>
+        <p>
+          Fotos: {PHOTO_CREDITS.join(", ")} en{" "}
+          <a
+            href="https://unsplash.com"
+            className="footer__link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Unsplash
+          </a>
+          .
+        </p>
       </div>
     </footer>
   );

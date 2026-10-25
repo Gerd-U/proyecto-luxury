@@ -1,8 +1,36 @@
+/* ===== Bloque 1: la barra y sus tres estados de color ===== */
+/* --header-tinta es el color del texto; cambia según dónde esté el header */
 .header {
+  --header-tinta: var(--color-texto);
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: var(--color-turquesa);
+  background-color: var(--color-arena);
+  color: var(--header-tinta);
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease;
+}
+
+/* en Inicio flota encima de la foto del hero */
+.header--home {
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+
+/* transparente sobre el hero, con letras blancas */
+.header--over {
+  --header-tinta: var(--color-texto-claro);
+  --color-foco: var(--color-dorado);
+  background-color: transparent;
+}
+
+/* con el menú móvil abierto, la barra se funde con el panel oscuro */
+.header--menu-open {
+  --header-tinta: var(--color-arena);
+  --color-foco: var(--color-dorado);
+  background-color: transparent;
 }
 
 .header__container {
@@ -11,36 +39,64 @@
   align-items: center;
   max-width: var(--ancho-max);
   margin: 0 auto;
-  padding: 1rem var(--espacio-pequeno);
+  padding: 0.9rem var(--espacio-pequeno);
 }
 
+/* ===== Bloque 2: el logo (flor + nombre) ===== */
 .header__brand {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.65rem;
+  color: var(--header-tinta);
 }
 
-.header__logo {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
+.header__brand:hover {
+  color: var(--header-tinta);
+}
+
+.header__mark {
+  color: var(--color-dorado);
+  transition: transform 0.6s var(--curva-salida);
+}
+
+/* microinteracción: la flor gira un poco al pasar el mouse */
+.header__brand:hover .header__mark {
+  transform: rotate(-12deg);
+}
+
+.header__wordmark {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
 }
 
 .header__name {
   font-family: var(--fuente-titulos);
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 600;
-  color: var(--color-texto-claro);
+  letter-spacing: -0.01em;
 }
 
+.header__sub {
+  margin-top: 2px;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  opacity: 0.85;
+}
+
+/* ===== Bloque 3: el botón hamburguesa que se vuelve X ===== */
 .header__toggle {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 5px;
-  width: 40px;
-  height: 40px;
-  padding: 8px;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -50,12 +106,14 @@
   display: block;
   width: 100%;
   height: 2px;
-  background-color: var(--color-texto-claro);
-  transition: transform 0.3s, opacity 0.3s;
+  background-color: var(--header-tinta);
+  transition:
+    transform 0.35s var(--curva-salida),
+    opacity 0.2s ease;
 }
 
 .header__toggle.is-open .header__bar:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
+  transform: translateY(8px) rotate(45deg);
 }
 
 .header__toggle.is-open .header__bar:nth-child(2) {
@@ -63,50 +121,88 @@
 }
 
 .header__toggle.is-open .header__bar:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
+  transform: translateY(-8px) rotate(-45deg);
 }
 
+/* ===== Bloque 4: el menú móvil a pantalla completa ===== */
 .header__nav {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background-color: var(--color-turquesa-oscuro);
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  padding: 6rem var(--espacio-mediano) 3rem;
+  background-color: var(--color-texto);
+  /* cerrado: invisible y sin poder recibir foco */
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-16px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.45s var(--curva-salida),
+    visibility 0s linear 0.45s;
 }
 
 .header__nav.is-open {
-  display: block;
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.35s ease,
+    transform 0.45s var(--curva-salida),
+    visibility 0s;
 }
 
 .header__list {
   display: flex;
   flex-direction: column;
-  padding: var(--espacio-pequeno);
+  gap: 0.5rem;
 }
 
 .header__link {
-  display: block;
-  padding: 12px 0;
-  font-size: 0.9rem;
+  position: relative;
+  display: inline-block;
+  padding: 0.35rem 0;
+  font-family: var(--fuente-titulos);
+  font-size: 2.6rem;
   font-weight: 500;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--color-texto-claro);
-  border-bottom: 2px solid transparent;
+  line-height: 1.1;
+  color: var(--color-arena);
+  transition: color 0.25s ease;
 }
 
 .header__link:hover {
   color: var(--color-dorado);
 }
 
+/* sección activa: color dorado + un punto, así no depende solo del color */
 .header__link--active {
   color: var(--color-dorado);
 }
 
-@media (min-width: 768px) {
+.header__link--active::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -1.1rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--color-dorado);
+  transform: translateY(-50%);
+}
+
+/* ===== Bloque 5: computadora — logo al centro y enlaces a los lados ===== */
+@media (min-width: 900px) {
   .header__container {
-    padding: 1rem var(--espacio-mediano);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    padding: 1.1rem var(--espacio-mediano);
+  }
+
+  .header__brand {
+    grid-column: 2;
+    grid-row: 1;
   }
 
   .header__toggle {
@@ -114,23 +210,53 @@
   }
 
   .header__nav {
-    display: block;
     position: static;
-    width: auto;
+    grid-column: 1 / -1;
+    grid-row: 1;
+    display: block;
+    padding: 0;
     background-color: transparent;
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 
   .header__list {
     flex-direction: row;
-    gap: var(--espacio-mediano);
-    padding: 0;
+    align-items: center;
+    gap: 2.25rem;
+  }
+
+  /* el tercer enlace se empuja a la derecha: dos a cada lado del logo */
+  .header__item:nth-child(3) {
+    margin-left: auto;
   }
 
   .header__link {
-    padding: 6px 0;
+    padding: 0.5rem 0;
+    font-family: var(--fuente-texto);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--header-tinta);
+  }
+
+  .header__link:hover {
+    color: var(--header-tinta);
+    opacity: 0.75;
   }
 
   .header__link--active {
-    border-bottom-color: var(--color-dorado);
+    color: var(--header-tinta);
+  }
+
+  /* el punto activo pasa debajo de la palabra */
+  .header__link--active::after {
+    top: auto;
+    right: 50%;
+    bottom: -4px;
+    width: 5px;
+    height: 5px;
+    transform: translateX(50%);
   }
 }
