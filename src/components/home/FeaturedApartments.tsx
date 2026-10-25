@@ -1,100 +1,152 @@
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import FavoriteButton from "../apartments/FavoriteButton";
-import ApartmentList from "../apartments/ApartmentList";
+import EmptyState from "../ui/EmptyState";
+import ErrorMessage from "../ui/ErrorMessage";
+import Loader from "../ui/Loader";
 import type { Apartment } from "../../types/apartment";
+import type { StyleWithVars } from "../../types/css";
+import { formatPrice } from "../../utils/formatPrice";
+import {
+  REGION_OPTIONS,
+  getRegion,
+  type RegionFilter,
+} from "../../utils/region";
 import "./FeaturedApartments.css";
 
-function isApartment(value: unknown): value is Apartment {
-  if (typeof value !== "object" || value === null) {
-    return false;
-  }
+interface FeaturedApartmentsProps {
+  apartments: Apartment[];
+  isLoading: boolean;
+  error: string | null;
+  onRetry: () => void;
+}
 
-  return (
-    "id" in value &&
-    typeof value.id === "number" &&
-    "name" in value &&
-    typeof value.name === "string" &&
-    "location" in value &&
-    typeof value.location === "string" &&
-    "price" in value &&
-    typeof value.price === "number" &&
-    "image" in value &&
-    typeof value.image === "string" &&
-    "description" in value &&
-    typeof value.description === "string" &&
-    "bedrooms" in value &&
-    typeof value.bedrooms === "number" &&
-    "bathrooms" in value &&
-    typeof value.bathrooms === "number" &&
-    "area" in value &&
-    typeof value.area === "number" &&
-    "amenities" in value &&
-    Array.isArray(value.amenities) &&
-    value.amenities.every((amenity) => typeof amenity === "string") &&
-    (!("featured" in value) || typeof value.featured === "boolean")
+function FeaturedApartments({
+  apartments,
+  isLoading,
+  error,
+  onRetry,
+}: FeaturedApartmentsProps) {
+  const [region, setRegion] = useState<RegionFilter>("todas");
+
+  const featured = useMemo(
+    () => apartments.filter((apartment) => apartment.featured === true),
+    [apartments],
   );
-}
 
-function useApartments(): Apartment[] {
-  const [apartments, setApartments] = useState<Apartment[]>([]);
+  const visible = useMemo(
+    () =>
+      region === "todas"
+        ? featured
+        : featured.filter(
+            (apartment) => getRegion(apartment.location) === region,
+          ),
+    [featured, region],
+  );
 
-  useEffect(() => {
-    const controller = new AbortController();
-
-    async function loadApartments() {
-      try {
-        const response = await fetch("/data/apartments.json", {
-          signal: controller.signal,
-        });
-        if (!response.ok) {
-          throw new Error(`Error al cargar apartamentos (${response.status})`);
-        }
-
-        const data: unknown = await response.json();
-        if (!Array.isArray(data) || !data.every(isApartment)) {
-          throw new Error(
-            "El archivo de apartamentos tiene un formato inválido.",
-          );
-        }
-
-        setApartments(data);
-      } catch (error) {
-        if (!controller.signal.aborted) {
-          console.error(
-            "No se pudieron cargar los apartamentos destacados.",
-            error,
-          );
-        }
-      }
-    }
-
-    void loadApartments();
-    return () => controller.abort();
-  }, []);
-
-  return apartments;
-}
-
-function FeaturedApartments() {
-  const apartments = useApartments();
-  const featuredApartments = apartments
-    .filter((apartment) => apartment.featured === true)
-    .slice(0, 3);
+  const countFor = (value: RegionFilter): number =>
+    value === "todas"
+      ? featured.length
+      : featured.filter((apartment) => getRegion(apartment.location) === value)
+          .length;
 
   return (
-    <section className="featured-section">
-      <h2 className="featured-title">Apartamentos destacados</h2>
-      <p className="featured-description">
-        Descubre nuestra selección de propiedades diseñadas para ti.
-      </p>
+    <section className="featured" aria-labelledby="featured-title">
+      <div className="featured__inner">
+        <div className="featured__head">
+          <h2 id="featured-title" className="featured__title">
+            Residencias destacadas
+          </h2>
 
-      <div className="featured-container">
-        <ApartmentList
-          apartments={featuredApartments}
-          renderActions={(apartment) => (
-            <FavoriteButton apartmentId={apartment.id} />
-          )}
-        />
+          <div
+            className="featured__filter"
+            role="group"
+            aria-label="Filtrar por región"
+          >
+            {REGION_OPTIONS.map((option) => (
+              <button
+                key={option.value}
+                type="button"
+                className="featured__chip"
+                aria-pressed={region === option.value}
+                onClick={() => setRegion(option.value)}
+              >
+                {option.label}
+                <span className="featured__count">
+                  {countFor(option.value)}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {isLoading ? (
+          <Loader message="Cargando residencias destacadas…" />
+        ) : error ? (
+          <ErrorMessage message={error} onRetry={onRetry} />
+        ) : visible.length === 0 ? (
+          <EmptyState
+            title="No hay destacadas en esta región"
+            message="Mira las de otra zona o el catálogo completo."
+            action={
+              <button
+                type="button"
+                className="featured__chip"
+                onClick={() => setRegion("todas")}
+              >
+                Ver todas
+              </button>
+            }
+          />
+        ) : (
+          <ul className="featured__list" key={region}>
+            {visible.map((apartment, index) => {
+              const isLead = index === 0 || visible.length === 2;
+
+              return (
+                <li
+                  key={apartment.id}
+                  className={`featured__item ${isLead ? "featured__item--lead" : ""}`}
+                  style={{ "--i": index } as StyleWithVars}
+                >
+                  <figure className="featured__media">
+                    <img
+                      src={apartment.image}
+                      alt={`${apartment.name}, ${apartment.location}`}
+                      loading="lazy"
+                    />
+                    <div className="featured__favorite">
+                      <FavoriteButton apartmentId={apartment.id} />
+                    </div>
+                  </figure>
+
+                  <div className="featured__body">
+                    <p className="featured__location">{apartment.location}</p>
+                    <h3 className="featured__name">{apartment.name}</h3>
+                    <p className="featured__specs">
+                      {apartment.bedrooms} habitaciones · {apartment.bathrooms}{" "}
+                      baños · {apartment.area} m²
+                    </p>
+                    <p className="featured__price">
+                      {formatPrice(apartment.price)} <span>/ mes</span>
+                    </p>
+                    <Link
+                      to={`/apartamentos/${apartment.id}`}
+                      className="featured__link"
+                      aria-label={`Ver detalle de ${apartment.name}`}
+                    >
+                      Ver residencia <span aria-hidden="true">→</span>
+                    </Link>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+
+        <Link to="/apartamentos" className="featured__all">
+          Ver el catálogo completo <span aria-hidden="true">→</span>
+        </Link>
       </div>
     </section>
   );

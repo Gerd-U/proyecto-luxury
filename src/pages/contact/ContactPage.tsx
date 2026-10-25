@@ -35,7 +35,7 @@ function ContactPage() {
   };
 
   return (
-    <main className="contact-page">
+    <div className="contact-page">
       <section className="contact-header">
         <h1>Tu próximo hogar comienza aquí</h1>
         <p>Contáctanos para acordar una visita a nuestros apartamentos.</p>
@@ -114,7 +114,7 @@ function ContactPage() {
           )}
         </form>
       </section>
-    </main>
+    </div>
   );
 }
 
