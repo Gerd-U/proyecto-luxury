@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./NotFoundPage.css";
 
 function NotFoundPage() {
@@ -9,9 +10,9 @@ function NotFoundPage() {
 
         <p>Parece que la página que estás buscando no existe.</p>
 
-        <a href="/" className="notfound-button">
+        <Link to="/" className="notfound-button">
           Volver a la página principal
-        </a>
+        </Link>
       </div>
     </div>
   );

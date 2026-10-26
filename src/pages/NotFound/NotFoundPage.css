@@ -1,45 +1,134 @@
+/* ===== PÁGINA 404: un pasillo de hotel que termina en una puerta que no lleva a ningún lado ===== */
+
+/* La página completa: la foto del pasillo ocupa la pantalla (menos el header) y el texto va al centro.
+   En esta sección oscura el foco del teclado es arena para que se vea. */
 .notfound {
-  display: flex;
+  --color-foco: var(--color-arena);
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: calc(100vh - 72px);
+  min-height: calc(100svh - 72px);
+  padding: 5rem var(--espacio-pequeno);
+  overflow: hidden;
+  background-color: var(--color-texto);
+  text-align: center;
+  isolation: isolate;
+}
+
+/* La foto del pasillo como fondo: llena todo sin deformarse, centrada en la puerta del fondo. */
+.notfound::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: url("/images/notfound/notfound.jpg");
+  background-position: center 40%;
+  background-size: cover;
+}
+
+/* Velo oscuro encima de la foto: más denso en el centro (detrás del texto) y abajo,
+   para que las letras arena se lean bien sin tapar las luces del pasillo. */
+.notfound::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 50%, rgba(20, 28, 30, 0.6), transparent 75%),
+    linear-gradient(to bottom, rgba(20, 28, 30, 0.35), rgba(20, 28, 30, 0.7));
+}
+
+/* El bloque de texto, angosto y centrado. */
+.notfound-content {
+  max-width: 34rem;
+}
+
+/* El "404": enorme, serif y fino, en arena; es la "placa" de la puerta. */
+.notfound-content h1 {
+  font-size: clamp(5rem, 16vw, 9rem);
+  font-weight: 500;
+  line-height: 0.85;
+  letter-spacing: -0.03em;
+  color: var(--color-arena);
+}
+
+/* "Página no encontrada", debajo del número. */
+.notfound-content h2 {
+  margin: 1.5rem 0 1rem;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 500;
+  color: var(--color-arena);
+}
+
+/* La frase explicativa, en arena un poco más suave. */
+.notfound-content p {
+  max-width: 32ch;
+  margin: 0 auto 2.5rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(245, 235, 221, 0.85);
+}
+
+/* "Volver a la página principal": botón de solo borde arena, letras espaciadas. */
+.notfound-button {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 70vh;
-  padding: var(--espacio-grande) var(--espacio-pequeno);
-  background-color: var(--color-arena);
-  text-align: center;
-}
-
-.notfound-content {
-  max-width: 500px;
-}
-
-.notfound-content h1 {
-  font-size: 6rem;
-  line-height: 1;
-  color: var(--color-turquesa);
-}
-
-.notfound-content h2 {
-  margin: var(--espacio-pequeno) 0 12px;
-  color: var(--color-texto);
-}
-
-.notfound-content p {
-  margin-bottom: var(--espacio-mediano);
-}
-
-.notfound-button {
-  display: inline-block;
-  padding: 12px 28px;
-  border-radius: var(--radio);
-  background-color: var(--color-dorado);
-  color: var(--color-texto);
-  font-size: 0.85rem;
+  min-height: 3.25rem;
+  padding: 0.9rem 2rem;
+  border: 1px solid rgba(245, 235, 221, 0.7);
+  border-radius: 2px;
+  color: var(--color-arena);
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
 }
 
-.notfound-button:hover {
-  background-color: var(--color-dorado-oscuro);
+/* Al pasar el mouse o tocarlo, el botón se llena de arena y la letra pasa a tinta. */
+.notfound-button:hover,
+.notfound-button:active {
+  border-color: var(--color-arena);
+  background-color: var(--color-arena);
   color: var(--color-texto);
+}
+
+/* En esta página el footer va pegado a la foto (sin la franja arena de separación). */
+body:has(.notfound) .footer {
+  margin-top: 0;
+}
+
+/* Animaciones (solo si la persona no pidió "reducir movimiento"). */
+@media (prefers-reduced-motion: no-preference) {
+  /* La foto se acerca muy despacio, como si caminaras por el pasillo. */
+  .notfound::before {
+    animation: pasillo-avanzar 2.4s var(--curva-suave) both;
+  }
+
+  /* Número, título, frase y botón entran subiendo, uno tras otro. */
+  .notfound-content > * {
+    animation: aparecer-subiendo 0.9s var(--curva-suave) both;
+  }
+
+  .notfound-content > :nth-child(1) { animation-delay: 0.3s; }
+  .notfound-content > :nth-child(2) { animation-delay: 0.4s; }
+  .notfound-content > :nth-child(3) { animation-delay: 0.5s; }
+  .notfound-content > :nth-child(4) { animation-delay: 0.6s; }
+}
+
+/* Animación: la foto se enciende (de oscura a normal) y se acerca un 6 %: avanzar hacia la puerta. */
+@keyframes pasillo-avanzar {
+  from {
+    transform: scale(1);
+    filter: brightness(0.6);
+  }
+  to {
+    transform: scale(1.06);
+    filter: brightness(1);
+  }
 }

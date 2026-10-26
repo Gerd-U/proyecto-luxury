@@ -247,51 +247,96 @@ html:not([data-view-transition]) .detail-hero__content {
   color: var(--color-texto);
 }
 
-/* La sección "Lo que incluye": franja turquesa de borde a borde. */
+/* La sección "Lo que incluye": una sección más del detalle, sobre la arena (sin franja de color). */
 .detail__amenities {
-  margin-top: 6rem;
-  padding: 5rem var(--espacio-pequeno);
-  background-color: var(--color-turquesa-oscuro);
-  color: var(--color-texto-claro);
-}
-
-/* Contenedor centrado dentro de la franja turquesa. */
-.detail__amenities-inner {
   max-width: 1240px;
   margin: 0 auto;
+  padding: 5rem var(--espacio-pequeno) 0;
 }
 
-/* El título "Lo que incluye", en dorado sobre el turquesa. */
-.detail__amenities .detail__heading {
-  color: var(--color-dorado);
-}
-
-/* La lista de amenidades: en teléfono, una por línea. */
+/* La lista de amenidades: como la carta de un hotel, una debajo de otra
+   con una línea fina arriba de todo (la línea de cada fila va en su ::after). */
 .detail__amenity-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem 1.25rem;
+  position: relative;
+  display: grid;
+  column-gap: 3rem;
 }
 
-/* Cada amenidad, en letra de títulos grande. */
-.detail__amenity-list li {
-  display: inline-flex;
-  align-items: center;
-  gap: 1rem;
-  font-family: var(--fuente-titulos);
-  font-size: clamp(1.8rem, 4vw, 3rem);
-  line-height: 1.15;
-  color: var(--color-texto-claro);
-}
-
-/* El punto dorado delante de cada amenidad. */
-.detail__amenity-list li::before {
+/* La línea fina de arriba de la lista. */
+.detail__amenity-list::before {
   content: "";
-  flex-shrink: 0;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background-color: var(--color-dorado);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: rgba(30, 43, 45, 0.15);
+  transform-origin: left;
+}
+
+/* Cada amenidad: en letra de títulos, en su propio renglón, con aire arriba y abajo. */
+.detail__amenity-list li {
+  position: relative;
+  padding: 1.1rem 0;
+  font-family: var(--fuente-titulos);
+  font-size: clamp(1.45rem, 2.4vw, 1.9rem);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--color-texto);
+}
+
+/* La línea fina debajo de cada amenidad (la misma de las divisorias del catálogo). */
+.detail__amenity-list li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background-color: rgba(30, 43, 45, 0.15);
+  transform-origin: left;
+}
+
+/* Cuando la sección aparece (y sin "reducir movimiento"): las líneas se dibujan
+   de izquierda a derecha y las amenidades entran en cascada, una tras otra. */
+@media (prefers-reduced-motion: no-preference) {
+  .detail__amenities .detail__amenity-list::before,
+  .detail__amenities .detail__amenity-list li::after {
+    transform: scaleX(0);
+    transition: transform 0.9s var(--curva-suave);
+  }
+
+  .detail__amenities .detail__amenity-list li {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 0.6s ease,
+      transform 0.8s var(--curva-suave);
+  }
+
+  .detail__amenities.is-visible .detail__amenity-list::before,
+  .detail__amenities.is-visible .detail__amenity-list li::after {
+    transform: scaleX(1);
+  }
+
+  .detail__amenities.is-visible .detail__amenity-list li {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Retraso de cada amenidad (y de su línea): 70 ms entre una y otra. */
+  .detail__amenity-list li:nth-child(2),
+  .detail__amenity-list li:nth-child(2)::after { transition-delay: 70ms; }
+  .detail__amenity-list li:nth-child(3),
+  .detail__amenity-list li:nth-child(3)::after { transition-delay: 140ms; }
+  .detail__amenity-list li:nth-child(4),
+  .detail__amenity-list li:nth-child(4)::after { transition-delay: 210ms; }
+  .detail__amenity-list li:nth-child(5),
+  .detail__amenity-list li:nth-child(5)::after { transition-delay: 280ms; }
+  .detail__amenity-list li:nth-child(6),
+  .detail__amenity-list li:nth-child(6)::after { transition-delay: 350ms; }
+  .detail__amenity-list li:nth-child(n + 7),
+  .detail__amenity-list li:nth-child(n + 7)::after { transition-delay: 420ms; }
 }
 
 /* El cierre ("¿Te imaginas viviendo aquí?" + siguiente residencia), centrado. */
@@ -470,7 +515,13 @@ html:not([data-view-transition]) .detail-hero__content {
   }
 
   .detail__amenities {
-    padding: 6rem var(--espacio-mediano);
+    padding-left: var(--espacio-mediano);
+    padding-right: var(--espacio-mediano);
+  }
+
+  /* Tableta: las amenidades se reparten en dos columnas. */
+  .detail__amenity-list {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -484,15 +535,15 @@ html:not([data-view-transition]) .detail-hero__content {
     padding-top: 7rem;
   }
 
-  /* Amenidades seguidas como una frase, con el punto ENTRE ellas. */
-  .detail__amenity-list {
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
+  /* "Lo que incluye": igual que "La residencia", título a la izquierda y lista a la derecha. */
+  .detail__amenities {
+    padding-top: 7rem;
   }
 
-  .detail__amenity-list li:first-child::before {
-    display: none;
+  .detail__amenities-inner {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
   }
 
   /* "La residencia": título a la izquierda y descripción a la derecha. */
