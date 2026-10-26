@@ -1,123 +1,479 @@
+/* ===== CONTACTO: presentación a un lado y formulario de líneas finas al otro ===== */
+
+/* La página completa: fondo arena (el del sitio), centrada y con aire.
+   Aquí se guardan los colores propios del formulario, todos sacados de la paleta. */
+.contact-page {
+  /* línea de cada campo en reposo: tinta al 28 % */
+  --contacto-linea: rgba(30, 43, 45, 0.28);
+  /* error: el rojo de la paleta oscurecido con la tinta, más sobrio (≈7:1 sobre arena) */
+  --contacto-error: #92271f;
+  --contacto-error: color-mix(in srgb, var(--color-error) 78%, var(--color-texto));
+  display: grid;
+  gap: 3.5rem;
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+  padding: 3rem var(--espacio-pequeno) 5rem;
+}
+
+/* Texto seleccionado dentro de Contacto: turquesa suave en vez del azul del navegador. */
+.contact-page ::selection {
+  background-color: rgba(11, 114, 133, 0.18);
+}
+
+/* ----- Presentación (columna izquierda en computadora) ----- */
+
+/* El bloque del título y la frase. */
 .contact-header {
-  padding: var(--espacio-grande) var(--espacio-pequeno);
-  background-color: var(--color-turquesa);
-  text-align: center;
+  max-width: 34rem;
 }
 
+/* "Tu próximo hogar comienza aquí": grande, serif y apretado, como los títulos del Inicio. */
 .contact-header h1 {
-  margin-bottom: 12px;
-  color: var(--color-texto-claro);
+  max-width: 11ch;
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  color: var(--color-texto);
+  text-wrap: balance;
 }
 
+/* La frase debajo del título, cómoda de leer. */
 .contact-header p {
-  max-width: 600px;
-  margin: 0 auto;
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.contact-content {
-  padding: var(--espacio-grande) var(--espacio-pequeno);
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--espacio-pequeno);
-  max-width: 640px;
-  margin: 0 auto;
-  padding: var(--espacio-mediano);
-  border-top: 3px solid var(--color-dorado);
-  border-radius: var(--radio);
-  background-color: var(--color-blanco);
-  box-shadow: var(--sombra);
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.form-group label {
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  max-width: 34ch;
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
   color: var(--color-texto-suave);
 }
 
-.form-group input {
-  padding: 12px 14px;
-  border: 1px solid var(--color-borde);
-  border-radius: var(--radio);
-  background-color: var(--color-blanco);
-  color: var(--color-texto);
-}
-
-.form-group textarea {
-  padding: 12px 14px;
-  border: 1px solid var(--color-borde);
-  border-radius: var(--radio);
-  background-color: var(--color-blanco);
-  color: var(--color-texto);
-  resize: vertical;
-}
-
-.form-group input:focus {
-  border-color: var(--color-turquesa);
-  outline: none;
-}
-
-.form-group textarea:focus {
-  border-color: var(--color-turquesa);
-  outline: none;
-}
-
-.form-group .input-error {
-  border-color: var(--color-error);
-}
-
-.form-error {
-  font-size: 0.85rem;
-  color: var(--color-error);
-}
-
-.form-note {
-  font-size: 0.8rem;
-  font-style: italic;
-  color: var(--color-texto-suave);
-}
-
-.contact-button {
-  align-self: flex-start;
-  margin-top: 8px;
-  padding: 12px 32px;
-  border: none;
-  border-radius: var(--radio);
-  background-color: var(--color-turquesa);
-  color: var(--color-texto-claro);
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-.contact-button:hover {
+/* Una línea turquesa corta debajo de la frase: cierra la presentación sin adornos. */
+.contact-header::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 1px;
+  margin-top: 2.5rem;
   background-color: var(--color-turquesa-oscuro);
 }
 
-.form-success {
-  padding: 12px 16px;
-  border-left: 4px solid var(--color-exito);
-  border-radius: var(--radio);
-  background-color: rgba(78, 143, 107, 0.1);
-  color: var(--color-exito);
-  font-weight: 500;
+/* ----- Formulario ----- */
+
+/* El formulario: en teléfono, un campo debajo de otro con bastante aire. */
+.contact-form {
+  display: grid;
+  gap: 2.25rem;
 }
 
+/* Cada campo: deja espacio arriba para que la etiqueta suba ahí.
+   --relleno-x es el margen interno (solo lo usa la propiedad destacada). */
+.form-group {
+  --relleno-x: 0px;
+  position: relative;
+  padding-top: 1.4rem;
+}
+
+/* La etiqueta: empieza DENTRO del campo, como si fuera el texto de ayuda. */
+.form-group label {
+  position: absolute;
+  top: 2.05rem;
+  left: var(--relleno-x);
+  font-size: 1.05rem;
+  color: var(--color-texto-suave);
+  transform-origin: left top;
+  pointer-events: none;
+  transition:
+    transform 0.35s var(--curva-suave),
+    color 0.25s ease;
+}
+
+/* Al enfocar el campo o cuando ya tiene texto, la etiqueta sube y se achica. */
+.form-group:focus-within label,
+.form-group:has(input:not(:placeholder-shown), textarea:not(:placeholder-shown)) label {
+  transform: translateY(-1.75rem) scale(0.78);
+}
+
+/* Mientras escribís, la etiqueta se pone turquesa: avisa cuál campo está activo. */
+.form-group:focus-within label {
+  color: var(--color-turquesa-oscuro);
+}
+
+/* El "(opcional)" del teléfono, más claro. */
+.form-optional {
+  font-size: 0.85em;
+  opacity: 0.8;
+}
+
+/* Los campos: sin caja, solo una línea fina abajo. La línea turquesa está dibujada
+   como fondo con ancho 0 y crece al enfocar. Letra de 16 px o más para que el celular no haga zoom. */
+.form-group input,
+.form-group textarea {
+  display: block;
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.6rem var(--relleno-x) 0.55rem;
+  border: 0;
+  border-bottom: 1px solid var(--contacto-linea);
+  border-radius: 0;
+  background-color: transparent;
+  background-image: linear-gradient(var(--color-turquesa-oscuro), var(--color-turquesa-oscuro));
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  color: var(--color-texto);
+  font-size: 1.05rem;
+  caret-color: var(--color-turquesa-oscuro);
+  /* deja espacio arriba y abajo al desplazarse al campo: el teclado del celular no lo tapa */
+  scroll-margin-block: 6rem 35vh;
+  appearance: none;
+  transition:
+    background-size 0.45s var(--curva-suave),
+    border-color 0.25s ease;
+}
+
+/* El mensaje: más alto y solo se estira hacia abajo. */
+.form-group textarea {
+  min-height: 8.5rem;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+/* Al enfocar: la línea turquesa recorre el campo de izquierda a derecha (ese es el foco visible). */
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  background-size: 100% 2px;
+}
+
+/* Autocompletar del navegador: evita el fondo amarillo/celeste que rompe el diseño. */
+.form-group input:-webkit-autofill {
+  -webkit-text-fill-color: var(--color-texto);
+  transition:
+    background-size 0.45s var(--curva-suave),
+    background-color 600000s 0s;
+}
+
+/* ----- Errores (junto a cada campo) ----- */
+
+/* Campo con error: la línea de abajo y la turquesa toman el tono de error. */
+.form-group [aria-invalid="true"] {
+  border-bottom-color: var(--contacto-error);
+  background-image: linear-gradient(var(--contacto-error), var(--contacto-error));
+}
+
+/* La etiqueta del campo con error también cambia de tono. */
+.form-group:has([aria-invalid="true"]) label {
+  color: var(--contacto-error);
+}
+
+/* El mensaje de error: pequeño, debajo del campo, con una rayita delante. */
+.form-error {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-top: 0.6rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--contacto-error);
+}
+
+/* La rayita del error: una línea dibujada, no un ícono de alerta. */
+.form-error::before {
+  content: "";
+  flex: none;
+  width: 0.9rem;
+  height: 1px;
+  background-color: currentColor;
+  transform: translateY(-0.3em);
+}
+
+/* ----- Propiedad prellenada desde el detalle ----- */
+
+/* Si llegaste desde una residencia, el campo se vuelve una franja arena más oscura
+   con una línea turquesa arriba: es lo primero que se reconoce del formulario. */
+.form-group--prefilled {
+  --relleno-x: 1.1rem;
+  padding-top: 1.6rem;
+  padding-bottom: 0.9rem;
+  background-color: rgba(226, 214, 196, 0.55);
+  box-shadow: inset 0 1px 0 var(--color-turquesa-oscuro);
+}
+
+/* En la franja, la etiqueta queda un poco más abajo por el relleno extra. */
+.form-group--prefilled label {
+  top: 2.25rem;
+}
+
+/* El nombre de la residencia: en la letra de títulos, grande y turquesa. */
+.form-group--prefilled input {
+  font-family: var(--fuente-titulos);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--color-turquesa-oscuro);
+  border-bottom-color: transparent;
+  text-overflow: ellipsis;
+}
+
+/* La notita "Elegida desde la ficha…" debajo del nombre. */
+.form-group__note {
+  margin-top: 0.35rem;
+  padding: 0 var(--relleno-x);
+  font-size: 0.8rem;
+  color: var(--color-texto-suave);
+}
+
+/* ----- Botón ----- */
+
+/* "Enviar consulta": bloque tinta con letras arena espaciadas, a todo el ancho en teléfono. */
+.contact-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-height: 3.5rem;
+  padding: 1rem 2.25rem;
+  border: 0;
+  border-radius: 2px;
+  background-color: var(--color-texto);
+  color: var(--color-arena);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    transform 0.16s ease-out;
+}
+
+/* La flecha del botón, lista para moverse. */
+.contact-button__arrow {
+  display: inline-block;
+  font-size: 1.1em;
+  letter-spacing: 0;
+  transition: transform 0.35s var(--curva-suave);
+}
+
+/* Al presionar, el botón se hunde un poco (confirma el toque). */
+.contact-button:active {
+  transform: scale(0.98);
+}
+
+/* Solo con mouse: el botón pasa a turquesa oscuro y la flecha se corre. */
+@media (hover: hover) and (pointer: fine) {
+  .contact-button:hover {
+    background-color: var(--color-turquesa-oscuro);
+  }
+
+  .contact-button:hover .contact-button__arrow {
+    transform: translateX(6px);
+  }
+}
+
+/* ----- Confirmación (reemplaza al formulario) ----- */
+
+/* El bloque de "Gracias": con una línea turquesa arriba que se dibuja al aparecer. */
+.form-success {
+  padding-top: 2.5rem;
+  background-image: linear-gradient(var(--color-turquesa-oscuro), var(--color-turquesa-oscuro));
+  background-repeat: no-repeat;
+  background-size: 4rem 1px;
+}
+
+/* "Gracias, Ana.": grande y serif, la misma voz del título de la página. */
+.form-success h2 {
+  font-size: clamp(2.4rem, 5vw, 3.75rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-texto);
+}
+
+/* El título recibe el foco por código: sin contorno (no lo activó el teclado). */
+.form-success h2:focus {
+  outline: none;
+}
+
+/* El texto de la confirmación, debajo del "Gracias". */
+.form-success p {
+  max-width: 44ch;
+  margin-top: 1.25rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* El nombre de la residencia dentro del texto, en turquesa. */
+.form-success strong {
+  font-weight: 600;
+  color: var(--color-turquesa-oscuro);
+}
+
+/* "Escribir otro mensaje": enlace de texto con una línea fina debajo. */
+.form-success__again {
+  min-height: 2.75rem;
+  margin-top: 2rem;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: left 85%;
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  color: var(--color-turquesa-oscuro);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-size 0.35s var(--curva-suave);
+}
+
+/* Con mouse, la línea se recoge hacia la derecha al pasar por encima. */
+@media (hover: hover) and (pointer: fine) {
+  .form-success__again:hover {
+    background-position: right 85%;
+    background-size: 0% 1px;
+  }
+}
+
+/* ----- Animaciones (solo si la persona no pidió "reducir movimiento") ----- */
+@media (prefers-reduced-motion: no-preference) {
+  /* Presentación: título, frase y línea entran subiendo, una tras otra. */
+  .contact-header h1,
+  .contact-header p,
+  .contact-header::after {
+    animation: aparecer-subiendo 0.9s var(--curva-suave) both;
+  }
+
+  .contact-header p {
+    animation-delay: 0.08s;
+  }
+
+  .contact-header::after {
+    animation-delay: 0.16s;
+  }
+
+  /* Formulario: cada campo y el botón entran en cascada (60 ms entre cada uno). */
+  .contact-form > * {
+    animation: aparecer-subiendo 0.8s var(--curva-suave) both;
+  }
+
+  .contact-form > :nth-child(1) { animation-delay: 0.2s; }
+  .contact-form > :nth-child(2) { animation-delay: 0.26s; }
+  .contact-form > :nth-child(3) { animation-delay: 0.32s; }
+  .contact-form > :nth-child(4) { animation-delay: 0.38s; }
+  .contact-form > :nth-child(5) { animation-delay: 0.44s; }
+  .contact-form > :nth-child(6) { animation-delay: 0.5s; }
+  .contact-form > :nth-child(7) { animation-delay: 0.56s; }
+
+  /* La franja de la propiedad prellenada se "pinta" de izquierda a derecha al llegar. */
+  .form-group--prefilled {
+    background-image: linear-gradient(rgba(226, 214, 196, 0.55), rgba(226, 214, 196, 0.55));
+    background-color: transparent;
+    background-repeat: no-repeat;
+    animation:
+      aparecer-subiendo 0.8s var(--curva-suave) 0.38s both,
+      franja-pintar 0.9s var(--curva-suave) 0.7s both;
+  }
+
+  /* El mensaje de error aparece suave, bajando apenas. */
+  .form-error {
+    animation: error-aparecer 0.3s var(--curva-suave) both;
+  }
+
+  /* Confirmación: la línea se dibuja y después entran el título, el texto y el enlace. */
+  .form-success {
+    animation: linea-dibujar 0.7s var(--curva-suave) both;
+  }
+
+  .form-success > * {
+    animation: aparecer-subiendo 0.8s var(--curva-suave) both;
+  }
+
+  .form-success > :nth-child(1) { animation-delay: 0.15s; }
+  .form-success > :nth-child(2) { animation-delay: 0.27s; }
+  .form-success > :nth-child(3) { animation-delay: 0.39s; }
+}
+
+/* Animación: el error baja 4 px mientras aparece. */
+@keyframes error-aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animación: el fondo arena de la propiedad crece de 0 a todo el ancho. */
+@keyframes franja-pintar {
+  from {
+    background-size: 0% 100%;
+  }
+  to {
+    background-size: 100% 100%;
+  }
+}
+
+/* Animación: la línea de la confirmación crece de 0 a 4rem. */
+@keyframes linea-dibujar {
+  from {
+    background-size: 0 1px;
+  }
+  to {
+    background-size: 4rem 1px;
+  }
+}
+
+/* ----- Tamaños de pantalla ----- */
+
+/* Tableta: los campos cortos van de dos en dos (nombre | correo, teléfono | propiedad). */
 @media (min-width: 768px) {
+  .contact-page {
+    gap: 4.5rem;
+    padding: 4rem var(--espacio-mediano) 6rem;
+  }
+
   .contact-form {
-    padding: var(--espacio-grande);
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem 2.5rem;
+  }
+
+  /* El mensaje y el botón usan todo el ancho. */
+  .form-group--full,
+  .contact-button {
+    grid-column: 1 / -1;
+  }
+
+  /* El botón vuelve a su tamaño natural, alineado a la izquierda. */
+  .contact-button {
+    justify-self: start;
+  }
+
+  /* Si la propiedad viene prellenada, ocupa todo el ancho (los nombres son largos)
+     y el teléfono también, para que no quede un hueco al lado. */
+  .form-group--prefilled,
+  .contact-form:has(.form-group--prefilled) .form-group:has(#telefono) {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Computadora: presentación a la izquierda (se queda quieta al bajar) y formulario a la derecha. */
+@media (min-width: 1024px) {
+  .contact-page {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: start;
+    gap: 6rem;
+    padding-top: 5.5rem;
+  }
+
+  /* La presentación se queda pegada arriba mientras se recorre el formulario. */
+  .contact-header {
+    position: sticky;
+    top: 7rem;
+  }
+
+  /* El formulario arranca un poco más abajo que el título: ritmo editorial. */
+  .contact-content {
+    padding-top: 0.75rem;
   }
 }

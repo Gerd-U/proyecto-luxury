@@ -3,13 +3,13 @@
     "id": 1,
     "name": "Acropolis Penthouse",
     "location": "Escazú, San José",
-    "price": 2667700,
-    "image": "https://pic.le-cdn.com/thumbs/1024x768/04/1/properties/Property-73e10000000007ec00016aaca5a7-132964723.jpg",
+    "price": 2999000,
+    "image": "/images/residencias/acropolis-penthouse/principal.jpg",
     "gallery": [
-      "https://pic.le-cdn.com/thumbs/1024x768/04/2/properties/Property-73e10000000007ec00026aaca5a7-132964723.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/3/properties/Property-73e10000000007ec00036aaca5a7-132964723.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/4/properties/Property-73e10000000007ec00046aaca5a7-132964723.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/5/properties/Property-73e10000000007ec00056aaca5a7-132964723.jpg"
+      "/images/residencias/acropolis-penthouse/galeria-1.jpg",
+      "/images/residencias/acropolis-penthouse/galeria-2.jpg",
+      "/images/residencias/acropolis-penthouse/galeria-3.jpg",
+      "/images/residencias/acropolis-penthouse/galeria-4.jpg"
     ],
     "description": "Penthouse remodelado en 2026 dentro del Condominio Acrópolis, en Jaboncillos de Escazú, con 795 m² en su planta principal y un rooftop privado de 161 m². El ascensor abre directo a la residencia y tiene vistas a la ciudad, las montañas y el bosque.",
     "bedrooms": 5,
@@ -30,13 +30,13 @@
     "id": 2,
     "name": "Marble Light House",
     "location": "Santa Ana, San José",
-    "price": 871700,
-    "image": "https://pic.le-cdn.com/thumbs/1024x768/08/1/properties/Property-0c1f172719650a5a655ae813c1f42336-131412934.jpg",
+    "price": 980000,
+    "image": "/images/residencias/marble-light-house/principal.jpg",
     "gallery": [
-      "https://pic.le-cdn.com/thumbs/1024x768/08/2/properties/Property-eb7615939d6a502adedd1f8647fd7935-131412934.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/08/3/properties/Property-7ec73e882c8501f8c0e27fb9b4230b8d-131412934.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/08/4/properties/Property-5d1ecbea064f81d8edea826632bc5998-131412934.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/08/5/properties/Property-616d0f13ed7360c3a83a8e3cded2d96d-131412934.jpg"
+      "/images/residencias/marble-light-house/galeria-1.jpg",
+      "/images/residencias/marble-light-house/galeria-2.jpg",
+      "/images/residencias/marble-light-house/galeria-3.jpg",
+      "/images/residencias/marble-light-house/galeria-4.jpg"
     ],
     "description": "Residencia de estilo moderno contemporáneo en Piedades de Santa Ana, con pisos de mármol, maderas finas y espacios de doble altura. Su arquitectura abierta llena cada ambiente de luz natural y se integra con el jardín.",
     "bedrooms": 4,
@@ -55,13 +55,13 @@
     "id": 3,
     "name": "Núcleo Sabana",
     "location": "San José, San José",
-    "price": 293500,
-    "image": "https://pic.le-cdn.com/thumbs/1024x768/08/1/properties/Property-88b54f2ef0e76e38d4c1d4bcf9b9fd95-132460874.jpg",
+    "price": 330000,
+    "image": "/images/residencias/nucleo-sabana/principal.jpg",
     "gallery": [
-      "https://pic.le-cdn.com/thumbs/1024x768/08/2/properties/Property-d2446a8764491af6d150447c72580693-132460874.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/08/3/properties/Property-8c61152d6a8907474dcfeee57f501e3e-132460874.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/08/4/properties/Property-a2effa786bba7f108f04816b24653e66-132460874.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/08/5/properties/Property-096410a9d5c243dca3c5a731b60571ca-132460874.jpg"
+      "/images/residencias/nucleo-sabana/galeria-1.jpg",
+      "/images/residencias/nucleo-sabana/galeria-2.jpg",
+      "/images/residencias/nucleo-sabana/galeria-3.jpg",
+      "/images/residencias/nucleo-sabana/galeria-4.jpg"
     ],
     "description": "Apartamento en Núcleo Sabana, un desarrollo de uso mixto a pasos del Parque La Sabana que integra residencias, comercios y espacios lifestyle. Está pensado bajo el concepto de ciudad circular para vivir, trabajar y disfrutar en un solo lugar.",
     "bedrooms": 3,
@@ -80,13 +80,13 @@
     "id": 4,
     "name": "Apartamento Golden Views",
     "location": "Santa Ana, San José",
-    "price": 1151900,
-    "image": "https://pic.le-cdn.com/thumbs/1024x768/04/1/properties/Property-1d600000000007ec00016abfe676-132931613.jpg",
+    "price": 1295000,
+    "image": "/images/residencias/apartamento-golden-views/principal.jpg",
     "gallery": [
-      "https://pic.le-cdn.com/thumbs/1024x768/04/2/properties/Property-1d600000000007ec00026abfe676-132931613.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/3/properties/Property-1d600000000007ec00036abfe676-132931613.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/4/properties/Property-1d600000000007ec00046abfe676-132931613.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/5/properties/Property-1d600000000007ec00056abfe676-132931613.jpg"
+      "/images/residencias/apartamento-golden-views/galeria-1.jpg",
+      "/images/residencias/apartamento-golden-views/galeria-2.jpg",
+      "/images/residencias/apartamento-golden-views/galeria-3.jpg",
+      "/images/residencias/apartamento-golden-views/galeria-4.jpg"
     ],
     "description": "Apartamento de lujo de 3 habitaciones más espacio flex en el residencial Solaris, en Alto de Las Palomas. Tiene amplias áreas sociales, privacidad y vistas abiertas al Valle Central.",
     "bedrooms": 3,
@@ -106,13 +106,13 @@
     "id": 5,
     "name": "PH Panoramic View",
     "location": "Escazú, San José",
-    "price": 799700,
-    "image": "https://pic.le-cdn.com/thumbs/1024x768/04/1/properties/Property-f7260000000007e4000169c3374a-132392695.jpg",
+    "price": 899000,
+    "image": "/images/residencias/ph-panoramic-view/principal.jpg",
     "gallery": [
-      "https://pic.le-cdn.com/thumbs/1024x768/04/2/properties/Property-f7260000000007e4000269c3374a-132392695.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/3/properties/Property-f7260000000007e4000369c3374b-132392695.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/4/properties/Property-f7260000000007e4000469c3374b-132392695.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/5/properties/Property-f7260000000007e4000569c3374b-132392695.jpg"
+      "/images/residencias/ph-panoramic-view/galeria-1.jpg",
+      "/images/residencias/ph-panoramic-view/galeria-2.jpg",
+      "/images/residencias/ph-panoramic-view/galeria-3.jpg",
+      "/images/residencias/ph-panoramic-view/galeria-4.jpg"
     ],
     "description": "Penthouse amplio en el exclusivo condominio Greenhouse de Escazú, con diseño contemporáneo y vista panorámica. Tiene acceso inmediato a centros comerciales, restaurantes, supermercados y vías principales.",
     "bedrooms": 3,
@@ -133,13 +133,13 @@
     "id": 6,
     "name": "Residencia Solaris",
     "location": "Santa Ana, San José",
-    "price": 1579300,
-    "image": "https://pic.le-cdn.com/thumbs/1024x768/08/1/properties/Property-2e71d6828896ed11b6405c0cace093c1-129256995.jpg",
+    "price": 1775500,
+    "image": "/images/residencias/residencia-solaris/principal.jpg",
     "gallery": [
-      "https://pic.le-cdn.com/thumbs/1024x768/08/2/properties/Property-7497809539ea9ebad17ca47d5c41fe1c-129256995.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/08/3/properties/Property-4672d3a6687386126a0e5add2c19f51b-129256995.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/08/4/properties/Property-8e02f7f13def5858f27134d5da5652ff-129256995.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/08/5/properties/Property-2539cac4afedc2a88a57aec5e9de76e8-129256995.jpg"
+      "/images/residencias/residencia-solaris/galeria-1.jpg",
+      "/images/residencias/residencia-solaris/galeria-2.jpg",
+      "/images/residencias/residencia-solaris/galeria-3.jpg",
+      "/images/residencias/residencia-solaris/galeria-4.jpg"
     ],
     "description": "Apartamento en Solaris, proyecto diseñado por el arquitecto Ronald Zurcher en armonía con la naturaleza, en una de las zonas más exclusivas del oeste. Cada residencia es única y se puede personalizar según el gusto de su propietario.",
     "bedrooms": 4,
@@ -158,13 +158,13 @@
     "id": 7,
     "name": "The Residence",
     "location": "Santa Ana, San José",
-    "price": 1507700,
-    "image": "https://pic.le-cdn.com/thumbs/1024x768/04/1/properties/Property-1bcf4f0bf7290faac74db5654f8af126-128918064.jpg",
+    "price": 1695000,
+    "image": "/images/residencias/the-residence/principal.jpg",
     "gallery": [
-      "https://pic.le-cdn.com/thumbs/1024x768/04/2/properties/Property-92a30f738f054b07270cf1530b9985b0-128918064.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/3/properties/Property-e21a6834c07b8c01ac6e801d35a4a471-128918064.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/4/properties/Property-d5c8899477671e3eddfc76544b546b75-128918064.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/5/properties/Property-ecc08c6a44c8d0bd7e0d99f95f11ee56-128918064.jpg"
+      "/images/residencias/the-residence/galeria-1.jpg",
+      "/images/residencias/the-residence/galeria-2.jpg",
+      "/images/residencias/the-residence/galeria-3.jpg",
+      "/images/residencias/the-residence/galeria-4.jpg"
     ],
     "description": "Apartamento de lujo en Solaris, Alto Palomas, con elegancia y vistas panorámicas en la mejor zona del Valle Central. Combina sofisticación, comodidades modernas y un entorno natural impresionante.",
     "bedrooms": 4,
@@ -181,13 +181,13 @@
     "id": 8,
     "name": "The Skyline Reserve Penthouse",
     "location": "Escazú, San José",
-    "price": 1721200,
-    "image": "https://pic.le-cdn.com/thumbs/1024x768/04/1/properties/Property-9ba50000000007e20001699df3df-132294043.jpg",
+    "price": 1935000,
+    "image": "/images/residencias/the-skyline-reserve-penthouse/principal.jpg",
     "gallery": [
-      "https://pic.le-cdn.com/thumbs/1024x768/04/2/properties/Property-9ba50000000007e20002699df3df-132294043.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/3/properties/Property-9ba50000000007e20003699df3df-132294043.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/4/properties/Property-9ba50000000007e20004699df3df-132294043.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/5/properties/Property-9ba50000000007e20005699df3df-132294043.jpg"
+      "/images/residencias/the-skyline-reserve-penthouse/galeria-1.jpg",
+      "/images/residencias/the-skyline-reserve-penthouse/galeria-2.jpg",
+      "/images/residencias/the-skyline-reserve-penthouse/galeria-3.jpg",
+      "/images/residencias/the-skyline-reserve-penthouse/galeria-4.jpg"
     ],
     "description": "Penthouse de dos niveles en los pisos seis y siete de Avenida Escazú, una comunidad de uso mixto donde conviven residencias, gastronomía, oficinas y entretenimiento. Todo queda a una distancia caminable.",
     "bedrooms": 4,
@@ -205,13 +205,13 @@
     "id": 9,
     "name": "Waldorf Astoria Vista al Mar",
     "location": "Sardinal, Guanacaste",
-    "price": 2935400,
-    "image": "https://pic.le-cdn.com/thumbs/1024x768/04/1/properties/Property-9d5c0000000007e4000169c7560a-132406429.jpg",
+    "price": 3300000,
+    "image": "/images/residencias/waldorf-astoria-vista-al-mar/principal.jpg",
     "gallery": [
-      "https://pic.le-cdn.com/thumbs/1024x768/04/2/properties/Property-9d5c0000000007e4000269c7560a-132406429.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/3/properties/Property-9d5c0000000007e4000369c7560a-132406429.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/4/properties/Property-9d5c0000000007e4000469c7560a-132406429.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/5/properties/Property-9d5c0000000007e4000569c7560a-132406429.jpg"
+      "/images/residencias/waldorf-astoria-vista-al-mar/galeria-1.jpg",
+      "/images/residencias/waldorf-astoria-vista-al-mar/galeria-2.jpg",
+      "/images/residencias/waldorf-astoria-vista-al-mar/galeria-3.jpg",
+      "/images/residencias/waldorf-astoria-vista-al-mar/galeria-4.jpg"
     ],
     "description": "Residencia en el cuarto nivel del Waldorf Astoria Costa Rica Punta Cacique, con vista panorámica al Pacífico y atardeceres inigualables. Es un condominio turnkey, entregado completamente listo para habitar.",
     "bedrooms": 2,
@@ -232,13 +232,13 @@
     "id": 10,
     "name": "Residencia Waldorf Astoria",
     "location": "Sardinal, Guanacaste",
-    "price": 2757500,
-    "image": "https://pic.le-cdn.com/thumbs/1024x768/04/1/properties/Property-8d5b0000000007e4000269c74851-132406157.jpg",
+    "price": 3100000,
+    "image": "/images/residencias/residencia-waldorf-astoria/principal.jpg",
     "gallery": [
-      "https://pic.le-cdn.com/thumbs/1024x768/04/2/properties/Property-8d5b0000000007e4000369c74851-132406157.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/3/properties/Property-8d5b0000000007e4000469c74851-132406157.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/4/properties/Property-8d5b0000000007e4000569c74851-132406157.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/5/properties/Property-8d5b0000000007e4000669c74851-132406157.jpg"
+      "/images/residencias/residencia-waldorf-astoria/galeria-1.jpg",
+      "/images/residencias/residencia-waldorf-astoria/galeria-2.jpg",
+      "/images/residencias/residencia-waldorf-astoria/galeria-3.jpg",
+      "/images/residencias/residencia-waldorf-astoria/galeria-4.jpg"
     ],
     "description": "Condominio en el tercer nivel de las residencias del Waldorf Astoria Costa Rica Punta Cacique, con diseño contemporáneo y vista al mar. Es una de las zonas más exclusivas de Guanacaste.",
     "bedrooms": 3,
@@ -258,13 +258,13 @@
     "id": 11,
     "name": "Avenida Escazú 402 Skyline View",
     "location": "Escazú, San José",
-    "price": 2401700,
-    "image": "https://pic.le-cdn.com/thumbs/1024x768/04/1/properties/Property-c5f76bad0ad5f1bb74ce85764ff5dfa9-129443552.jpg",
+    "price": 2700000,
+    "image": "/images/residencias/avenida-escazu-402-skyline-view/principal.jpg",
     "gallery": [
-      "https://pic.le-cdn.com/thumbs/1024x768/04/2/properties/Property-40590132bb378eb19c7bbe7e97bfdeb4-129443552.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/3/properties/Property-21d7afadf0d9c29e25991f890edfb32f-129443552.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/4/properties/Property-ef10d5cc5100f9d74b8a65ff39702503-129443552.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/5/properties/Property-9e9e59b8d74871003e3ac62b3e2a6acc-129443552.jpg"
+      "/images/residencias/avenida-escazu-402-skyline-view/galeria-1.jpg",
+      "/images/residencias/avenida-escazu-402-skyline-view/galeria-2.jpg",
+      "/images/residencias/avenida-escazu-402-skyline-view/galeria-3.jpg",
+      "/images/residencias/avenida-escazu-402-skyline-view/galeria-4.jpg"
     ],
     "description": "Apartamento de 460 m² en el décimo piso del edificio residencial 402 de Avenida Escazú, con pisos y baños de mármol. Combina naturaleza, arquitectura moderna y vida urbana segura.",
     "bedrooms": 4,
@@ -282,13 +282,13 @@
     "id": 12,
     "name": "Soleamore",
     "location": "Santa Ana, San José",
-    "price": 1418800,
-    "image": "https://pic.le-cdn.com/thumbs/1024x768/04/1/properties/Property-57e45e5529441f8d02e4aee70544db33-131563032.jpg",
+    "price": 1595000,
+    "image": "/images/residencias/soleamore/principal.jpg",
     "gallery": [
-      "https://pic.le-cdn.com/thumbs/1024x768/04/2/properties/Property-4d465c5fbfaed2d6cb9c2cd3a6ec7d1c-131563032.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/3/properties/Property-f4a06b4c0facd1d1a6d4290051f75aa8-131563032.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/4/properties/Property-6d20890b5514b67f52b6a5f7b112558a-131563032.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/5/properties/Property-3e30cf8e90fccf86a3713a5977bb9452-131563032.jpg"
+      "/images/residencias/soleamore/galeria-1.jpg",
+      "/images/residencias/soleamore/galeria-2.jpg",
+      "/images/residencias/soleamore/galeria-3.jpg",
+      "/images/residencias/soleamore/galeria-4.jpg"
     ],
     "description": "Residencia de un solo nivel en Solaris, orientada al oeste con vistas despejadas al valle y atardeceres enmarcados por un árbol majestuoso junto a la terraza. Combina diseño atemporal con funcionalidad de vanguardia.",
     "bedrooms": 4,
@@ -305,13 +305,13 @@
     "id": 13,
     "name": "Apartamento Grand View",
     "location": "Santa Ana, San José",
-    "price": 1356500,
-    "image": "https://pic.le-cdn.com/thumbs/1024x768/04/1/properties/Property-8aff0000000007ad0001697a80ee-128843658.jpg",
+    "price": 1525000,
+    "image": "/images/residencias/apartamento-grand-view/principal.jpg",
     "gallery": [
-      "https://pic.le-cdn.com/thumbs/1024x768/04/2/properties/Property-8aff0000000007ad0002697a80ee-128843658.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/3/properties/Property-8aff0000000007ad0003697a80ee-128843658.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/4/properties/Property-8aff0000000007ad0004697a80ee-128843658.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/5/properties/Property-8aff0000000007ad0005697a80ee-128843658.jpg"
+      "/images/residencias/apartamento-grand-view/galeria-1.jpg",
+      "/images/residencias/apartamento-grand-view/galeria-2.jpg",
+      "/images/residencias/apartamento-grand-view/galeria-3.jpg",
+      "/images/residencias/apartamento-grand-view/galeria-4.jpg"
     ],
     "description": "Apartamento en Solaris con vista sin obstrucción a los atardeceres del Valle de Santa Ana, ubicado en una loma entre Escazú y Santa Ana. El condominio tiene más de 13 hectáreas de terreno natural.",
     "bedrooms": 3,
@@ -329,13 +329,13 @@
     "id": 14,
     "name": "Elevé Residence",
     "location": "Escazú, San José",
-    "price": 2401700,
-    "image": "https://pic.le-cdn.com/thumbs/1024x768/08/1/properties/Property-82e9c8b13c8fa2c89367885ed747bac4-122373025.jpg",
+    "price": 2700000,
+    "image": "/images/residencias/eleve-residence/principal.jpg",
     "gallery": [
-      "https://pic.le-cdn.com/thumbs/1024x768/08/2/properties/Property-360b46dde1673ccd1c7a05fcb4a28719-122373025.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/08/3/properties/Property-26736e4e9fd89ba2bfca466f12b04e54-122373025.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/08/4/properties/Property-480f00fc741ae2717bd85e4d67073044-122373025.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/08/5/properties/Property-613bef26f06935046cddcfa3565e76c8-122373025.jpg"
+      "/images/residencias/eleve-residence/galeria-1.jpg",
+      "/images/residencias/eleve-residence/galeria-2.jpg",
+      "/images/residencias/eleve-residence/galeria-3.jpg",
+      "/images/residencias/eleve-residence/galeria-4.jpg"
     ],
     "description": "Residencia en una comunidad privada en las montañas de Jaboncillos de Escazú, rodeada de bosque tropical y con vistas panorámicas al Valle Central. Equilibra privacidad, sofisticación y naturaleza.",
     "bedrooms": 4,
@@ -354,13 +354,13 @@
     "id": 15,
     "name": "El Olivar",
     "location": "Curridabat, San José",
-    "price": 604900,
-    "image": "https://pic.le-cdn.com/thumbs/1024x768/04/1/properties/Property-b429f10e10da6f30e1121c329907134a-131245127.jpg",
+    "price": 680000,
+    "image": "/images/residencias/el-olivar/principal.jpg",
     "gallery": [
-      "https://pic.le-cdn.com/thumbs/1024x768/04/2/properties/Property-a312aaa942e9ec5bac3fedb26665f720-131245127.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/3/properties/Property-446427be4e80a092b4881946f0739eba-131245127.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/4/properties/Property-5b90e9d289a6294aba19a02a701a8d1d-131245127.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/5/properties/Property-205bbd48c515c033ded13a1205963d2f-131245127.jpg"
+      "/images/residencias/el-olivar/galeria-1.jpg",
+      "/images/residencias/el-olivar/galeria-2.jpg",
+      "/images/residencias/el-olivar/galeria-3.jpg",
+      "/images/residencias/el-olivar/galeria-4.jpg"
     ],
     "description": "Apartamento en El Olivar, Colinas de Montealegre, uno de los edificios más lujosos del este de la ciudad, con diseño clásico y acabados de alta calidad. Su terraza recorre toda la fachada trasera con vistas a la ciudad y las montañas.",
     "bedrooms": 2,
@@ -377,13 +377,13 @@
     "id": 16,
     "name": "Residencias Punta Cacique",
     "location": "Playa Hermosa, Guanacaste",
-    "price": 8717200,
-    "image": "https://pic.le-cdn.com/thumbs/1024x768/08/1/properties/Property-9c22894434151ca68df3b61fa32204e4-128870345.jpg",
+    "price": 9800000,
+    "image": "/images/residencias/residencias-punta-cacique/principal.jpg",
     "gallery": [
-      "https://pic.le-cdn.com/thumbs/1024x768/08/2/properties/Property-d2158c48abefdb767019f3edf86e85fa-128870345.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/08/3/properties/Property-a17afa55c66775f81c95f03fd3a7f848-128870345.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/08/4/properties/Property-841c707634d826346439fa9b037ea192-128870345.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/08/5/properties/Property-3d88bfcb594050fbc77456245b38e987-128870345.jpg"
+      "/images/residencias/residencias-punta-cacique/galeria-1.jpg",
+      "/images/residencias/residencias-punta-cacique/galeria-2.jpg",
+      "/images/residencias/residencias-punta-cacique/galeria-3.jpg",
+      "/images/residencias/residencias-punta-cacique/galeria-4.jpg"
     ],
     "description": "Residencia en lo alto de Punta Cacique, una península de la costa de Guanacaste, con vistas al océano que recuerdan a los resorts europeos sobre acantilados. Ideal para vivir y disfrutar en familia.",
     "bedrooms": 5,
@@ -397,39 +397,40 @@
   },
   {
     "id": 17,
-    "name": "Villa Punta Cacique Frente al Mar",
-    "location": "Playa Hermosa, Guanacaste",
-    "price": 8539300,
-    "image": "https://pic.le-cdn.com/thumbs/1024x768/08/1/properties/Property-235cd2418ec80425521985a1ecbb1b69-133026343.jpg",
+    "name": "Cumbres de Tamarindo",
+    "location": "Tamarindo, Guanacaste",
+    "price": 2200000,
+    "image": "/images/residencias/cumbres-de-tamarindo/principal.jpg",
     "gallery": [
-      "https://pic.le-cdn.com/thumbs/1024x768/08/2/properties/Property-eb2dd11c83c6dded9babf590c2a3d68a-133026343.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/08/3/properties/Property-ce919fb6dc91bded8545a76ea6c1f496-133026343.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/08/4/properties/Property-c1f7c08a1a7a7bec592199422cd554bc-133026343.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/08/5/properties/Property-eb88e7e1f354478e9a62270b4ff8ab06-133026343.jpg"
+      "/images/residencias/cumbres-de-tamarindo/galeria-1.jpg",
+      "/images/residencias/cumbres-de-tamarindo/galeria-2.jpg",
+      "/images/residencias/cumbres-de-tamarindo/galeria-3.jpg",
+      "/images/residencias/cumbres-de-tamarindo/galeria-4.jpg"
     ],
-    "description": "Residencia frente al mar en Punta Cacique, Guanacaste, con vistas al océano y amplios espacios para compartir. Forma parte de un desarrollo de lujo junto a los acantilados de la costa pacífica.",
-    "bedrooms": 5,
-    "bathrooms": 6,
-    "area": 524,
+    "description": "Apartamento en lo alto de las colinas de Tamarindo, en un edificio de solo 11 residencias con arquitectura moderna y vistas al océano desde Playa Langosta hasta Playa Grande. Las áreas comunes tienen piscina infinita frente al mar, gimnasio y salones de doble altura.",
+    "bedrooms": 6,
+    "bathrooms": 5,
+    "area": 478,
     "amenities": [
-      "Frente al mar",
-      "Piscina",
+      "Vista al mar",
+      "Piscina infinita",
+      "Gimnasio",
+      "Ascensor",
       "Zona de BBQ",
-      "Jardín",
-      "Vista al mar"
+      "Sistema de seguridad"
     ]
   },
   {
     "id": 18,
     "name": "Grand Panorama Escazú",
     "location": "Escazú, San José",
-    "price": 1147500,
-    "image": "https://pic.le-cdn.com/thumbs/1024x768/04/1/properties/Property-65760000000007ee00016ad7d749-133068389.jpg",
+    "price": 1290000,
+    "image": "/images/residencias/grand-panorama-escazu/principal.jpg",
     "gallery": [
-      "https://pic.le-cdn.com/thumbs/1024x768/04/2/properties/Property-65760000000007ee00026ad7d749-133068389.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/3/properties/Property-65760000000007ee00036ad7d74a-133068389.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/4/properties/Property-65760000000007ee00046ad7d74a-133068389.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/5/properties/Property-65760000000007ee00056ad7d74a-133068389.jpg"
+      "/images/residencias/grand-panorama-escazu/galeria-1.jpg",
+      "/images/residencias/grand-panorama-escazu/galeria-2.jpg",
+      "/images/residencias/grand-panorama-escazu/galeria-3.jpg",
+      "/images/residencias/grand-panorama-escazu/galeria-4.jpg"
     ],
     "description": "Apartamento en uno de los pisos más altos de Panorama, con vistas de 180° al Valle Central y a las montañas de Escazú. Tiene 450 m² habitables con una distribución pensada para recibir.",
     "bedrooms": 3,
@@ -449,13 +450,13 @@
     "id": 19,
     "name": "Windward Los Sueños",
     "location": "Jacó, Puntarenas",
-    "price": 1022100,
-    "image": "https://pic.le-cdn.com/thumbs/1024x768/04/1/properties/Property-b7560000000007eb00016a7ddbc6-132863671.jpg",
+    "price": 1149000,
+    "image": "/images/residencias/windward-los-suenos/principal.jpg",
     "gallery": [
-      "https://pic.le-cdn.com/thumbs/1024x768/04/2/properties/Property-b7560000000007eb00026a7ddbc6-132863671.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/3/properties/Property-b7560000000007eb00036a7ddbc6-132863671.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/4/properties/Property-b7560000000007eb00046a7ddbc6-132863671.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/5/properties/Property-b7560000000007eb00056a7ddbc6-132863671.jpg"
+      "/images/residencias/windward-los-suenos/galeria-1.jpg",
+      "/images/residencias/windward-los-suenos/galeria-2.jpg",
+      "/images/residencias/windward-los-suenos/galeria-3.jpg",
+      "/images/residencias/windward-los-suenos/galeria-4.jpg"
     ],
     "description": "Condominio en Bella Vista, dentro de Los Sueños Resort & Marina, uno de los destinos residenciales de clase mundial de la costa pacífica. Se vende amueblado y con acceso a las amenidades del resort.",
     "bedrooms": 3,
@@ -476,13 +477,13 @@
     "id": 20,
     "name": "Apartamento White Magnolia",
     "location": "Escazú, San José",
-    "price": 871700,
-    "image": "https://pic.le-cdn.com/thumbs/1024x768/04/1/properties/Property-c4b30000000007e600016a034f39-132559812.jpg",
+    "price": 980000,
+    "image": "/images/residencias/apartamento-white-magnolia/principal.jpg",
     "gallery": [
-      "https://pic.le-cdn.com/thumbs/1024x768/04/2/properties/Property-c4b30000000007e600026a034f39-132559812.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/3/properties/Property-c4b30000000007e600036a034f39-132559812.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/4/properties/Property-c4b30000000007e600046a034f39-132559812.jpg",
-      "https://pic.le-cdn.com/thumbs/1024x768/04/5/properties/Property-c4b30000000007e600056a034f39-132559812.jpg"
+      "/images/residencias/apartamento-white-magnolia/galeria-1.jpg",
+      "/images/residencias/apartamento-white-magnolia/galeria-2.jpg",
+      "/images/residencias/apartamento-white-magnolia/galeria-3.jpg",
+      "/images/residencias/apartamento-white-magnolia/galeria-4.jpg"
     ],
     "description": "Apartamento completamente remodelado y amueblado en White Magnolia, Central Park Escazú, listo para entrega inmediata. Combina diseño contemporáneo, amplitud y conexión con la naturaleza.",
     "bedrooms": 3,
@@ -497,6 +498,132 @@
       "Tina de hidromasaje",
       "Balcón",
       "Estacionamiento para 2 vehículos"
+    ]
+  },
+  {
+    "id": 21,
+    "name": "Residencia La Guácima",
+    "location": "La Guácima, Alajuela",
+    "price": 1200000,
+    "image": "/images/residencias/residencia-la-guacima/principal.jpg",
+    "gallery": [
+      "/images/residencias/residencia-la-guacima/galeria-1.jpg",
+      "/images/residencias/residencia-la-guacima/galeria-2.jpg",
+      "/images/residencias/residencia-la-guacima/galeria-3.jpg",
+      "/images/residencias/residencia-la-guacima/galeria-4.jpg"
+    ],
+    "description": "Residencia contemporánea en La Guácima con ventanales de piso a techo, áreas sociales de doble altura y una terraza que rodea la casa con vista a las montañas. Incluye piscina infinita climatizada con energía solar, cine privado, gimnasio y suite de invitados independiente.",
+    "bedrooms": 5,
+    "bathrooms": 6,
+    "area": 700,
+    "amenities": [
+      "Piscina infinita",
+      "Cine privado",
+      "Gimnasio",
+      "Jacuzzi",
+      "Cancha deportiva",
+      "Jardín",
+      "Acceso controlado",
+      "Vista a las montañas"
+    ]
+  },
+  {
+    "id": 22,
+    "name": "Penthouse Manuel Antonio",
+    "location": "Manuel Antonio, Puntarenas",
+    "price": 1849000,
+    "image": "/images/residencias/penthouse-manuel-antonio/principal.jpg",
+    "gallery": [
+      "/images/residencias/penthouse-manuel-antonio/galeria-1.jpg",
+      "/images/residencias/penthouse-manuel-antonio/galeria-2.jpg",
+      "/images/residencias/penthouse-manuel-antonio/galeria-3.jpg",
+      "/images/residencias/penthouse-manuel-antonio/galeria-4.jpg"
+    ],
+    "description": "Penthouse en el octavo piso de un resort en Manuel Antonio, con diseño de inspiración balinesa y vistas panorámicas al océano y al bosque tropical. Se entrega amueblado y con acceso a playa semiprivada, spa, piscina infinita y gimnasio.",
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "area": 400,
+    "amenities": [
+      "Vista al mar",
+      "Amueblado",
+      "Ascensor",
+      "Piscina",
+      "Spa",
+      "Gimnasio",
+      "Estacionamiento techado"
+    ]
+  },
+  {
+    "id": 23,
+    "name": "The Best Nosara",
+    "location": "Nosara, Guanacaste",
+    "price": 530000,
+    "image": "/images/residencias/the-best-nosara/principal.jpg",
+    "gallery": [
+      "/images/residencias/the-best-nosara/galeria-1.jpg",
+      "/images/residencias/the-best-nosara/galeria-2.jpg",
+      "/images/residencias/the-best-nosara/galeria-3.jpg",
+      "/images/residencias/the-best-nosara/galeria-4.jpg"
+    ],
+    "description": "Apartamento nuevo en Nosara, una de las playas con más carácter del Pacífico Norte, rodeado de naturaleza. Se entrega amueblado y equipado, con terraza propia y espacios de trabajo compartido dentro del edificio.",
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "area": 132,
+    "amenities": [
+      "Amueblado",
+      "Terraza",
+      "Espacios de cowork",
+      "Cerca de la playa"
+    ]
+  },
+  {
+    "id": 24,
+    "name": "Torre Uno Rohrmoser",
+    "location": "Mata Redonda, San José",
+    "price": 875000,
+    "image": "/images/residencias/torre-uno-rohrmoser/principal.jpg",
+    "gallery": [
+      "/images/residencias/torre-uno-rohrmoser/galeria-1.jpg",
+      "/images/residencias/torre-uno-rohrmoser/galeria-2.jpg",
+      "/images/residencias/torre-uno-rohrmoser/galeria-3.jpg",
+      "/images/residencias/torre-uno-rohrmoser/galeria-4.jpg"
+    ],
+    "description": "Apartamento en la exclusiva Torre Uno de Rohrmoser, diseñado por el arquitecto Jaime Rouillon, que unió acabados y decoración en una pieza única. Tiene vista al verde del Parque del Café y queda a menos de 20 minutos de Escazú y Santa Ana.",
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "area": 185,
+    "amenities": [
+      "Diseño de autor",
+      "Vista al parque",
+      "Ventanas de doble vidrio",
+      "Ascensor"
+    ]
+  },
+  {
+    "id": 25,
+    "name": "Ocean Top Mar a Mar",
+    "location": "Tárcoles, Puntarenas",
+    "price": 437000,
+    "image": "/images/residencias/ocean-top-mar-a-mar/principal.jpg",
+    "gallery": [
+      "/images/residencias/ocean-top-mar-a-mar/galeria-1.jpg",
+      "/images/residencias/ocean-top-mar-a-mar/galeria-2.jpg",
+      "/images/residencias/ocean-top-mar-a-mar/galeria-3.jpg",
+      "/images/residencias/ocean-top-mar-a-mar/galeria-4.jpg"
+    ],
+    "description": "Apartamento nuevo en el octavo piso de Mar a Mar, el edificio más alto de la zona, con vistas al océano Pacífico y a las montañas. Su terraza con vista al mar conecta la sala con el dormitorio principal.",
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "area": 152,
+    "amenities": [
+      "Vista al mar",
+      "Terraza",
+      "Piscina",
+      "Zona de BBQ",
+      "Ascensor",
+      "Aire acondicionado",
+      "Seguridad 24/7",
+      "Bodega privada"
     ]
   }
 ]
