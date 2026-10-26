@@ -1,178 +1,227 @@
-/* ===== Bloque 1: el footer oscuro ===== */
+/* ===== FOOTER: el cierre de todas las páginas, mínimo ===== */
+
+/* El footer: fondo turquesa oscuro con texto arena. Las variables guardan los colores
+   para usarlos abajo (texto, texto suave y líneas finas); el foco del teclado va en arena. */
 .footer {
-  --color-foco: var(--color-dorado);
+  --footer-fondo: var(--color-turquesa-oscuro);
+  --footer-texto: var(--color-arena);
+  --footer-suave: rgba(245, 235, 221, 0.75);
+  --footer-linea: rgba(245, 235, 221, 0.2);
+  --color-foco: var(--color-arena);
   margin-top: var(--espacio-grande);
-  overflow: hidden;
-  background-color: var(--color-texto);
-  color: var(--color-arena);
+  background-color: var(--footer-fondo);
+  color: var(--footer-texto);
 }
 
-/* en Inicio la última sección ya trae su espacio, así que se quita el margen */
+/* En Inicio la última sección ya trae su espacio: sin margen arriba. */
 .layout__main:has(.home) + .footer {
   margin-top: 0;
 }
 
-/* ===== Bloque 2: la invitación a agendar una visita ===== */
-.footer__cta {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1.5rem;
+/* La franja principal: en teléfono y tableta, todo apilado y centrado. */
+.footer__inner {
+  display: grid;
+  justify-items: center;
+  gap: 2.5rem;
   max-width: var(--ancho-max);
   margin: 0 auto;
-  padding: 5rem var(--espacio-pequeno) 4rem;
-}
-
-.footer__cta-text {
-  max-width: 18ch;
-  font-family: var(--fuente-titulos);
-  font-size: clamp(2rem, 4.5vw, 3.4rem);
-  font-weight: 500;
-  line-height: 1.05;
-  color: var(--color-arena);
-}
-
-.footer__cta-button {
-  display: inline-flex;
-  align-items: center;
-  min-height: 48px;
-  padding: 0 1.75rem;
-  background-color: var(--color-dorado);
-  color: var(--color-texto);
-  font-weight: 600;
-  transition: background-color 0.3s ease;
-}
-
-.footer__cta-button:hover {
-  background-color: var(--color-arena);
-  color: var(--color-texto);
-}
-
-/* ===== Bloque 3: logo, texto y las tres columnas de enlaces ===== */
-.footer__container {
-  display: grid;
-  gap: 3rem;
-  max-width: var(--ancho-max);
-  margin: 0 auto;
-  padding: 3rem var(--espacio-pequeno);
-  background-color: rgba(245, 235, 221, 0.04);
-}
-
-.footer__brand {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
-}
-
-.footer__mark {
-  color: var(--color-dorado);
-}
-
-.footer__text {
-  max-width: 32ch;
-  line-height: 1.65;
-  color: rgba(245, 235, 221, 0.8);
-}
-
-.footer__columns {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-}
-
-.footer__title {
-  margin-bottom: 1rem;
-  font-family: var(--fuente-texto);
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--color-dorado);
-}
-
-.footer__list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.footer__label {
-  display: block;
-  font-size: 0.8rem;
-  color: rgba(245, 235, 221, 0.65);
-}
-
-.footer__value {
-  color: var(--color-arena);
-}
-
-/* ===== Bloque 4: enlaces con subrayado que crece ===== */
-.footer__link {
-  color: var(--color-arena);
-  background-image: linear-gradient(var(--color-dorado), var(--color-dorado));
-  background-size: 0% 1px;
-  background-position: 0 100%;
-  background-repeat: no-repeat;
-  transition:
-    background-size 0.35s var(--curva-salida),
-    color 0.25s ease;
-}
-
-.footer__link:hover {
-  color: var(--color-dorado);
-  background-size: 100% 1px;
-}
-
-/* ===== Bloque 5: el nombre gigante como firma ===== */
-.footer__signature {
-  margin: 2.5rem 0 0;
-  font-family: var(--fuente-titulos);
-  font-size: 22vw;
-  font-weight: 500;
-  line-height: 0.9;
-  letter-spacing: -0.03em;
+  padding: 4rem var(--espacio-pequeno) 3rem;
   text-align: center;
-  white-space: nowrap;
-  color: var(--color-turquesa-oscuro);
-  user-select: none;
 }
 
-/* ===== Bloque 6: la franja final (derechos y créditos) ===== */
-.footer__bottom {
-  position: relative;
+/* La marca: la guaria a la izquierda; el nombre y una rayita debajo, a la derecha. */
+.footer__brand {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-areas:
+    "flor nombre"
+    "flor raya";
+  align-items: center;
+  column-gap: 0.9rem;
+  row-gap: 0.45rem;
+  color: var(--footer-texto);
+}
+
+/* La marca al pasar el mouse: no cambia de color. */
+.footer__brand:hover {
+  color: var(--footer-texto);
+}
+
+/* La guaria morada del logo. */
+.footer__mark {
+  grid-area: flor;
+}
+
+/* "Residencias La Guaria" en letra de títulos, con un poco de aire entre letras. */
+.footer__name {
+  grid-area: nombre;
+  align-self: end;
+  font-family: var(--fuente-titulos);
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+/* La rayita fina debajo del nombre (como en la referencia). */
+.footer__rule {
+  grid-area: raya;
+  align-self: start;
+  justify-self: start;
+  width: 2rem;
+  height: 1px;
+  background-color: var(--color-dorado-oscuro);
+}
+
+/* Los enlaces de páginas: en teléfono, uno debajo del otro (fáciles de tocar). */
+.footer__links {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+/* Cada enlace: letra pequeña en mayúsculas, espaciada y fina, con una línea escondida debajo. */
+.footer__link {
+  position: relative;
+  display: inline-block;
+  padding: 0.6rem 0;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--footer-texto);
+}
+
+/* La línea debajo del enlace: empieza con ancho 0 y anclada a la izquierda. */
+.footer__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0.16em;
+  bottom: 0.35rem;
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.4s var(--curva-suave);
+}
+
+/* Enlace al pasar el mouse: la línea crece de izquierda a derecha (el color no cambia). */
+.footer__link:hover {
+  color: var(--footer-texto);
+}
+
+.footer__link:hover::after {
+  transform: scaleX(1);
+}
+
+/* La página en la que estás: en negrita y con la línea completa. */
+.footer__link--active {
+  font-weight: 700;
+}
+
+.footer__link--active::after {
+  transform: scaleX(1);
+}
+
+/* Las redes sociales en fila. */
+.footer__social {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Cada ícono: zona de 44px para tocar cómodo con el dedo, del color del texto. */
+.footer__social-link {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--footer-texto);
+  transition:
+    color 0.25s ease,
+    transform 0.3s var(--curva-suave);
+}
+
+/* Al presionar un ícono, se hunde un poquito. */
+.footer__social-link:active {
+  transform: scale(0.92);
+}
+
+/* Solo con mouse: el ícono se vuelve blanco y sube apenas. */
+@media (hover: hover) and (pointer: fine) {
+  .footer__social-link:hover {
+    color: var(--color-blanco);
+    transform: translateY(-2px);
+  }
+}
+
+/* La franja de abajo: una línea fina arriba y solo el texto de derechos, centrado. */
+.footer__bottom {
   max-width: var(--ancho-max);
   margin: 0 auto;
-  padding: 1.25rem var(--espacio-pequeno) 1.5rem;
+  padding: 1.5rem var(--espacio-pequeno) 2rem;
+  box-shadow: inset 0 1px 0 var(--footer-linea);
+  text-align: center;
 }
 
+/* El texto de derechos, pequeño y en gris (arena un poco transparente). */
 .footer__bottom p {
-  font-size: 0.85rem;
-  color: rgba(245, 235, 221, 0.7);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  color: var(--footer-suave);
 }
 
-/* ===== Bloque 7: tableta y computadora ===== */
+/* Tableta: más aire a los lados y los enlaces en una sola fila, separados por puntitos. */
 @media (min-width: 768px) {
-  .footer__cta {
+  .footer__inner {
+    padding: 4.5rem var(--espacio-mediano) 3.5rem;
+  }
+
+  .footer__links {
     flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
-    padding: 7rem var(--espacio-mediano) 5rem;
+    gap: 0;
   }
 
-  .footer__container {
-    grid-template-columns: 1fr 2fr;
-    padding: 3.5rem var(--espacio-mediano);
-  }
-
-  .footer__columns {
-    grid-template-columns: repeat(3, 1fr);
+  /* Un puntito suave entre enlace y enlace. */
+  .footer__links li + li::before {
+    content: "·";
+    margin: 0 0.9rem;
+    color: var(--footer-suave);
   }
 
   .footer__bottom {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 1.25rem var(--espacio-mediano) 1.75rem;
+    margin: 0 var(--espacio-mediano);
+    padding: 1.5rem 0 2rem;
+  }
+}
+
+/* Computadora: una sola franja de tres columnas — marca | enlaces | redes. */
+@media (min-width: 1024px) {
+  .footer__inner {
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 2rem;
+    padding: 4rem var(--espacio-mediano);
+    text-align: left;
+  }
+
+  /* La marca a la izquierda. */
+  .footer__brand {
+    justify-self: start;
+  }
+
+  /* Las redes a la derecha. */
+  .footer__social {
+    justify-self: end;
+  }
+}
+
+/* Pantallas anchas: la línea de abajo con el mismo ancho que la franja de arriba. */
+@media (min-width: 1264px) {
+  .footer__bottom {
+    max-width: calc(var(--ancho-max) - var(--espacio-mediano) * 2);
+    margin: 0 auto;
   }
 }

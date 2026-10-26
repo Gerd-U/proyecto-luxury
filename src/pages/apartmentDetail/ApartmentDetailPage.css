@@ -1,139 +1,519 @@
-.apartment-detail-page {
+/* ===== PÁGINA DETALLE de una residencia (/apartamentos/:id) ===== */
+
+/* La página completa: deja espacio abajo. */
+.detail {
+  padding-bottom: 2rem;
+}
+
+/* Versión de la página para los estados (cargando, error, no encontrada): centrada. */
+.detail--state {
   max-width: var(--ancho-max);
   margin: 0 auto;
-  padding: var(--espacio-mediano) var(--espacio-pequeno) var(--espacio-grande);
+  padding: 3rem var(--espacio-pequeno) 5rem;
 }
 
-.apartment-detail-header {
-  margin-bottom: var(--espacio-mediano);
-}
-
-.back-link {
-  display: inline-block;
-  margin-bottom: var(--espacio-pequeno);
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--color-turquesa);
-}
-
-.apartment-detail-header h1 {
-  color: var(--color-texto);
-}
-
-.apartment-detail-content {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--espacio-mediano);
-}
-
-.apartment-detail-gallery img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  border-radius: var(--radio);
-}
-
-.apartment-detail-info {
+/* Barra de arriba: "← Catálogo" a la izquierda y "Pacífico · Sardinal…" a la derecha. */
+.detail__top {
   display: flex;
-  flex-direction: column;
-  gap: var(--espacio-pequeno);
-  padding: var(--espacio-mediano);
-  border-radius: var(--radio);
-  background-color: var(--color-blanco);
-  box-shadow: var(--sombra);
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 1.25rem var(--espacio-pequeno);
 }
 
-.apartment-detail-info h2 {
-  color: var(--color-texto);
+/* El enlace "← Catálogo" (o "← Favoritos") para volver. */
+.detail__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  font-weight: 600;
+  color: var(--color-turquesa-oscuro);
 }
 
-.apartment-detail-price {
-  font-family: var(--fuente-titulos);
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--color-turquesa);
+/* La flecha ← del enlace, lista para moverse. */
+.detail__back span {
+  transition: transform 0.3s var(--curva-salida);
 }
 
-.apartment-detail-features {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  padding: var(--espacio-pequeno) 0;
-  border-top: 1px solid var(--color-borde);
-  border-bottom: 1px solid var(--color-borde);
-  text-align: center;
-}
-
-.apartment-detail-features strong {
-  display: block;
-  font-family: var(--fuente-titulos);
-  font-size: 1.5rem;
-  color: var(--color-texto);
-}
-
-.apartment-detail-features span {
-  font-size: 0.8rem;
+/* El texto de región y ubicación, a la derecha de la barra de arriba. */
+.detail__crumb {
+  font-size: 0.9rem;
   color: var(--color-texto-suave);
 }
 
-.apartment-detail-amenities {
+/* El hero: una ventana grande con la foto principal y el nombre encima. */
+.detail-hero {
+  position: relative;
+  isolation: isolate;
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  align-items: flex-end;
+  max-width: 1240px;
+  min-height: 78vh;
+  min-height: 78svh;
+  margin: 0 auto;
+  overflow: hidden;
+  color: var(--color-texto-claro);
+  background-color: var(--color-texto);
 }
 
-.apartment-detail-amenities li {
-  padding: 6px 14px;
-  border-radius: 20px;
-  background-color: rgba(78, 143, 107, 0.12);
-  color: var(--color-verde);
-  font-size: 0.85rem;
+/* Capa de la foto del hero, detrás de todo. */
+.detail-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+/* La foto del hero: llena la ventana sin deformarse. */
+.detail-hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Velo oscuro en la parte de abajo de la foto para que el título se lea. */
+.detail-hero__veil {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to top,
+    rgba(30, 43, 45, 0.85) 0%,
+    rgba(30, 43, 45, 0.3) 50%,
+    rgba(30, 43, 45, 0) 75%
+  );
+}
+
+/* El texto del hero (ubicación, nombre y botones), abajo a la izquierda. */
+.detail-hero__content {
+  width: 100%;
+  padding: 2rem var(--espacio-pequeno);
+}
+
+/* La ubicación, arriba del nombre. */
+.detail-hero__location {
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* El nombre enorme de la residencia. */
+.detail-hero__title {
+  max-width: 14ch;
+  margin-bottom: 1.5rem;
+  font-size: clamp(2.6rem, 7.5vw, 6.2rem);
   font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--color-texto-claro);
 }
 
-.apartment-detail-actions {
+/* Fila con "Solicitar visita" y el corazón; aquí el foco del teclado es dorado. */
+.detail-hero__actions {
+  --color-foco: var(--color-dorado);
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 8px;
+  align-items: center;
+  gap: 1rem;
 }
 
-.apartment-contact-button {
-  display: inline-block;
-  padding: 12px 28px;
-  border-radius: var(--radio);
+/* Respaldo sin View Transition: la foto se "abre" desde el centro. */
+html:not([data-view-transition]) .detail-hero__media {
+  animation: hero-abrir 0.9s var(--curva-salida) both;
+}
+
+/* Respaldo sin View Transition: el texto del hero sube después de la foto. */
+html:not([data-view-transition]) .detail-hero__content {
+  animation: hero-texto 0.8s var(--curva-salida) 0.25s both;
+}
+
+/* Animación: la foto pasa de recortada y ampliada a completa. */
+@keyframes hero-abrir {
+  from {
+    clip-path: inset(8% 8% 8% 8%);
+    transform: scale(1.06);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    transform: scale(1);
+  }
+}
+
+/* Animación: el texto pasa de invisible y abajo a visible en su lugar. */
+@keyframes hero-texto {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Botón dorado "Solicitar visita" (en el hero, en el cierre y en la barra fija). */
+.detail__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 1.75rem;
   background-color: var(--color-dorado);
   color: var(--color-texto);
-  font-size: 0.85rem;
   font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  transition:
+    background-color 0.2s ease,
+    transform 0.16s ease-out;
 }
 
-.apartment-contact-button:hover {
-  background-color: var(--color-dorado-oscuro);
+/* "Solicitar visita" al pasar el mouse: el texto no cambia de color. */
+.detail__cta:hover {
   color: var(--color-texto);
 }
 
-@media (min-width: 768px) {
-  .apartment-detail-page {
-    padding: var(--espacio-mediano) var(--espacio-mediano) var(--espacio-grande);
+/* Al presionar "Solicitar visita", se hunde un poquito. */
+.detail__cta:active {
+  transform: scale(0.97);
+}
+
+/* Versión pequeña de "Solicitar visita" (la de la barra fija de abajo). */
+.detail__cta--small {
+  min-height: 44px;
+  padding: 0 1.1rem;
+  white-space: nowrap;
+}
+
+/* Enlaces subrayados ("Volver al catálogo"). */
+.detail__text-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 600;
+  color: var(--color-turquesa-oscuro);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+/* Solo con mouse: el botón se vuelve arena y la flecha de "volver" se corre a la izquierda. */
+@media (hover: hover) and (pointer: fine) {
+  .detail__cta:hover {
+    background-color: var(--color-arena);
   }
 
-  .apartment-detail-gallery img {
-    height: 420px;
+  .detail__back:hover span {
+    transform: translateX(-4px);
   }
 }
 
-@media (min-width: 1024px) {
-  .apartment-detail-content {
-    grid-template-columns: 3fr 2fr;
-    align-items: start;
+/* Cada sección del detalle (La ficha, La residencia, Recorrido): centrada con espacio arriba. */
+.detail__section {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 5rem var(--espacio-pequeno) 0;
+}
+
+/* El título de cada sección ("La ficha"), en turquesa oscuro. */
+.detail__heading {
+  margin-bottom: 2rem;
+  font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+  font-weight: 500;
+  line-height: 1.05;
+  color: var(--color-turquesa-oscuro);
+}
+
+/* Las secciones empiezan invisibles y un poco abajo… */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s var(--curva-salida);
+}
+
+/* …y cuando entran en pantalla (useInView les pone .is-visible) suben y aparecen. */
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* La descripción completa, en letra grande de lectura tranquila ("La residencia"). */
+.detail__description {
+  max-width: 36ch;
+  font-family: var(--fuente-titulos);
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+  line-height: 1.35;
+  color: var(--color-texto);
+}
+
+/* La sección "Lo que incluye": franja turquesa de borde a borde. */
+.detail__amenities {
+  margin-top: 6rem;
+  padding: 5rem var(--espacio-pequeno);
+  background-color: var(--color-turquesa-oscuro);
+  color: var(--color-texto-claro);
+}
+
+/* Contenedor centrado dentro de la franja turquesa. */
+.detail__amenities-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+/* El título "Lo que incluye", en dorado sobre el turquesa. */
+.detail__amenities .detail__heading {
+  color: var(--color-dorado);
+}
+
+/* La lista de amenidades: en teléfono, una por línea. */
+.detail__amenity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem 1.25rem;
+}
+
+/* Cada amenidad, en letra de títulos grande. */
+.detail__amenity-list li {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--fuente-titulos);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.15;
+  color: var(--color-texto-claro);
+}
+
+/* El punto dorado delante de cada amenidad. */
+.detail__amenity-list li::before {
+  content: "";
+  flex-shrink: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--color-dorado);
+}
+
+/* El cierre ("¿Te imaginas viviendo aquí?" + siguiente residencia), centrado. */
+.detail__closing {
+  display: grid;
+  gap: 3rem;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 5rem var(--espacio-pequeno) 3rem;
+}
+
+/* El título grande del cierre. */
+.detail__closing-title {
+  margin-bottom: 1rem;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 500;
+  line-height: 1.02;
+  color: var(--color-texto);
+}
+
+/* El texto del cierre ("Agenda una visita privada…"). */
+.detail__closing-text p {
+  max-width: 40ch;
+  margin-bottom: 1.75rem;
+  line-height: 1.6;
+  color: var(--color-texto);
+}
+
+/* Fila con "Solicitar visita", el corazón y "Volver al catálogo". */
+.detail__closing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.25rem;
+}
+
+/* La tarjeta "Siguiente residencia" (foto + nombre). */
+.detail__next {
+  display: grid;
+  gap: 0.5rem;
+  color: var(--color-texto);
+}
+
+/* La tarjeta "Siguiente residencia" al pasar el mouse: no cambia de color. */
+.detail__next:hover {
+  color: var(--color-texto);
+}
+
+/* La foto de la siguiente residencia. */
+.detail__next img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+}
+
+/* El texto pequeño "Siguiente residencia". */
+.detail__next-label {
+  font-size: 0.85rem;
+  color: var(--color-texto-suave);
+}
+
+/* El nombre de la siguiente residencia con su flecha. */
+.detail__next-name {
+  font-family: var(--fuente-titulos);
+  font-size: 1.8rem;
+  line-height: 1.1;
+}
+
+/* La flecha → del nombre, lista para moverse. */
+.detail__next-name span {
+  display: inline-block;
+  transition: transform 0.3s var(--curva-salida);
+}
+
+/* Solo con mouse: la flecha de "Siguiente residencia" se corre a la derecha. */
+@media (hover: hover) and (pointer: fine) {
+  .detail__next:hover .detail__next-name span {
+    transform: translateX(6px);
+  }
+}
+
+/* Barra fija abajo (teléfono): nombre, precio y "Solicitar visita". Empieza escondida abajo. */
+.detail__bar {
+  --color-foco: var(--color-dorado);
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem var(--espacio-pequeno);
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  background-color: var(--color-texto);
+  color: var(--color-arena);
+  transform: translateY(100%);
+  transition: transform 0.3s var(--curva-salida);
+}
+
+/* La barra fija sube cuando el hero ya no se ve. */
+.detail__bar.is-visible {
+  transform: translateY(0);
+}
+
+/* Columna con el nombre y el precio dentro de la barra fija. */
+.detail__bar-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* El nombre en la barra fija; si es largo, termina en "…". */
+.detail__bar-name {
+  overflow: hidden;
+  font-family: var(--fuente-titulos);
+  font-size: 1.2rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* El precio en la barra fija, en dorado. */
+.detail__bar-price {
+  font-size: 0.85rem;
+  color: var(--color-dorado);
+}
+
+/* Esqueleto de carga del detalle: una línea y un bloque grande. */
+.detail-skeleton {
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* Las piezas del esqueleto: color arena que late suavemente. */
+.detail-skeleton__line,
+.detail-skeleton__hero {
+  background-color: var(--color-borde);
+  animation: esqueleto-pulso 1.2s ease-in-out infinite alternate;
+}
+
+/* La línea corta (donde va "← Catálogo"). */
+.detail-skeleton__line {
+  width: 160px;
+  height: 16px;
+}
+
+/* El bloque grande (donde va el hero). */
+.detail-skeleton__hero {
+  min-height: 60vh;
+}
+
+/* Animación: el esqueleto se aclara y oscurece. */
+@keyframes esqueleto-pulso {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.55;
+  }
+}
+
+/* Tableta: más margen a los lados en todas las partes del detalle. */
+@media (min-width: 768px) {
+  .detail__top,
+  .detail-hero__content,
+  .detail__section,
+  .detail__closing {
+    padding-left: var(--espacio-mediano);
+    padding-right: var(--espacio-mediano);
   }
 
-  .apartment-detail-gallery img {
-    height: 520px;
+  .detail-hero__content {
+    padding-bottom: 3rem;
+  }
+
+  .detail__amenities {
+    padding: 6rem var(--espacio-mediano);
+  }
+}
+
+/* Computadora: sin barra fija, más aire y algunas secciones en dos columnas. */
+@media (min-width: 900px) {
+  .detail__bar {
+    display: none;
+  }
+
+  .detail__section {
+    padding-top: 7rem;
+  }
+
+  /* Amenidades seguidas como una frase, con el punto ENTRE ellas. */
+  .detail__amenity-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .detail__amenity-list li:first-child::before {
+    display: none;
+  }
+
+  /* "La residencia": título a la izquierda y descripción a la derecha. */
+  .detail__story {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+  }
+
+  /* Cierre: texto a la izquierda y siguiente residencia a la derecha. */
+  .detail__closing {
+    grid-template-columns: 1.3fr 1fr;
+    align-items: end;
+    gap: 5rem;
+    padding-top: 7rem;
+  }
+}
+
+/* Pantallas anchas: la ventana del hero deja un margen a los lados. */
+@media (min-width: 1280px) {
+  .detail-hero {
+    width: calc(100% - 4rem);
   }
 }

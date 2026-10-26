@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
-const STORAGE_KEY = "la-guaria:intro-vista";
-const VISIBLE_MS = 1700;
+const VISIBLE_MS = 3000;
 const EXIT_MS = 700;
 
 export interface IntroLoaderState {
@@ -10,31 +9,29 @@ export interface IntroLoaderState {
   skip: () => void;
 }
 
+// Se reinicia con cada recarga: así la intro sale cada vez que se carga Inicio,
+// pero no al volver a Inicio navegando dentro de la app.
+let hasPlayedThisLoad = false;
+
 function prefersReducedMotion(): boolean {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-function wasSeenThisSession(): boolean {
-  try {
-    return sessionStorage.getItem(STORAGE_KEY) === "1";
-  } catch {
-    return true;
-  }
-}
-
-function markAsSeen(): void {
-  try {
-    sessionStorage.setItem(STORAGE_KEY, "1");
-  } catch {
-    // La intro podrá volver a mostrarse si no hay almacenamiento.
-  }
+// La intro solo se muestra si la página se cargó (o recargó) en Inicio ("/").
+function pageLoadedAtHome(): boolean {
+  const [entry] = performance.getEntriesByType("navigation");
+  return !entry || new URL(entry.name).pathname === "/";
 }
 
 export function useIntroLoader(): IntroLoaderState {
   const [isVisible, setIsVisible] = useState<boolean>(
-    () => !prefersReducedMotion() && !wasSeenThisSession(),
+    () => !prefersReducedMotion() && !hasPlayedThisLoad && pageLoadedAtHome(),
   );
   const [isLeaving, setIsLeaving] = useState<boolean>(false);
+
+  useEffect(() => {
+    hasPlayedThisLoad = true;
+  }, []);
 
   useEffect(() => {
     if (!isVisible || isLeaving) return;
@@ -46,10 +43,7 @@ export function useIntroLoader(): IntroLoaderState {
   useEffect(() => {
     if (!isLeaving) return;
 
-    const timer = window.setTimeout(() => {
-      setIsVisible(false);
-      markAsSeen();
-    }, EXIT_MS);
+    const timer = window.setTimeout(() => setIsVisible(false), EXIT_MS);
     return () => window.clearTimeout(timer);
   }, [isLeaving]);
 

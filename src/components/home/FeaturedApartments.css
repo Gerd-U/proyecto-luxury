@@ -1,27 +1,295 @@
-.featured-section {
-  padding: var(--espacio-grande) var(--espacio-pequeno);
-  background-color: var(--color-blanco);
-  text-align: center;
+/* ===== DESTACADAS: "Residencias destacadas" (última sección del Inicio) ===== */
+
+/* La sección completa, sobre el fondo arena de la paleta (igual que el resto de la página). */
+.featured {
+  padding: 6rem var(--espacio-pequeno);
+  background-color: var(--color-arena);
 }
 
-.featured-section .featured-title {
-  margin-bottom: var(--espacio-pequeno);
-  color: var(--color-texto);
-}
-
-.featured-section .featured-description {
-  max-width: 600px;
-  margin: 0 auto var(--espacio-grande);
-  color: var(--color-texto-suave);
-}
-
-.featured-container {
+/* Contenedor centrado con el ancho máximo del sitio. */
+.featured__inner {
   max-width: var(--ancho-max);
   margin: 0 auto;
 }
 
+/* Fila de arriba: el título a la izquierda y el selector de región a la derecha. */
+.featured__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem 2rem;
+  margin-bottom: 3rem;
+}
+
+/* El título "Residencias destacadas". */
+.featured__title {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  color: var(--color-texto);
+}
+
+/* Grupo Todas / Valle Central / Pacífico, como pestañas de texto (no píldoras). */
+.featured__filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.75rem;
+}
+
+/* Cada pestaña de región: solo texto, con una línea escondida debajo. */
+.featured__chip {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  min-height: 44px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  color: var(--color-texto-suave);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+/* La línea debajo de la pestaña: empieza en 0 y crece desde la izquierda. */
+.featured__chip::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  height: 2px;
+  background-color: var(--color-turquesa);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.4s var(--curva-suave);
+}
+
+/* Pestaña al pasar el mouse: el texto se oscurece. */
+.featured__chip:hover {
+  color: var(--color-texto);
+}
+
+/* La región elegida (aria-pressed="true"): texto oscuro y línea turquesa completa. */
+.featured__chip[aria-pressed="true"] {
+  color: var(--color-texto);
+}
+
+.featured__chip[aria-pressed="true"]::after {
+  transform: scaleX(1);
+}
+
+/* El numerito al lado de cada pestaña (cuántas destacadas hay), pequeño y arriba. */
+.featured__count {
+  font-size: 0.75rem;
+  color: var(--color-turquesa-oscuro);
+}
+
+/* La lista de destacadas: en teléfono, una debajo de otra. */
+.featured__list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+/* Cada destacada: entra subiendo, una tras otra (--i es su orden). */
+.featured__item {
+  display: grid;
+  gap: 1.25rem;
+  opacity: 0;
+  animation: destacada-entrar 0.7s var(--curva-salida) forwards;
+  animation-delay: calc(var(--i) * 90ms);
+}
+
+/* Animación: de invisible y un poco abajo, a visible en su lugar. */
+@keyframes destacada-entrar {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Marco de la foto de cada destacada (también contiene el corazón). */
+.featured__media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  /* tono un poco más oscuro que el fondo, para que se note el espacio mientras carga la foto */
+  background-color: var(--color-borde);
+}
+
+/* La foto de la destacada: llena el marco sin deformarse. */
+.featured__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.9s var(--curva-salida);
+}
+
+/* Al pasar el mouse por una destacada, su foto se acerca un poco. */
+.featured__item:hover .featured__media img {
+  transform: scale(1.05);
+}
+
+/* El botón de favorito, en la esquina de arriba a la derecha de la foto. */
+.featured__favorite {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+/* La ubicación ("Escazú, San José"), arriba del nombre. */
+.featured__location {
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+  color: var(--color-texto-suave);
+}
+
+/* El nombre de la residencia. */
+.featured__name {
+  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--color-texto);
+}
+
+/* La línea "5 habitaciones · 7 baños · 1019 m²". */
+.featured__specs {
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  color: var(--color-texto);
+}
+
+/* El precio de venta, en turquesa oscuro. */
+.featured__price {
+  margin-bottom: 1.25rem;
+  font-family: var(--fuente-titulos);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--color-turquesa-oscuro);
+}
+
+/* La etiqueta pequeña "Precio de venta", arriba del número. */
+.featured__price span {
+  display: block;
+  font-family: var(--fuente-texto);
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--color-texto-suave);
+}
+
+/* Los enlaces "Ver residencia →" y "Ver el catálogo completo →". */
+.featured__link,
+.featured__all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  font-weight: 600;
+  color: var(--color-turquesa-oscuro);
+}
+
+/* La flecha de esos enlaces, lista para moverse. */
+.featured__link span,
+.featured__all span {
+  transition: transform 0.3s var(--curva-salida);
+}
+
+/* Al pasar el mouse por esos enlaces, la flecha se corre a la derecha. */
+.featured__link:hover span,
+.featured__all:hover span {
+  transform: translateX(5px);
+}
+
+/* El enlace final "Ver el catálogo completo", más grande y separado. */
+.featured__all {
+  margin-top: 3rem;
+  font-family: var(--fuente-titulos);
+  font-size: 1.6rem;
+}
+
+/* Tableta: cuadrícula de 6 columnas; cada destacada usa la mitad. */
 @media (min-width: 768px) {
-  .featured-section {
-    padding: var(--espacio-grande) var(--espacio-mediano);
+  .featured {
+    padding: 8rem var(--espacio-mediano);
+  }
+
+  .featured__list {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 4rem 2rem;
+  }
+
+  .featured__item {
+    grid-column: span 3;
+  }
+
+  /* La destacada principal usa todo el ancho: foto grande y texto al lado. */
+  .featured__item--lead {
+    grid-column: 1 / -1;
+    grid-template-columns: 1.6fr 1fr;
+    align-items: end;
+    gap: 2.5rem;
+  }
+
+  /* La foto de la principal, más panorámica. */
+  .featured__item--lead .featured__media {
+    aspect-ratio: 16 / 10;
+  }
+
+  /* El nombre de la principal, más grande. */
+  .featured__item--lead .featured__name {
+    font-size: clamp(2.2rem, 3.5vw, 3rem);
+  }
+
+  /* Si hay dos principales, la segunda va al revés (foto a la derecha). */
+  .featured__item--lead:nth-child(2) {
+    grid-template-columns: 1fr 1.6fr;
+  }
+
+  .featured__item--lead:nth-child(2) .featured__media {
+    order: 2;
+  }
+}
+
+/* Computadora: las destacadas que no son principales van de a tres por fila. */
+@media (min-width: 1024px) {
+  .featured__item:not(.featured__item--lead) {
+    grid-column: span 2;
+  }
+}
+
+/* Al hacer scroll (navegadores que lo soportan, sin "reducir movimiento"): las destacadas
+   aparecen al entrar en pantalla en vez de todas juntas al cargar. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* El título y las pestañas suben y aparecen. */
+    .featured__head {
+      animation: aparecer-subiendo var(--curva-suave) both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 30%;
+    }
+
+    /* Cada destacada aparece cuando le toca (reemplaza la entrada al cargar). */
+    .featured__item {
+      animation: destacada-entrar var(--curva-suave) both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 30%;
+    }
+
+    /* La foto de cada destacada se destapa de abajo hacia arriba. */
+    .featured__media {
+      animation: foto-destapar var(--curva-suave) both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 35%;
+    }
   }
 }

@@ -1,30 +1,53 @@
-/* ===== Bloque 1: el logo en reposo ===== */
+/* ===== LOGO: la guaria morada (header, footer, intro y estados vacíos) ===== */
+/* Los morados son la única excepción a la paleta del sitio: solo los usa el logo. */
+
+/* El logo y sus colores: pétalo lila, borde morado, labelo morado profundo y garganta clara. */
 .brand-mark {
+  --guaria-petalo: #c066ae;
+  --guaria-borde: #8b2f7f;
+  --guaria-labelo: #74196b;
+  --guaria-garganta: #f8e3f2;
   display: block;
   flex-shrink: 0;
   overflow: visible;
 }
 
+/* Cada pétalo: relleno lila con un borde morado más oscuro que dibuja su forma. */
 .brand-mark__petal {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.6;
+  fill: var(--guaria-petalo);
+  stroke: var(--guaria-borde);
+  stroke-width: 1.4;
   stroke-linejoin: round;
 }
 
+/* El labelo (la "boca" de la orquídea), en el morado más profundo. */
 .brand-mark__lip {
-  fill: var(--color-dorado);
+  fill: var(--guaria-labelo);
 }
 
-/* ===== Bloque 2: la guaria que se abre (solo en el loader) ===== */
+/* La garganta clara dentro del labelo, como en la flor real. */
+.brand-mark__throat {
+  fill: var(--guaria-garganta);
+}
+
+/* ===== La guaria que se abre (solo en la intro del Inicio) ===== */
+
+/* Cada pétalo primero se dibuja (solo el borde) y luego se rellena, uno tras otro. */
 .brand-mark--animated .brand-mark__petal {
+  fill-opacity: 0;
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  animation: petalo-dibujar 0.9s var(--curva-salida) forwards;
-  animation-delay: calc(var(--i) * 110ms);
+  animation:
+    petalo-dibujar 0.9s var(--curva-salida) forwards,
+    petalo-llenar 0.6s ease forwards;
+  animation-delay:
+    calc(var(--i) * 110ms),
+    calc(500ms + var(--i) * 110ms);
 }
 
-.brand-mark--animated .brand-mark__lip {
+/* El labelo y la garganta aparecen creciendo desde arriba, al final. */
+.brand-mark--animated .brand-mark__lip,
+.brand-mark--animated .brand-mark__throat {
   opacity: 0;
   transform: scale(0.4);
   transform-box: fill-box;
@@ -32,12 +55,21 @@
   animation: labelo-abrir 0.7s var(--curva-salida) 0.55s forwards;
 }
 
+/* Animación: el borde del pétalo se dibuja de punta a punta. */
 @keyframes petalo-dibujar {
   to {
     stroke-dashoffset: 0;
   }
 }
 
+/* Animación: el pétalo se llena de color. */
+@keyframes petalo-llenar {
+  to {
+    fill-opacity: 1;
+  }
+}
+
+/* Animación: el labelo crece hasta su tamaño. */
 @keyframes labelo-abrir {
   to {
     opacity: 1;

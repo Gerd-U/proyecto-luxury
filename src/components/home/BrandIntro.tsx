@@ -17,7 +17,7 @@ function BrandIntro() {
 
           <div className="brand-intro__columns">
             <p>
-              Residencias La Guaria es una agencia costarricense de alquiler de
+              Residencias La Guaria es una agencia costarricense de venta de
               residencias de lujo. Reunimos penthouses, apartamentos y casas en
               Escazú, Santa Ana, Curridabat, Guanacaste y Jacó.
             </p>

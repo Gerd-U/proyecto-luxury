@@ -128,7 +128,7 @@ function FeaturedApartments({
                       baños · {apartment.area} m²
                     </p>
                     <p className="featured__price">
-                      {formatPrice(apartment.price)} <span>/ mes</span>
+                      <span>Precio de venta</span> {formatPrice(apartment.price)}
                     </p>
                     <Link
                       to={`/apartamentos/${apartment.id}`}

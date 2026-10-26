@@ -1,0 +1,158 @@
+/* ===== INTRO: el nombre a pantalla completa que viaja hasta el header (Inicio, una vez por sesión) ===== */
+/* Idea: la intro tiene EXACTAMENTE la misma forma que el logo del header (flor + "La Guaria" + subtítulo),
+   solo que --k veces más grande. Al salir, se encoge con scale(1 / --k) y sube hasta el lugar del logo. */
+
+/* El telón oscuro que tapa la pantalla. --k = cuántas veces más grande que el logo del header;
+   --destino-y = altura (desde arriba) del centro del logo del header. Valores para teléfono. */
+.intro {
+  --k: 2.1;
+  --destino-y: 36px;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 var(--espacio-pequeno);
+  background-color: var(--color-texto);
+  color: var(--color-arena);
+  cursor: pointer;
+  clip-path: inset(0 0 0 0);
+}
+
+/* El logo grande: flor a la izquierda; nombre y subtítulo a la derecha, igual que en el header. */
+.intro__content {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-areas:
+    "flor nombre"
+    "flor subtitulo";
+  align-items: center;
+  column-gap: calc(0.65rem * var(--k));
+  /* en teléfono el logo del header está a la izquierda: se encoge hacia su borde izquierdo */
+  transform-origin: left center;
+}
+
+/* La flor grande: 34px (tamaño del header) multiplicado por --k. */
+.intro__mark {
+  grid-area: flor;
+  width: calc(34px * var(--k));
+  height: calc(34px * var(--k));
+  color: var(--color-dorado);
+}
+
+/* "La Guaria": 1.6rem (tamaño del header) multiplicado por --k, mismo peso que en el header. */
+.intro__name {
+  grid-area: nombre;
+  display: flex;
+  align-self: end;
+  font-family: var(--fuente-titulos);
+  font-size: calc(1.6rem * var(--k));
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--color-arena);
+}
+
+/* "Ventanita" de cada letra: esconde la letra mientras está abajo. */
+.intro__mask {
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+
+/* Cada letra: empieza abajo y sube, una tras otra (--i es su posición). */
+.intro__letter {
+  display: inline-block;
+  transform: translateY(110%);
+  animation: letra-subir 0.8s var(--curva-salida) forwards;
+  animation-delay: calc(450ms + var(--i) * 55ms);
+}
+
+/* Animación: la letra sube hasta su lugar. */
+@keyframes letra-subir {
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* "Residencias · Costa Rica" debajo del nombre. Su tamaño hace que mida casi lo mismo que
+   "La Guaria": así todo el logo queda centrado y no se carga hacia la derecha.
+   width: 0 evita que ensanche el logo (debe medir igual que el del header). */
+.intro__tagline {
+  grid-area: subtitulo;
+  align-self: start;
+  width: 0;
+  margin-top: calc(4px * var(--k));
+  font-size: calc(0.42rem * var(--k));
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  color: rgba(245, 235, 221, 0.8);
+  opacity: 0;
+  animation: aparecer 0.6s ease 1.1s forwards;
+}
+
+/* Animación: algo invisible se vuelve visible. */
+@keyframes aparecer {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===== La salida: el logo viaja al header y el telón se recoge ===== */
+
+/* El telón se recoge hacia arriba hasta quedar del alto del header y luego se vuelve transparente. */
+.intro--leaving {
+  clip-path: inset(0 0 calc(100% - 76px) 0);
+  background-color: rgba(30, 43, 45, 0);
+  pointer-events: none;
+  transition:
+    clip-path 0.7s var(--curva-telon),
+    background-color 0.3s ease 0.4s;
+}
+
+/* El logo grande sube hasta la altura del logo del header y se encoge a su tamaño (1 / --k).
+   Al final se desvanece justo cuando aparece el logo real del header (cruce). */
+.intro--leaving .intro__content {
+  transform: translateY(calc(var(--destino-y) - 50vh)) scale(calc(1 / var(--k)));
+  opacity: 0;
+  transition:
+    transform 0.7s var(--curva-telon),
+    opacity 0.18s ease 0.52s;
+}
+
+/* El subtítulo largo se va primero (el header solo dice "Residencias"). */
+.intro--leaving .intro__tagline {
+  opacity: 0;
+  animation: none;
+  transition: opacity 0.2s ease;
+}
+
+/* Teléfono grande y tableta: el logo de la intro un poco más grande. */
+@media (min-width: 480px) {
+  .intro {
+    --k: 3;
+  }
+}
+
+/* Computadora: el logo del header está centrado, así que la intro también va centrada
+   y se encoge desde su centro. */
+@media (min-width: 900px) {
+  .intro {
+    --k: 4.2;
+    --destino-y: 38px;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .intro__content {
+    transform-origin: center center;
+  }
+}
+
+/* Pantallas muy anchas: todavía más grande. */
+@media (min-width: 1400px) {
+  .intro {
+    --k: 5;
+  }
+}

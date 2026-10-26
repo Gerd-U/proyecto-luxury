@@ -1,3 +1,6 @@
+/* ===== ESTADOS COMPARTIDOS: cargando, error y vacío (se usan en varias páginas) ===== */
+
+/* Bloque de "cargando": círculo que gira y texto, centrados. */
 .loader {
   display: flex;
   flex-direction: column;
@@ -6,76 +9,109 @@
   padding: var(--espacio-grande) var(--espacio-pequeno);
 }
 
+/* El círculo que gira (borde arena con un tramo turquesa). */
 .loader__spinner {
-  width: 44px;
-  height: 44px;
-  border: 4px solid var(--color-borde);
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--color-borde);
   border-top-color: var(--color-turquesa);
   border-radius: 50%;
-  animation: girar 0.9s linear infinite;
+  animation: girar 0.8s linear infinite;
 }
 
+/* El texto "Cargando…" debajo del círculo. */
 .loader__text {
   color: var(--color-texto-suave);
 }
 
+/* Animación: una vuelta completa. */
 @keyframes girar {
   to {
     transform: rotate(360deg);
   }
 }
 
+/* Caja de error: fondo blanco con una franja roja a la izquierda. */
 .error-message {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: var(--espacio-pequeno);
-  max-width: 500px;
-  margin: var(--espacio-mediano) auto;
-  padding: var(--espacio-mediano);
-  border-left: 4px solid var(--color-error);
-  border-radius: var(--radio);
+  align-items: flex-start;
+  gap: 1rem;
+  max-width: 34rem;
+  margin: var(--espacio-mediano) 0;
+  padding: 2rem;
   background-color: var(--color-blanco);
-  text-align: center;
+  box-shadow: inset 4px 0 0 var(--color-error);
 }
 
+/* El mensaje de error, grande y fácil de leer. */
 .error-message__text {
-  color: var(--color-error);
+  font-family: var(--fuente-titulos);
+  font-size: 1.5rem;
+  line-height: 1.25;
+  color: var(--color-texto);
 }
 
+/* El botón "Intentar de nuevo" dentro de la caja de error. */
 .error-message__retry {
-  padding: 10px 24px;
+  min-height: 44px;
+  padding: 0 1.5rem;
   border: none;
-  border-radius: var(--radio);
+  border-radius: 999px;
   background-color: var(--color-turquesa);
   color: var(--color-texto-claro);
-  font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.16s ease-out;
 }
 
-.error-message__retry:hover {
-  background-color: var(--color-turquesa-oscuro);
+/* Al presionar "Intentar de nuevo", se hunde un poquito. */
+.error-message__retry:active {
+  transform: scale(0.97);
 }
 
+/* Solo con mouse: "Intentar de nuevo" se oscurece al pasar por encima. */
+@media (hover: hover) and (pointer: fine) {
+  .error-message__retry:hover {
+    background-color: var(--color-turquesa-oscuro);
+  }
+}
+
+/* Estado vacío (sin resultados / no encontrado): todo centrado. */
 .empty-state {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  padding: var(--espacio-grande) var(--espacio-pequeno);
+  gap: 0.9rem;
+  padding: 4rem var(--espacio-pequeno);
   text-align: center;
 }
 
+/* La ilustración del estado vacío (la guaria), en dorado oscuro. */
+.empty-state__icon {
+  margin-bottom: 0.5rem;
+  color: var(--color-dorado-oscuro);
+}
+
+/* El título del estado vacío ("Ninguna residencia coincide"). */
 .empty-state__title {
+  max-width: 18ch;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 500;
+  line-height: 1.05;
   color: var(--color-texto);
 }
 
+/* El mensaje que explica qué hacer, debajo del título. */
 .empty-state__message {
-  max-width: 420px;
-  color: var(--color-texto-suave);
+  max-width: 38ch;
+  line-height: 1.6;
+  color: var(--color-texto);
 }
 
+/* El espacio del botón o enlace del estado vacío ("Limpiar filtros"). */
 .empty-state__action {
-  margin-top: 8px;
+  margin-top: 0.75rem;
 }
