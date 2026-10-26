@@ -1,66 +1,220 @@
-.apartments-header {
-  padding: var(--espacio-grande) var(--espacio-pequeno);
-  background-color: var(--color-turquesa);
-  text-align: center;
-}
+/* ===== PÁGINA APARTAMENTOS (catálogo) ===== */
 
-.apartments-header h1 {
-  margin-bottom: 12px;
-  color: var(--color-texto-claro);
-}
-
-.apartments-header p {
-  max-width: 600px;
-  margin: 0 auto;
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.apartments-catalog {
+/* La página completa: centrada con el ancho máximo del sitio. */
+.catalog {
   max-width: var(--ancho-max);
   margin: 0 auto;
-  padding: var(--espacio-grande) var(--espacio-pequeno);
+  padding: 3rem var(--espacio-pequeno) 0;
 }
 
-.apartments-contact {
-  max-width: 800px;
-  margin: 0 auto var(--espacio-grande);
-  padding: var(--espacio-grande) var(--espacio-pequeno);
-  border-top: 1px solid var(--color-borde);
-  text-align: center;
+/* El encabezado de arriba: título, frase y contador, uno debajo del otro. */
+.catalog__header {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
 }
 
-.apartments-contact h2 {
-  margin-bottom: 12px;
+/* El título enorme "Residencias". */
+.catalog__title {
+  font-size: clamp(3rem, 9vw, 6.5rem);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
   color: var(--color-texto);
 }
 
-.apartments-contact p {
-  margin-bottom: var(--espacio-mediano);
+/* La frase debajo del título. */
+.catalog__intro {
+  max-width: 44ch;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--color-texto);
 }
 
-.apartments-contact-button {
-  display: inline-block;
-  padding: 12px 28px;
-  border-radius: var(--radio);
+/* El contador "8 de 20 residencias", que cambia mientras filtras. */
+.catalog__count {
+  font-family: var(--fuente-titulos);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-turquesa-oscuro);
+}
+
+/* Zona de filtros + resultados (en teléfono, uno debajo del otro). */
+.catalog__layout {
+  display: grid;
+  gap: 2rem;
+}
+
+/* El texto "Mostrando 1–5 de 20" arriba de las cards. */
+.catalog__range {
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  color: var(--color-texto-suave);
+}
+
+/* Botón "Filtros (n)" que abre y cierra los filtros en teléfono y tableta: sin caja,
+   solo una línea fina arriba y abajo, sobre el fondo arena de la página. */
+.catalog__filters-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 52px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  box-shadow:
+    inset 0 1px 0 rgba(30, 43, 45, 0.15),
+    inset 0 -1px 0 rgba(30, 43, 45, 0.15);
+  color: var(--color-texto);
+  font-family: var(--fuente-titulos);
+  font-size: 1.35rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.16s ease-out;
+}
+
+/* Al presionar el botón "Filtros", se hunde un poquito. */
+.catalog__filters-toggle:active {
+  transform: scale(0.99);
+}
+
+/* El "+" o "−" turquesa a la derecha del botón "Filtros". */
+.catalog__filters-icon {
+  font-family: var(--fuente-texto);
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--color-turquesa);
+}
+
+/* Con los filtros abiertos, dejan aire entre el botón y los controles. */
+.catalog__panel.is-open {
+  padding: 1.75rem 0 0.5rem;
+}
+
+/* El panel de filtros cerrado (teléfono y tableta): no se ve. */
+.catalog__panel {
+  display: none;
+}
+
+/* El panel de filtros abierto: aparece bajando un poco. */
+.catalog__panel.is-open {
+  display: block;
+  animation: panel-abrir 0.25s var(--curva-salida);
+}
+
+/* Animación: el panel aparece desde un poco más arriba. */
+@keyframes panel-abrir {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* El botón "Limpiar filtros" dentro del estado sin resultados. */
+.catalog__clear {
+  min-height: 48px;
+  padding: 0 1.75rem;
+  border: none;
+  border-radius: 999px;
   background-color: var(--color-turquesa);
   color: var(--color-texto-claro);
-  font-size: 0.85rem;
   font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.16s ease-out;
 }
 
-.apartments-contact-button:hover {
+/* Al presionar ese botón, se hunde un poquito. */
+.catalog__clear:active {
+  transform: scale(0.97);
+}
+
+/* Franja turquesa del final ("¿No ves la que buscas?"), de borde a borde. */
+.catalog__contact {
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+  margin: 6rem calc(var(--espacio-pequeno) * -1) 0;
+  padding: 4rem var(--espacio-pequeno);
   background-color: var(--color-turquesa-oscuro);
   color: var(--color-texto-claro);
 }
 
+/* El título de esa franja, en blanco. */
+.catalog__contact h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 500;
+  color: var(--color-texto-claro);
+}
+
+/* El texto de esa franja. */
+.catalog__contact p {
+  max-width: 44ch;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* El botón dorado "Hablar con un asesor". */
+.catalog__contact-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 1.75rem;
+  background-color: var(--color-dorado);
+  color: var(--color-texto);
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+/* "Hablar con un asesor" al pasar el mouse: se vuelve arena. */
+.catalog__contact-button:hover {
+  background-color: var(--color-arena);
+  color: var(--color-texto);
+}
+
+/* Tableta: más margen a los lados y en la franja final. */
 @media (min-width: 768px) {
-  .apartments-header {
-    padding: var(--espacio-grande) var(--espacio-mediano);
+  .catalog {
+    padding: 4rem var(--espacio-mediano) 0;
   }
 
-  .apartments-catalog {
-    padding: var(--espacio-grande) var(--espacio-mediano);
+  .catalog__contact {
+    margin: 8rem calc(var(--espacio-mediano) * -1) 0;
+    padding: 5rem var(--espacio-mediano);
+  }
+}
+
+/* Computadora: panel de filtros a la izquierda (300px) y cards a la derecha. */
+@media (min-width: 1024px) {
+  .catalog__layout {
+    grid-template-columns: 300px 1fr;
+    align-items: start;
+    gap: 3.5rem;
+  }
+
+  /* El panel acompaña el scroll; si la pantalla es baja, hace scroll por dentro. */
+  .catalog__filters {
+    position: sticky;
+    top: 96px;
+    max-height: calc(100vh - 112px);
+    overflow-y: auto;
+  }
+
+  /* En computadora el botón "Filtros" ya no hace falta. */
+  .catalog__filters-toggle {
+    display: none;
+  }
+
+  /* En computadora el panel siempre se ve. */
+  .catalog__panel,
+  .catalog__panel.is-open {
+    display: block;
+    padding: 0;
+    animation: none;
   }
 }

@@ -1,64 +1,91 @@
+/* ===== PAGINACIÓN: debajo de las cards en Apartamentos ===== */
+
+/* La barra completa: "Página 2 de 4" a un lado y los botones al otro, con una línea fina arriba. */
 .pagination {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: var(--espacio-grande);
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  background-image: linear-gradient(var(--color-borde), var(--color-borde));
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
 }
 
+/* El texto "Página 2 de 4", en letra de títulos. */
+.pagination__status {
+  font-family: var(--fuente-titulos);
+  font-size: 1.4rem;
+  color: var(--color-texto);
+}
+
+/* El número de la página actual dentro de ese texto, en turquesa. */
+.pagination__status strong {
+  color: var(--color-turquesa-oscuro);
+}
+
+/* Fila con flecha izquierda, números y flecha derecha. */
+.pagination__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* La fila de números de página. */
 .pagination__pages {
   display: flex;
-  gap: 6px;
+  gap: 0.35rem;
 }
 
-.pagination__btn {
-  padding: 10px 18px;
-  border: 1px solid var(--color-turquesa);
-  border-radius: var(--radio);
+/* Cada número y cada flecha: botón redondo de 44px. */
+.pagination__page,
+.pagination__arrow {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
   background-color: transparent;
-  color: var(--color-turquesa);
-  font-size: 0.8rem;
+  color: var(--color-texto);
   font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
   cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.16s ease-out;
 }
 
-.pagination__btn:hover {
+/* Las flechas ← → llevan fondo blanco para distinguirlas de los números. */
+.pagination__arrow {
+  background-color: var(--color-blanco);
+  font-size: 1.1rem;
+}
+
+/* Al presionar un número o una flecha, se hunde un poquito. */
+.pagination__page:active,
+.pagination__arrow:active:not(:disabled) {
+  transform: scale(0.92);
+}
+
+/* La página actual: rellena de turquesa. */
+.pagination__page--active {
   background-color: var(--color-turquesa);
   color: var(--color-texto-claro);
 }
 
-.pagination__btn:disabled {
-  border-color: var(--color-borde);
-  color: var(--color-borde);
-  background-color: transparent;
+/* Flecha apagada en la primera o la última página. */
+.pagination__arrow:disabled {
+  opacity: 0.35;
   cursor: not-allowed;
 }
 
-.pagination__page {
-  width: 40px;
-  height: 40px;
-  border: 1px solid var(--color-borde);
-  border-radius: var(--radio);
-  background-color: var(--color-blanco);
-  color: var(--color-texto);
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.pagination__page:hover {
-  border-color: var(--color-turquesa);
-  color: var(--color-turquesa);
-}
-
-.pagination__page--active {
-  border-color: var(--color-turquesa);
-  background-color: var(--color-turquesa);
-  color: var(--color-texto-claro);
-}
-
-.pagination__page--active:hover {
-  color: var(--color-texto-claro);
+/* Solo con mouse: los botones se oscurecen un poco al pasar por encima. */
+@media (hover: hover) and (pointer: fine) {
+  .pagination__page:not(.pagination__page--active):hover,
+  .pagination__arrow:hover:not(:disabled) {
+    background-color: var(--color-borde);
+  }
 }

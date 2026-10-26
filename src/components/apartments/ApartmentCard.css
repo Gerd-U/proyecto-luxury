@@ -1,84 +1,216 @@
+/* ===== CARD DE RESIDENCIA: se usa en Apartamentos y en Favoritos ===== */
+
+/* La lista de cards: una fila debajo de otra, con bastante aire entre ellas.
+   --separacion guarda ese aire para poder poner la línea divisoria justo en la mitad. */
 .apartment-list {
+  --separacion: 4rem;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--espacio-mediano);
+  gap: var(--separacion);
 }
 
+/* Cada elemento de la lista: entra subiendo (empieza invisible). */
+.apartment-list__item {
+  position: relative;
+  opacity: 0;
+  animation: card-entrar 0.6s var(--curva-salida) forwards;
+}
+
+/* Línea divisoria entre una card y la siguiente: finísima y casi transparente, a mitad del espacio.
+   Solo separa (no encierra la card): va encima de cada card menos la primera. */
+.apartment-list__item + .apartment-list__item::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--separacion) / -2);
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: rgba(30, 43, 45, 0.1);
+}
+
+/* Retraso de entrada para las cards 2 a 5: así entran una tras otra. */
+.apartment-list__item:nth-child(2) { animation-delay: 70ms; }
+.apartment-list__item:nth-child(3) { animation-delay: 140ms; }
+.apartment-list__item:nth-child(4) { animation-delay: 210ms; }
+.apartment-list__item:nth-child(5) { animation-delay: 280ms; }
+
+/* Animación: de invisible y un poco abajo, a visible en su lugar. */
+@keyframes card-entrar {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* La card: en teléfono, foto arriba y texto abajo. */
 .apartment-card {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  border-radius: var(--radio);
-  background-color: var(--color-blanco);
-  box-shadow: var(--sombra);
-  text-align: left;
-  transition: transform 0.3s;
+  position: relative;
+  display: grid;
+  gap: 1.5rem;
 }
 
-.apartment-card:hover {
-  transform: translateY(-4px);
-}
-
+/* Marco de la foto (también contiene el corazón). */
 .apartment-card__media {
   position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: var(--color-borde);
 }
 
+/* La foto de la residencia: llena el marco sin deformarse. */
 .apartment-card__image {
   width: 100%;
-  height: 220px;
+  height: 100%;
   object-fit: cover;
+  transition: transform 0.9s var(--curva-salida);
 }
 
-.apartment-card__actions {
+/* El botón de favorito, arriba a la derecha de la foto, por encima del enlace. */
+.apartment-card__favorite {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
 }
 
-.apartment-card__body {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  gap: 8px;
-  padding: var(--espacio-pequeno) var(--espacio-pequeno) var(--espacio-mediano);
-}
-
-.apartment-card__title {
-  color: var(--color-texto);
-}
-
+/* La ubicación ("Escazú, San José"), arriba del nombre. */
 .apartment-card__location {
-  font-size: 0.85rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--color-texto-suave);
-}
-
-.apartment-card__specs {
-  display: flex;
-  gap: var(--espacio-pequeno);
-  padding: 10px 0;
-  border-top: 1px solid var(--color-borde);
-  border-bottom: 1px solid var(--color-borde);
+  margin-bottom: 0.35rem;
   font-size: 0.9rem;
   color: var(--color-texto-suave);
 }
 
+/* El nombre de la residencia, grande. */
+.apartment-card__title {
+  margin-bottom: 0.9rem;
+  font-size: clamp(1.9rem, 3vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+/* El enlace del nombre: mismo color que el texto. */
+.apartment-card__link {
+  color: var(--color-texto);
+}
+
+/* El enlace del nombre al pasar el mouse: no cambia de color. */
+.apartment-card__link:hover {
+  color: var(--color-texto);
+}
+
+/* "Enlace estirado": una capa invisible que cubre toda la card para tocarla en cualquier parte. */
+.apartment-card__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* Con teclado, el contorno no va en el nombre… */
+.apartment-card__link:focus-visible {
+  outline: none;
+}
+
+/* …sino alrededor de toda la card. */
+.apartment-card__link:focus-visible::after {
+  outline: 2px solid var(--color-foco);
+  outline-offset: 6px;
+}
+
+/* La descripción, recortada a 3 líneas con "…". */
+.apartment-card__description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+  max-width: 52ch;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  color: var(--color-texto);
+}
+
+/* Fila con habitaciones, baños y área. */
+.apartment-card__facts {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1.25rem;
+}
+
+/* La etiqueta pequeña de cada dato ("Habitaciones"). */
+.apartment-card__facts dt {
+  font-size: 0.8rem;
+  color: var(--color-texto-suave);
+}
+
+/* El número grande de cada dato, en turquesa oscuro. */
+.apartment-card__facts dd {
+  font-family: var(--fuente-titulos);
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--color-turquesa-oscuro);
+}
+
+/* El "m²" del área, más pequeño que el número. */
+.apartment-card__facts dd span {
+  font-size: 1.1rem;
+}
+
+/* Lista de las primeras amenidades, una por línea. */
+.apartment-card__amenities {
+  display: grid;
+  gap: 0.3rem;
+  margin-bottom: 1.75rem;
+  font-size: 0.95rem;
+  color: var(--color-texto);
+}
+
+/* El guion dorado antes de cada amenidad. */
+.apartment-card__amenities li::before {
+  content: "— ";
+  color: var(--color-dorado-oscuro);
+}
+
+/* El "+4 más" al final de las amenidades, en gris. */
+.apartment-card__amenities .apartment-card__more {
+  color: var(--color-texto-suave);
+}
+
+/* El "+4 más" no lleva guion. */
+.apartment-card__amenities .apartment-card__more::before {
+  content: "";
+}
+
+/* Parte de abajo de la card: precio a un lado y "Ver residencia" al otro, con una línea fina arriba. */
 .apartment-card__footer {
   display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
   justify-content: space-between;
-  align-items: center;
-  margin-top: auto;
-  padding-top: 8px;
+  gap: 1rem;
+  padding-top: 1.25rem;
+  background-image: linear-gradient(var(--color-borde), var(--color-borde));
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
 }
 
+/* El precio de venta, grande. */
 .apartment-card__price {
+  display: flex;
+  flex-direction: column;
   font-family: var(--fuente-titulos);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--color-turquesa);
+  font-size: 1.7rem;
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--color-texto);
 }
 
+/* La etiqueta pequeña "Precio de venta", arriba del número. */
 .apartment-card__price span {
   font-family: var(--fuente-texto);
   font-size: 0.8rem;
@@ -86,27 +218,59 @@
   color: var(--color-texto-suave);
 }
 
-.apartment-card__link {
-  font-size: 0.8rem;
+/* El texto "Ver residencia →" a la derecha del precio. */
+.apartment-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--color-turquesa);
-  border-bottom: 1px solid var(--color-dorado);
-}
-
-.apartment-card__link:hover {
   color: var(--color-turquesa-oscuro);
 }
 
-@media (min-width: 768px) {
-  .apartment-list {
-    grid-template-columns: repeat(2, 1fr);
+/* La flecha de "Ver residencia", lista para moverse. */
+.apartment-card__arrow {
+  display: inline-block;
+  transition: transform 0.3s var(--curva-salida);
+}
+
+/* Al presionar la card, la foto se hunde un poquito (confirma el toque). */
+.apartment-card:active .apartment-card__media {
+  transform: scale(0.99);
+  transition: transform 0.16s ease-out;
+}
+
+/* Solo con mouse (en táctil la información ya se ve toda): zoom en la foto y flecha que se corre. */
+@media (hover: hover) and (pointer: fine) {
+  .apartment-card:hover .apartment-card__image {
+    transform: scale(1.04);
+  }
+
+  .apartment-card:hover .apartment-card__arrow {
+    transform: translateX(6px);
   }
 }
 
+/* Tableta y computadora: foto y texto lado a lado. */
+@media (min-width: 768px) {
+  .apartment-card {
+    grid-template-columns: 1.15fr 1fr;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  /* Cards pares: la foto pasa a la derecha para dar ritmo. */
+  .apartment-card--reverse {
+    grid-template-columns: 1fr 1.15fr;
+  }
+
+  .apartment-card--reverse .apartment-card__media {
+    order: 2;
+  }
+}
+
+/* Computadora: más espacio entre una card y otra. */
 @media (min-width: 1024px) {
   .apartment-list {
-    grid-template-columns: repeat(3, 1fr);
+    --separacion: 5.5rem;
   }
 }

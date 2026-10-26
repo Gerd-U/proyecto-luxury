@@ -1,63 +1,237 @@
-.favorites-header {
-  padding: var(--espacio-grande) var(--espacio-pequeno);
-  background-color: var(--color-turquesa);
-  text-align: center;
-}
+/* ===== PÁGINA FAVORITOS ("Tu colección") ===== */
 
-.favorites-header h1 {
-  margin-bottom: 12px;
-  color: var(--color-texto-claro);
-}
-
-.favorites-header p {
-  max-width: 600px;
+/* La página completa: centrada y un poco más angosta que el catálogo. */
+.favorites {
+  max-width: 1100px;
   margin: 0 auto;
-  color: rgba(255, 255, 255, 0.85);
+  padding: 3rem var(--espacio-pequeno) 5rem;
 }
 
-.favorites-content {
-  max-width: var(--ancho-max);
-  margin: 0 auto;
-  padding: var(--espacio-grande) var(--espacio-pequeno);
-}
-
-.favorites-empty {
+/* Encabezado: título a la izquierda y contador a la derecha. */
+.favorites__header {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  max-width: 500px;
-  margin: 0 auto;
-  padding: var(--espacio-grande) var(--espacio-mediano);
-  border-radius: var(--radio);
-  background-color: var(--color-blanco);
-  box-shadow: var(--sombra);
-  text-align: center;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  margin-bottom: 3.5rem;
 }
 
-.favorites-empty h2 {
+/* El título enorme "Tu colección". */
+.favorites__title {
+  font-size: clamp(3rem, 9vw, 6rem);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
   color: var(--color-texto);
 }
 
-.favorites-empty a {
-  margin-top: 8px;
-  padding: 12px 28px;
-  border-radius: var(--radio);
-  background-color: var(--color-turquesa);
-  color: var(--color-texto-claro);
-  font-size: 0.85rem;
+/* El contador "3 residencias guardadas", en turquesa. */
+.favorites__count {
+  font-family: var(--fuente-titulos);
+  font-size: 1.5rem;
   font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  color: var(--color-turquesa-oscuro);
 }
 
-.favorites-empty a:hover {
+/* Estado vacío (sin favoritos): todo centrado. */
+.favorites__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem 0 1rem;
+  text-align: center;
+}
+
+/* La guaria grande del estado vacío: se mece despacio, como una flor que aún no abre. */
+.favorites__empty-mark {
+  margin-bottom: 0.5rem;
+  color: var(--color-dorado-oscuro);
+  animation: guaria-mecer 4s ease-in-out infinite alternate;
+  transform-origin: 50% 90%;
+}
+
+/* Animación: la flor se inclina de un lado al otro. */
+@keyframes guaria-mecer {
+  from {
+    transform: rotate(-4deg);
+  }
+  to {
+    transform: rotate(4deg);
+  }
+}
+
+/* El título del estado vacío ("Tu colección está por florecer"). */
+.favorites__empty-title {
+  max-width: 16ch;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1.02;
+  color: var(--color-texto);
+}
+
+/* El texto que explica cómo guardar favoritos. */
+.favorites__empty-text {
+  max-width: 38ch;
+  line-height: 1.6;
+  color: var(--color-texto);
+}
+
+/* El botón turquesa "Explorar el catálogo". */
+.favorites__cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  margin-top: 0.5rem;
+  padding: 0 1.75rem;
+  background-color: var(--color-turquesa);
+  color: var(--color-texto-claro);
+  font-weight: 600;
+  transition:
+    background-color 0.2s ease,
+    transform 0.16s ease-out;
+}
+
+/* "Explorar el catálogo" al pasar el mouse: más oscuro. */
+.favorites__cta:hover {
   background-color: var(--color-turquesa-oscuro);
   color: var(--color-texto-claro);
 }
 
+/* Al presionar "Explorar el catálogo", se hunde un poquito. */
+.favorites__cta:active {
+  transform: scale(0.97);
+}
+
+/* Zona de sugerencias "Para empezar", debajo del estado vacío. */
+.favorites__suggestions {
+  width: 100%;
+  margin-top: 4rem;
+  text-align: left;
+}
+
+/* El título "Para empezar". */
+.favorites__suggestions-title {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: var(--color-texto);
+}
+
+/* La lista de 3 sugerencias (en teléfono, una debajo de otra). */
+.favorites__suggestion-list {
+  display: grid;
+  gap: 2rem;
+}
+
+/* Cada sugerencia: foto, nombre y ubicación. */
+.favorites__suggestion {
+  display: grid;
+  gap: 0.25rem;
+  color: var(--color-texto);
+}
+
+/* Una sugerencia al pasar el mouse: el texto no cambia de color. */
+.favorites__suggestion:hover {
+  color: var(--color-texto);
+}
+
+/* La foto de cada sugerencia. */
+.favorites__suggestion img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  margin-bottom: 0.75rem;
+  transition: transform 0.9s var(--curva-salida);
+}
+
+/* El nombre de la sugerencia. */
+.favorites__suggestion-name {
+  font-family: var(--fuente-titulos);
+  font-size: 1.5rem;
+  line-height: 1.1;
+}
+
+/* La ubicación de la sugerencia, en gris. */
+.favorites__suggestion-place {
+  font-size: 0.9rem;
+  color: var(--color-texto-suave);
+}
+
+/* Zona fija abajo al centro donde aparece el aviso "Deshacer". */
+.favorites__toast-region {
+  position: fixed;
+  left: 50%;
+  bottom: 1.5rem;
+  z-index: 95;
+  width: min(92vw, 30rem);
+  transform: translateX(-50%);
+}
+
+/* El aviso "Quitaste X · Deshacer": caja oscura flotante que entra subiendo. */
+.favorites__toast {
+  --color-foco: var(--color-dorado);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 0.75rem 0.75rem 1.25rem;
+  background-color: var(--color-texto);
+  color: var(--color-arena);
+  box-shadow: 0 12px 32px rgba(30, 43, 45, 0.25);
+  animation: aviso-entrar 0.3s var(--curva-salida);
+}
+
+/* El texto del aviso, en arena. */
+.favorites__toast p {
+  color: var(--color-arena);
+}
+
+/* Animación: el aviso aparece desde un poco más abajo. */
+@keyframes aviso-entrar {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* El botón dorado "Deshacer" dentro del aviso. */
+.favorites__undo {
+  min-height: 44px;
+  padding: 0 1.25rem;
+  border: none;
+  border-radius: 999px;
+  background-color: var(--color-dorado);
+  color: var(--color-texto);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.16s ease-out;
+}
+
+/* Al presionar "Deshacer", se hunde un poquito. */
+.favorites__undo:active {
+  transform: scale(0.95);
+}
+
+/* Tableta y computadora: más margen y las 3 sugerencias en una fila. */
 @media (min-width: 768px) {
-  .favorites-content {
-    padding: var(--espacio-grande) var(--espacio-mediano);
+  .favorites {
+    padding: 4rem var(--espacio-mediano) 6rem;
+  }
+
+  .favorites__suggestion-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Solo con mouse: la foto de la sugerencia se acerca un poco. */
+@media (hover: hover) and (pointer: fine) {
+  .favorites__suggestion:hover img {
+    transform: scale(1.03);
   }
 }

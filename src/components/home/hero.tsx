@@ -36,7 +36,7 @@ function getFacts(apartments: Apartment[]): HeroFact[] {
   return [
     { label: "Residencias", value: String(apartments.length) },
     { label: "Ubicaciones", value: String(locations.size) },
-    { label: "Desde", value: `${formatPrice(lowestPrice)} / mes` },
+    { label: "Desde", value: formatPrice(lowestPrice) },
   ];
 }
 
@@ -81,7 +81,7 @@ function Hero({ isReady, apartments }: HeroProps) {
 
         <div className="hero__aside">
           <p className="hero__lead">
-            Residencias La Guaria alquila apartamentos y casas de lujo en el
+            Residencias La Guaria ofrece apartamentos y casas de lujo en el
             Valle Central y la costa del Pacífico, elegidos uno por uno.
           </p>
 
