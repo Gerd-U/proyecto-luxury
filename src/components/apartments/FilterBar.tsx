@@ -1,102 +1,151 @@
+import type { ChangeEvent, FormEvent } from "react";
 import type { ApartmentFilters } from "../../types/apartment";
+import { formatPrice } from "../../utils/formatPrice";
+import { PRICE_STEP, type PriceBounds } from "../../utils/filterApartments";
+import "./FilterBar.css";
 
 interface FilterBarProps {
+  id: string;
   filters: ApartmentFilters;
   locations: string[];
+  priceBounds: PriceBounds;
+  activeCount: number;
   onChange: (filters: ApartmentFilters) => void;
+  onClear: () => void;
 }
 
-function FilterBar({ filters, locations, onChange }: FilterBarProps) {
-  const clearFilters = () => {
-    onChange({
-      search: "",
-      location: "",
-      bedrooms: null,
-      maxPrice: null,
-    });
+interface BedroomOption {
+  value: number | null;
+  label: string;
+}
+
+const BEDROOM_OPTIONS: BedroomOption[] = [
+  { value: null, label: "Cualquiera" },
+  { value: 2, label: "2+" },
+  { value: 3, label: "3+" },
+  { value: 4, label: "4+" },
+  { value: 5, label: "5+" },
+];
+
+function FilterBar({
+  id,
+  filters,
+  locations,
+  priceBounds,
+  activeCount,
+  onChange,
+  onClear,
+}: FilterBarProps) {
+  const priceValue = filters.maxPrice ?? priceBounds.max;
+
+  const handleSearch = (event: ChangeEvent<HTMLInputElement>): void => {
+    onChange({ ...filters, search: event.target.value });
+  };
+
+  const handleLocation = (event: ChangeEvent<HTMLInputElement>): void => {
+    onChange({ ...filters, location: event.target.value });
+  };
+
+  const handleBedrooms = (value: number | null): void => {
+    onChange({ ...filters, bedrooms: value });
+  };
+
+  const handlePrice = (event: ChangeEvent<HTMLInputElement>): void => {
+    const value = Number(event.target.value);
+    onChange({ ...filters, maxPrice: value >= priceBounds.max ? null : value });
+  };
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
   };
 
   return (
-    <form
-      className="filter-bar"
-      onSubmit={(event) => event.preventDefault()}
-      aria-label="Filtros de apartamentos"
-    >
-      <label className="filter-bar__field">
-        <span className="filter-bar__label">Buscar</span>
+    <form id={id} className="filter-bar" onSubmit={handleSubmit} aria-label="Filtros de residencias">
+      <div className="filter-bar__group">
+        <label className="filter-bar__legend" htmlFor={`${id}-buscar`}>
+          Buscar
+        </label>
         <input
-          className="filter-bar__input"
+          id={`${id}-buscar`}
+          className="filter-bar__search"
           type="search"
           value={filters.search}
-          onChange={(event) =>
-            onChange({ ...filters, search: event.target.value })
-          }
-          placeholder="Nombre o ubicación"
+          onChange={handleSearch}
+          placeholder="Nombre, zona o amenidad"
+          autoComplete="off"
         />
-      </label>
+      </div>
 
-      <label className="filter-bar__field">
-        <span className="filter-bar__label">Ubicación</span>
-        <select
-          className="filter-bar__select"
-          value={filters.location}
-          onChange={(event) =>
-            onChange({ ...filters, location: event.target.value })
-          }
-        >
-          <option value="">Todas</option>
-          {locations.map((location) => (
-            <option key={location} value={location}>
-              {location}
-            </option>
+      <fieldset className="filter-bar__group">
+        <legend className="filter-bar__legend">Zona</legend>
+        <div className="filter-bar__pills">
+          {["", ...locations].map((location) => (
+            <label className="filter-bar__pill" key={location || "todas"}>
+              <input
+                type="radio"
+                name={`${id}-zona`}
+                value={location}
+                checked={filters.location === location}
+                onChange={handleLocation}
+              />
+              <span>{location === "" ? "Todas" : location.split(",")[0]}</span>
+            </label>
           ))}
-        </select>
-      </label>
+        </div>
+      </fieldset>
 
-      <label className="filter-bar__field">
-        <span className="filter-bar__label">Habitaciones mínimas</span>
-        <select
-          className="filter-bar__select"
-          value={filters.bedrooms ?? ""}
-          onChange={(event) =>
-            onChange({
-              ...filters,
-              bedrooms: event.target.value ? Number(event.target.value) : null,
-            })
-          }
-        >
-          <option value="">Cualquiera</option>
-          {[1, 2, 3, 4].map((bedrooms) => (
-            <option key={bedrooms} value={bedrooms}>
-              {bedrooms}+
-            </option>
+      <fieldset className="filter-bar__group">
+        <legend className="filter-bar__legend">Habitaciones</legend>
+        <div className="filter-bar__pills filter-bar__pills--compact">
+          {BEDROOM_OPTIONS.map((option) => (
+            <label className="filter-bar__pill" key={option.label}>
+              <input
+                type="radio"
+                name={`${id}-habitaciones`}
+                checked={filters.bedrooms === option.value}
+                onChange={() => handleBedrooms(option.value)}
+              />
+              <span>{option.label}</span>
+            </label>
           ))}
-        </select>
-      </label>
+        </div>
+      </fieldset>
 
-      <label className="filter-bar__field">
-        <span className="filter-bar__label">Precio máximo (USD/mes)</span>
+      <div className="filter-bar__group">
+        <div className="filter-bar__price-head">
+          <label className="filter-bar__legend" htmlFor={`${id}-precio`}>
+            Precio máximo
+          </label>
+          <output className="filter-bar__price-value" htmlFor={`${id}-precio`}>
+            {filters.maxPrice === null ? "Sin límite" : formatPrice(filters.maxPrice)}
+          </output>
+        </div>
         <input
-          className="filter-bar__input"
-          type="number"
-          min="0"
-          value={filters.maxPrice ?? ""}
-          onChange={(event) =>
-            onChange({
-              ...filters,
-              maxPrice: event.target.value ? Number(event.target.value) : null,
-            })
+          id={`${id}-precio`}
+          className="filter-bar__range"
+          type="range"
+          min={priceBounds.min}
+          max={priceBounds.max}
+          step={PRICE_STEP}
+          value={priceValue}
+          onChange={handlePrice}
+          aria-valuetext={
+            filters.maxPrice === null ? "Sin límite" : formatPrice(filters.maxPrice)
           }
-          placeholder="Sin límite"
         />
-      </label>
+        <div className="filter-bar__range-limits" aria-hidden="true">
+          <span>{formatPrice(priceBounds.min)}</span>
+          <span>{formatPrice(priceBounds.max)}</span>
+        </div>
+      </div>
 
       <button
         className="filter-bar__clear"
         type="button"
-        onClick={clearFilters}
+        onClick={onClear}
+        disabled={activeCount === 0}
       >
-        Limpiar
+        Limpiar filtros{activeCount > 0 ? ` (${activeCount})` : ""}
       </button>
     </form>
   );

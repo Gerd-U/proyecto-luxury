@@ -1,3 +1,5 @@
+import './Ui.css';
+
 interface LoaderProps {
   message?: string;
 }

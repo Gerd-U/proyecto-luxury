@@ -1,5 +1,6 @@
 import type { Apartment } from "../types/apartment";
 
+/** Comprueba que el valor recibido tenga la estructura de Apartment. */
 export function isApartment(value: unknown): value is Apartment {
   if (typeof value !== "object" || value === null) {
     return false;
@@ -27,6 +28,9 @@ export function isApartment(value: unknown): value is Apartment {
     "amenities" in value &&
     Array.isArray(value.amenities) &&
     value.amenities.every((amenity) => typeof amenity === "string") &&
-    (!("featured" in value) || typeof value.featured === "boolean")
+    (!("featured" in value) || typeof value.featured === "boolean") &&
+    (!("gallery" in value) ||
+      (Array.isArray(value.gallery) &&
+        value.gallery.every((photo) => typeof photo === "string")))
   );
 }
