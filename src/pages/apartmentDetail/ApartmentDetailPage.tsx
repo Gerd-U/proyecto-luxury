@@ -51,12 +51,20 @@ interface ApartmentDetailProps {
   back: BackTarget;
 }
 
-function ApartmentDetail({ apartment, catalog, next, back }: ApartmentDetailProps) {
+function ApartmentDetail({
+  apartment,
+  catalog,
+  next,
+  back,
+}: ApartmentDetailProps) {
   const navigate = useNavigate();
-  const { id, name, location, price, image, gallery, description, amenities } = apartment;
+  const { id, name, location, price, image, gallery, description, amenities } =
+    apartment;
 
   // La barra fija aparece cuando el hero sale de pantalla.
-  const [heroRef, isHeroInView] = useInView<HTMLElement>({ initialInView: true });
+  const [heroRef, isHeroInView] = useInView<HTMLElement>({
+    initialInView: true,
+  });
   const reveal = { once: true, rootMargin: "0px 0px -12% 0px" };
   const [factsRef, factsVisible] = useInView<HTMLElement>(reveal);
   const [storyRef, storyVisible] = useInView<HTMLElement>(reveal);
@@ -66,7 +74,8 @@ function ApartmentDetail({ apartment, catalog, next, back }: ApartmentDetailProp
   // Si no hay galería, muestra la foto principal.
   const photos = gallery && gallery.length > 0 ? gallery : [image];
   const contactPath = getContactPath(apartment);
-  const revealClass = (visible: boolean): string => `reveal ${visible ? "is-visible" : ""}`;
+  const revealClass = (visible: boolean): string =>
+    `reveal ${visible ? "is-visible" : ""}`;
 
   const openNext = (event: MouseEvent<HTMLAnchorElement>): void => {
     if (!isPlainLeftClick(event) || !canUseViewTransition()) {
@@ -118,7 +127,11 @@ function ApartmentDetail({ apartment, catalog, next, back }: ApartmentDetailProp
         <h2 id="detalle-ficha" className="detail__heading">
           La ficha
         </h2>
-        <KeyFacts apartment={apartment} catalog={catalog} isVisible={factsVisible} />
+        <KeyFacts
+          apartment={apartment}
+          catalog={catalog}
+          isVisible={factsVisible}
+        />
       </section>
 
       <section
@@ -199,7 +212,10 @@ function ApartmentDetail({ apartment, catalog, next, back }: ApartmentDetailProp
         </Link>
       </section>
 
-      <div className={`detail__bar ${isHeroInView ? "" : "is-visible"}`} inert={isHeroInView}>
+      <div
+        className={`detail__bar ${isHeroInView ? "" : "is-visible"}`}
+        inert={isHeroInView}
+      >
         <div className="detail__bar-text">
           <span className="detail__bar-name">{name}</span>
           <span className="detail__bar-price">{formatPrice(price)}</span>
