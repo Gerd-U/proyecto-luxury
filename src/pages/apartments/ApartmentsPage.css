@@ -36,7 +36,7 @@
   font-family: var(--fuente-titulos);
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--color-turquesa-oscuro);
+  color: var(--color-ciruela-medio);
 }
 
 /* Zona de filtros + resultados (en teléfono, uno debajo del otro). */
@@ -64,8 +64,8 @@
   border: none;
   background-color: transparent;
   box-shadow:
-    inset 0 1px 0 rgba(30, 43, 45, 0.15),
-    inset 0 -1px 0 rgba(30, 43, 45, 0.15);
+    inset 0 1px 0 rgba(43, 15, 41, 0.15),
+    inset 0 -1px 0 rgba(43, 15, 41, 0.15);
   color: var(--color-texto);
   font-family: var(--fuente-titulos);
   font-size: 1.35rem;
@@ -79,12 +79,12 @@
   transform: scale(0.99);
 }
 
-/* El "+" o "−" turquesa a la derecha del botón "Filtros". */
+/* El "+" o "−" morado a la derecha del botón "Filtros". */
 .catalog__filters-icon {
   font-family: var(--fuente-texto);
   font-size: 1.5rem;
   line-height: 1;
-  color: var(--color-turquesa);
+  color: var(--color-guaria);
 }
 
 /* Con los filtros abiertos, dejan aire entre el botón y los controles. */
@@ -121,7 +121,7 @@
   padding: 0 1.75rem;
   border: none;
   border-radius: 999px;
-  background-color: var(--color-turquesa);
+  background-color: var(--color-guaria);
   color: var(--color-texto-claro);
   font-weight: 600;
   cursor: pointer;
@@ -154,7 +154,7 @@
   left: 0;
   right: 0;
   height: 1px;
-  background-color: rgba(30, 43, 45, 0.15);
+  background-color: rgba(43, 15, 41, 0.15);
   transform-origin: left;
 }
 
@@ -177,7 +177,7 @@
   color: var(--color-texto-suave);
 }
 
-/* "Hablar con un asesor →": enlace turquesa con una línea fina debajo (como "Ver residencia"),
+/* "Hablar con un asesor →": enlace morado con una línea fina debajo (como "Ver residencia"),
    alto de 48px para tocarlo cómodo en el celular. */
 .catalog__contact-button {
   display: inline-flex;
@@ -188,7 +188,7 @@
   background-position: left 78%;
   background-repeat: no-repeat;
   background-size: 100% 1px;
-  color: var(--color-turquesa-oscuro);
+  color: var(--color-ciruela-medio);
   font-weight: 600;
   transition: background-size 0.4s var(--curva-suave);
 }
@@ -202,7 +202,7 @@
 
 /* Al pasar el mouse no cambia de color (lo pone global.css), solo se mueven la línea y la flecha. */
 .catalog__contact-button:hover {
-  color: var(--color-turquesa-oscuro);
+  color: var(--color-ciruela-medio);
 }
 
 /* Solo con mouse: la línea se recoge a la izquierda hasta el texto y la flecha se corre. */

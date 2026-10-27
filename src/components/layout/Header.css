@@ -1,8 +1,10 @@
 /* ===== HEADER: barra de arriba en todas las páginas ===== */
 
-/* La barra. --header-tinta es el color del texto y cambia según dónde esté el header. */
+/* La barra. --header-tinta es el color del texto y --header-acento el del punto de la sección activa;
+   los dos cambian según dónde esté el header (morado sobre arena, lila sobre fondos oscuros). */
 .header {
   --header-tinta: var(--color-texto);
+  --header-acento: var(--color-guaria);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -20,17 +22,19 @@
   right: 0;
 }
 
-/* Encima del hero: fondo transparente y letras blancas; el foco del teclado en dorado. */
+/* Encima del hero: fondo transparente y letras blancas; el foco del teclado en lila. */
 .header--over {
   --header-tinta: var(--color-texto-claro);
-  --color-foco: var(--color-dorado);
+  --header-acento: var(--color-guaria-petalo);
+  --color-foco: var(--color-guaria-petalo);
   background-color: transparent;
 }
 
 /* Con el menú del teléfono abierto, la barra se funde con el panel oscuro. */
 .header--menu-open {
   --header-tinta: var(--color-arena);
-  --color-foco: var(--color-dorado);
+  --header-acento: var(--color-guaria-petalo);
+  --color-foco: var(--color-guaria-petalo);
   background-color: transparent;
 }
 
@@ -59,9 +63,9 @@
   color: var(--header-tinta);
 }
 
-/* La flor del logo, en dorado. */
+/* La flor del logo, en lila. */
 .header__mark {
-  color: var(--color-dorado);
+  color: var(--color-guaria);
   transition: transform 0.6s var(--curva-suave);
 }
 
@@ -162,7 +166,7 @@
   display: flex;
   align-items: center;
   padding: 6rem var(--espacio-mediano) 3rem;
-  background-color: var(--color-texto);
+  background-color: var(--color-ciruela);
   visibility: hidden;
   opacity: 0;
   transform: translateY(-16px);
@@ -203,17 +207,17 @@
   transition: color 0.25s ease;
 }
 
-/* Enlace del menú del teléfono al pasar el dedo o el mouse: dorado. */
+/* Enlace del menú del teléfono al pasar el dedo o el mouse: lila. */
 .header__link:hover {
-  color: var(--color-dorado);
+  color: var(--color-guaria-petalo);
 }
 
-/* La sección en la que estás: dorada. */
+/* La sección en la que estás: lila. */
 .header__link--active {
-  color: var(--color-dorado);
+  color: var(--color-guaria-petalo);
 }
 
-/* Punto dorado al lado de la sección activa (así no depende solo del color). */
+/* Punto lila al lado de la sección activa (así no depende solo del color). */
 .header__link--active::after {
   content: "";
   position: absolute;
@@ -222,7 +226,7 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background-color: var(--color-dorado);
+  background-color: var(--header-acento);
   transform: translateY(-50%);
 }
 
@@ -353,7 +357,7 @@ body:has(.intro--leaving) .header__item:nth-child(4) { animation-delay: 0.68s; }
     color: var(--header-tinta);
   }
 
-  /* …y su punto dorado pasa debajo de la palabra. */
+  /* …y su punto pasa debajo de la palabra. */
   .header__link--active::after {
     top: auto;
     right: 50%;

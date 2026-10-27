@@ -63,7 +63,7 @@
   right: 0;
   bottom: 8px;
   height: 2px;
-  background-color: var(--color-turquesa);
+  background-color: var(--color-guaria);
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 0.4s var(--curva-suave);
@@ -74,7 +74,7 @@
   color: var(--color-texto);
 }
 
-/* La región elegida (aria-pressed="true"): texto oscuro y línea turquesa completa. */
+/* La región elegida (aria-pressed="true"): texto oscuro y línea morada completa. */
 .featured__chip[aria-pressed="true"] {
   color: var(--color-texto);
 }
@@ -86,7 +86,7 @@
 /* El numerito al lado de cada pestaña (cuántas destacadas hay), pequeño y arriba. */
 .featured__count {
   font-size: 0.75rem;
-  color: var(--color-turquesa-oscuro);
+  color: var(--color-guaria);
 }
 
 /* La lista de destacadas: en teléfono, una debajo de otra. */
@@ -150,7 +150,7 @@
 .featured__location {
   margin-bottom: 0.25rem;
   font-size: 0.9rem;
-  color: var(--color-texto-suave);
+  color: var(--color-guaria);
 }
 
 /* El nombre de la residencia. */
@@ -169,13 +169,13 @@
   color: var(--color-texto);
 }
 
-/* El precio de venta, en turquesa oscuro. */
+/* El precio de venta, en ciruela. */
 .featured__price {
   margin-bottom: 1.25rem;
   font-family: var(--fuente-titulos);
   font-size: 1.6rem;
   font-weight: 600;
-  color: var(--color-turquesa-oscuro);
+  color: var(--color-ciruela-medio);
 }
 
 /* La etiqueta pequeña "Precio de venta", arriba del número. */
@@ -195,7 +195,7 @@
   gap: 0.5rem;
   min-height: 44px;
   font-weight: 600;
-  color: var(--color-turquesa-oscuro);
+  color: var(--color-ciruela-medio);
 }
 
 /* La flecha de esos enlaces, lista para moverse. */
@@ -285,9 +285,9 @@
       animation-range: entry 0% cover 30%;
     }
 
-    /* La foto de cada destacada se destapa de abajo hacia arriba. */
+    /* La foto de cada destacada florece: se abre desde el centro. */
     .featured__media {
-      animation: foto-destapar var(--curva-suave) both;
+      animation: foto-florecer var(--curva-suave) both;
       animation-timeline: view();
       animation-range: entry 0% cover 35%;
     }

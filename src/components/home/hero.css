@@ -10,7 +10,7 @@
   min-height: 100svh;
   overflow: hidden;
   color: var(--color-texto-claro);
-  background-color: var(--color-texto);
+  background-color: var(--color-ciruela);
 }
 
 /* Capa de la foto de fondo: cubre todo el hero, detrás del texto. */
@@ -35,18 +35,15 @@
   transform: scale(1);
 }
 
-/* Velo oscuro sobre la foto para que el texto blanco se lea (más oscuro abajo y arriba). */
+/* Velo ciruela solo donde hace falta: una franja abajo (detrás del texto, el botón y los datos)
+   y otra finita arriba (detrás del menú). El centro queda limpio para que la foto se vea con su luz. */
 .hero__veil {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(
-    to top,
-    rgba(30, 43, 45, 0.88) 0%,
-    rgba(30, 43, 45, 0.45) 45%,
-    rgba(30, 43, 45, 0.25) 70%,
-    rgba(30, 43, 45, 0.55) 100%
-  );
+  background:
+    linear-gradient(to top, rgba(43, 15, 41, 0.7) 0%, rgba(43, 15, 41, 0.25) 28%, transparent 50%),
+    linear-gradient(to bottom, rgba(43, 15, 41, 0.35) 0%, transparent 18%);
 }
 
 /* Contenedor del texto, centrado y con espacio para que no lo tape el header. */
@@ -66,6 +63,8 @@
   line-height: 0.95;
   letter-spacing: -0.02em;
   color: var(--color-texto-claro);
+  /* sombra suave y corrida hacia abajo: separa las letras del brillo del mar sin oscurecer la foto */
+  text-shadow: 0 2px 24px rgba(43, 15, 41, 0.45);
 }
 
 /* Cada línea del título va en su propio renglón. */
@@ -134,23 +133,25 @@
   gap: 1.5rem;
 }
 
-/* Botón dorado "Ver residencias". */
+/* Botón morado guaria "Ver residencias". */
 .hero__cta {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
   min-height: 48px;
   padding: 0 1.75rem;
-  background-color: var(--color-dorado);
-  color: var(--color-texto);
+  background-color: var(--color-guaria);
+  color: var(--color-blanco);
   font-weight: 600;
-  transition: background-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
-/* Botón "Ver residencias" al pasar el mouse: se vuelve arena. */
+/* Botón "Ver residencias" al pasar el mouse: se vuelve arena con texto ciruela. */
 .hero__cta:hover {
   background-color: var(--color-arena);
-  color: var(--color-texto);
+  color: var(--color-ciruela);
 }
 
 /* La flecha → dentro del botón. */
@@ -178,10 +179,10 @@
   transition: text-decoration-color 0.3s ease;
 }
 
-/* Enlace "Agendar una visita" al pasar el mouse: el subrayado se pone dorado. */
+/* Enlace "Agendar una visita" al pasar el mouse: el subrayado se pone lila. */
 .hero__link:hover {
   color: var(--color-texto-claro);
-  text-decoration-color: var(--color-dorado);
+  text-decoration-color: var(--color-guaria-petalo);
 }
 
 /* Los datos del catálogo como UNA línea discreta tipo pie de foto ("20 Residencias · 7 Ubicaciones · Desde…"),

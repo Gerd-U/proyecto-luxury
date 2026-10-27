@@ -1,4 +1,3 @@
-import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import { ZONE_POINTS } from "../../data/costaRicaMap";
 import type { ApartmentFilters } from "../../types/apartment";
@@ -50,8 +49,8 @@ function FilterBar({
   onChange,
   onClear,
 }: FilterBarProps) {
-  // Región que se tocó en el mapa (solo resalta su grupo; no filtra por sí sola).
-  const [focusedRegion, setFocusedRegion] = useState<Region | null>(null);
+  // Región elegida en el mapa o en el índice; filtra todas sus zonas.
+  const focusedRegion = filters.region;
   const priceValue = filters.maxPrice ?? priceBounds.max;
 
   const zones: MapZone[] = locations.map((location) => {
@@ -76,15 +75,11 @@ function FilterBar({
   const currentCount = selectedZone?.count ?? (focusedRegion ? regionTotal : total);
 
   const selectZone = (location: string): void => {
-    setFocusedRegion(null);
-    onChange({ ...filters, location });
+    onChange({ ...filters, location, region: null });
   };
 
   const selectRegion = (region: Region): void => {
-    setFocusedRegion(region);
-    if (selectedZone && selectedZone.region !== region) {
-      onChange({ ...filters, location: "" });
-    }
+    onChange({ ...filters, location: "", region });
   };
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -104,11 +99,6 @@ function FilterBar({
     onChange({ ...filters, maxPrice: value >= priceBounds.max ? null : value });
   };
 
-  const handleClear = (): void => {
-    setFocusedRegion(null);
-    onClear();
-  };
-
   const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
   };
@@ -119,7 +109,7 @@ function FilterBar({
         type="radio"
         name={`${id}-zona`}
         value={zone.location}
-        checked={filters.location === zone.location}
+        checked={filters.location === zone.location && (zone.location !== "" || focusedRegion === null)}
         onChange={handleLocation}
       />
       <span>
@@ -128,6 +118,27 @@ function FilterBar({
       </span>
     </label>
   );
+
+  const renderRegion = (region: Region) => {
+    const count = zones
+      .filter((zone) => zone.region === region)
+      .reduce((sum, zone) => sum + zone.count, 0);
+    return (
+      <label className="filter-bar__zone">
+        <input
+          type="radio"
+          name={`${id}-zona`}
+          value={region}
+          checked={focusedRegion === region && filters.location === ""}
+          onChange={() => selectRegion(region)}
+        />
+        <span>
+          Todo {region === "valle" ? "el Valle Central" : "el Pacífico"}
+          <small>{count}</small>
+        </span>
+      </label>
+    );
+  };
 
   return (
     <form id={id} className="filter-bar" onSubmit={handleSubmit} aria-label="Filtros de residencias">
@@ -164,6 +175,7 @@ function FilterBar({
                 key={region}
               >
                 <p className="filter-bar__region-name">{REGION_LABEL[region]}</p>
+                {renderRegion(region)}
                 {zones.filter((zone) => zone.region === region).map(renderZone)}
               </div>
             ))}
@@ -236,8 +248,8 @@ function FilterBar({
           <button
             className="filter-bar__clear"
             type="button"
-            onClick={handleClear}
-            disabled={activeCount === 0 && focusedRegion === null}
+            onClick={onClear}
+            disabled={activeCount === 0}
           >
             Limpiar filtros{activeCount > 0 ? ` (${activeCount})` : ""}
           </button>

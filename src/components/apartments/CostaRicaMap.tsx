@@ -49,6 +49,16 @@ function CostaRicaMap({
           onClick={() => onSelectRegion("valle")}
         >
           <circle className="cr-map__hit" cx={valleyCenter.x} cy={valleyCenter.y} r={16} />
+          {/* El key hace que el aro se repita cada vez que cambia la zona elegida del Valle. */}
+          {isValleyActive && (
+            <circle
+              key={selected || "valle"}
+              className="cr-map__pulse"
+              cx={valleyCenter.x}
+              cy={valleyCenter.y}
+              r={8}
+            />
+          )}
           <circle className="cr-map__dot cr-map__dot--valley" cx={valleyCenter.x} cy={valleyCenter.y} r={7} />
           <text className="cr-map__region" x={valleyCenter.x + 13} y={valleyCenter.y - 9}>
             Valle Central · {valleyTotal}

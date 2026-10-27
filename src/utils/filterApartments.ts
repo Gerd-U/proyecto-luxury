@@ -3,6 +3,7 @@ import {
   type Apartment,
   type ApartmentFilters,
 } from "../types/apartment";
+import { getRegion, type Region } from "./region";
 
 export interface PriceBounds {
   min: number;
@@ -15,6 +16,7 @@ export const PRICE_STEP = 50_000;
 const PARAM = {
   search: "q",
   location: "zona",
+  region: "region",
   bedrooms: "hab",
   maxPrice: "max",
   page: "pagina",
@@ -42,12 +44,16 @@ export function filterApartments(
     const matchesSearch = search === "" || searchable.includes(search);
     const matchesLocation =
       filters.location === "" || apartment.location === filters.location;
+    const matchesRegion =
+      filters.region === null || getRegion(apartment.location) === filters.region;
     const matchesBedrooms =
       filters.bedrooms === null || apartment.bedrooms >= filters.bedrooms;
     const matchesPrice =
       filters.maxPrice === null || apartment.price <= filters.maxPrice;
 
-    return matchesSearch && matchesLocation && matchesBedrooms && matchesPrice;
+    return (
+      matchesSearch && matchesLocation && matchesRegion && matchesBedrooms && matchesPrice
+    );
   });
 }
 
@@ -55,6 +61,7 @@ export function countActiveFilters(filters: ApartmentFilters): number {
   return [
     filters.search.trim() !== "",
     filters.location !== "",
+    filters.region !== null,
     filters.bedrooms !== null,
     filters.maxPrice !== null,
   ].filter(Boolean).length;
@@ -94,11 +101,16 @@ function readNumber(value: string | null): number | null {
   return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
 }
 
+function readRegion(value: string | null): Region | null {
+  return value === "valle" || value === "pacifico" ? value : null;
+}
+
 /** Los parámetros no válidos se ignoran. */
 export function readFiltersFromParams(params: URLSearchParams): ApartmentFilters {
   return {
     search: params.get(PARAM.search) ?? DEFAULT_FILTERS.search,
     location: params.get(PARAM.location) ?? DEFAULT_FILTERS.location,
+    region: readRegion(params.get(PARAM.region)),
     bedrooms: readNumber(params.get(PARAM.bedrooms)),
     maxPrice: readNumber(params.get(PARAM.maxPrice)),
   };
@@ -112,6 +124,7 @@ export function buildParams(filters: ApartmentFilters, page: number): URLSearchP
   const params = new URLSearchParams();
   if (filters.search.trim() !== "") params.set(PARAM.search, filters.search);
   if (filters.location !== "") params.set(PARAM.location, filters.location);
+  if (filters.region !== null) params.set(PARAM.region, filters.region);
   if (filters.bedrooms !== null) params.set(PARAM.bedrooms, String(filters.bedrooms));
   if (filters.maxPrice !== null) params.set(PARAM.maxPrice, String(filters.maxPrice));
   if (page > 1) params.set(PARAM.page, String(page));

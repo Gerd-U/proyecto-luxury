@@ -21,9 +21,9 @@
   color: var(--color-texto);
 }
 
-/* El número de la página actual dentro de ese texto, en turquesa. */
+/* El número de la página actual dentro de ese texto, en morado. */
 .pagination__status strong {
-  color: var(--color-turquesa-oscuro);
+  color: var(--color-ciruela-medio);
 }
 
 /* Fila con flecha izquierda, números y flecha derecha. */
@@ -70,9 +70,9 @@
   transform: scale(0.92);
 }
 
-/* La página actual: rellena de turquesa. */
+/* La página actual: rellena de morado. */
 .pagination__page--active {
-  background-color: var(--color-turquesa);
+  background-color: var(--color-guaria);
   color: var(--color-texto-claro);
 }
 

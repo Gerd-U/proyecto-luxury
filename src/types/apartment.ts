@@ -1,3 +1,5 @@
+import type { Region } from '../utils/region';
+
 export interface Apartment {
   id: number;
   name: string;
@@ -18,6 +20,8 @@ export interface Apartment {
 export interface ApartmentFilters {
   search: string;
   location: string;
+  /** null significa todas las regiones. */
+  region: Region | null;
   /** null significa que no hay mínimo. */
   bedrooms: number | null;
   /** null significa que no hay máximo. */
@@ -27,6 +31,7 @@ export interface ApartmentFilters {
 export const DEFAULT_FILTERS: ApartmentFilters = {
   search: '',
   location: '',
+  region: null,
   bedrooms: null,
   maxPrice: null,
 };

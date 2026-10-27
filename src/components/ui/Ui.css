@@ -9,12 +9,12 @@
   padding: var(--espacio-grande) var(--espacio-pequeno);
 }
 
-/* El círculo que gira (borde arena con un tramo turquesa). */
+/* El círculo que gira (borde arena con un tramo morado). */
 .loader__spinner {
   width: 40px;
   height: 40px;
   border: 3px solid var(--color-borde);
-  border-top-color: var(--color-turquesa);
+  border-top-color: var(--color-guaria);
   border-radius: 50%;
   animation: girar 0.8s linear infinite;
 }
@@ -58,7 +58,7 @@
   padding: 0 1.5rem;
   border: none;
   border-radius: 999px;
-  background-color: var(--color-turquesa);
+  background-color: var(--color-guaria);
   color: var(--color-texto-claro);
   font-weight: 600;
   cursor: pointer;
@@ -75,7 +75,7 @@
 /* Solo con mouse: "Intentar de nuevo" se oscurece al pasar por encima. */
 @media (hover: hover) and (pointer: fine) {
   .error-message__retry:hover {
-    background-color: var(--color-turquesa-oscuro);
+    background-color: var(--color-ciruela-medio);
   }
 }
 
@@ -89,10 +89,10 @@
   text-align: center;
 }
 
-/* La ilustración del estado vacío (la guaria), en dorado oscuro. */
+/* La ilustración del estado vacío (la guaria), en morado guaria. */
 .empty-state__icon {
   margin-bottom: 0.5rem;
-  color: var(--color-dorado-oscuro);
+  color: var(--color-guaria);
 }
 
 /* El título del estado vacío ("Ninguna residencia coincide"). */

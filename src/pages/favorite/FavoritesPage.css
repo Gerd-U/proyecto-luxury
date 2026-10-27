@@ -26,12 +26,12 @@
   color: var(--color-texto);
 }
 
-/* El contador "3 residencias guardadas", en turquesa. */
+/* El contador "3 residencias guardadas", en morado. */
 .favorites__count {
   font-family: var(--fuente-titulos);
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--color-turquesa-oscuro);
+  color: var(--color-ciruela-medio);
 }
 
 /* Estado vacío (sin favoritos): todo centrado. */
@@ -47,7 +47,7 @@
 /* La guaria grande del estado vacío: se mece despacio, como una flor que aún no abre. */
 .favorites__empty-mark {
   margin-bottom: 0.5rem;
-  color: var(--color-dorado-oscuro);
+  color: var(--color-guaria);
   animation: guaria-mecer 4s ease-in-out infinite alternate;
   transform-origin: 50% 90%;
 }
@@ -78,14 +78,14 @@
   color: var(--color-texto);
 }
 
-/* El botón turquesa "Explorar el catálogo". */
+/* El botón morado "Explorar el catálogo". */
 .favorites__cta {
   display: inline-flex;
   align-items: center;
   min-height: 48px;
   margin-top: 0.5rem;
   padding: 0 1.75rem;
-  background-color: var(--color-turquesa);
+  background-color: var(--color-guaria);
   color: var(--color-texto-claro);
   font-weight: 600;
   transition:
@@ -95,7 +95,7 @@
 
 /* "Explorar el catálogo" al pasar el mouse: más oscuro. */
 .favorites__cta:hover {
-  background-color: var(--color-turquesa-oscuro);
+  background-color: var(--color-ciruela-medio);
   color: var(--color-texto-claro);
 }
 
@@ -171,15 +171,15 @@
 
 /* El aviso "Quitaste X · Deshacer": caja oscura flotante que entra subiendo. */
 .favorites__toast {
-  --color-foco: var(--color-dorado);
+  --color-foco: var(--color-guaria-petalo);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   padding: 0.75rem 0.75rem 0.75rem 1.25rem;
-  background-color: var(--color-texto);
+  background-color: var(--color-ciruela);
   color: var(--color-arena);
-  box-shadow: 0 12px 32px rgba(30, 43, 45, 0.25);
+  box-shadow: 0 12px 32px rgba(43, 15, 41, 0.25);
   animation: aviso-entrar 0.3s var(--curva-salida);
 }
 
@@ -200,14 +200,14 @@
   }
 }
 
-/* El botón dorado "Deshacer" dentro del aviso. */
+/* El botón morado guaria "Deshacer" dentro del aviso. */
 .favorites__undo {
   min-height: 44px;
   padding: 0 1.25rem;
   border: none;
   border-radius: 999px;
-  background-color: var(--color-dorado);
-  color: var(--color-texto);
+  background-color: var(--color-guaria);
+  color: var(--color-blanco);
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.16s ease-out;

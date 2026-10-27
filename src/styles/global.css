@@ -1,16 +1,23 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500;600&display=swap");
 
 :root {
-  --color-turquesa: #0b7285;
-  --color-turquesa-oscuro: #085a69;
   --color-arena: #f5ebdd;
   --color-blanco: #ffffff;
-  --color-dorado: #d4af37;
-  --color-dorado-oscuro: #c09a2a;
   --color-verde: #4e8f6b;
 
-  --color-texto: #1e2b2d;
-  --color-texto-suave: #5a6b6e;
+  /* La guaria morada: el acento de la marca. Se usa poco (lo elegido, lo activo, el foco). */
+  --color-guaria: #74196b; /* labelo: morado profundo, sirve hasta para texto pequeño */
+  --color-guaria-petalo: #c066ae; /* pétalo lila: solo decoración, no para texto */
+  --color-guaria-borde: #8b2f7f; /* borde del pétalo */
+  --color-guaria-suave: #f8e3f2; /* garganta: rosado casi blanco, para fondos */
+
+  /* Ciruela: el labelo casi negro. Es el fondo de las secciones oscuras; sobre él va el lila del pétalo
+     (lila sobre ciruela 4,8:1; arena sobre ciruela 14,8:1). */
+  --color-ciruela: #2b0f29;
+  --color-ciruela-medio: #4a1745; /* un paso más claro, para alternar superficies */
+
+  --color-texto: #2a1727;
+  --color-texto-suave: #6b5a68;
   --color-texto-claro: #ffffff;
 
   --color-borde: #e2d6c4;
@@ -18,14 +25,14 @@
   --color-exito: #4e8f6b;
 
   --fuente-titulos: "Cormorant Garamond", Georgia, serif;
-  --fuente-texto: "Inter", Arial, sans-serif;
+  --fuente-texto: "Jost", "Futura", Arial, sans-serif;
 
   --espacio-pequeno: 1rem;
   --espacio-mediano: 2rem;
   --espacio-grande: 4rem;
 
   --radio: 8px;
-  --sombra: 0 8px 24px rgba(30, 43, 45, 0.08);
+  --sombra: 0 8px 24px rgba(43, 15, 41, 0.08);
   --ancho-max: 1200px;
 }
 
@@ -70,12 +77,12 @@ p {
 }
 
 a {
-  color: var(--color-turquesa);
+  color: var(--color-guaria);
   text-decoration: none;
 }
 
 a:hover {
-  color: var(--color-turquesa-oscuro);
+  color: var(--color-ciruela-medio);
 }
 
 img {
@@ -127,33 +134,33 @@ select {
 }
 
 .btn-principal {
-  background-color: var(--color-turquesa);
+  background-color: var(--color-guaria);
   color: var(--color-texto-claro);
 }
 
 .btn-principal:hover {
-  background-color: var(--color-turquesa-oscuro);
+  background-color: var(--color-ciruela-medio);
   color: var(--color-texto-claro);
 }
 
 .btn-acento {
-  background-color: var(--color-dorado);
-  color: var(--color-texto);
+  background-color: var(--color-guaria);
+  color: var(--color-blanco);
 }
 
 .btn-acento:hover {
-  background-color: var(--color-dorado-oscuro);
-  color: var(--color-texto);
+  background-color: var(--color-guaria-borde);
+  color: var(--color-blanco);
 }
 
 .btn-borde {
   background-color: transparent;
-  color: var(--color-turquesa);
-  border: 2px solid var(--color-turquesa);
+  color: var(--color-guaria);
+  border: 2px solid var(--color-guaria);
 }
 
 .btn-borde:hover {
-  background-color: var(--color-turquesa);
+  background-color: var(--color-guaria);
   color: var(--color-texto-claro);
 }
 
@@ -177,8 +184,8 @@ select {
 
 /* ===== Inicio rediseñado: tokens derivados de la paleta ===== */
 :root {
-  /* color del contorno de foco; en secciones oscuras se cambia a dorado */
-  --color-foco: var(--color-turquesa-oscuro);
+  /* color del contorno de foco (morado guaria); en secciones oscuras se cambia a lila */
+  --color-foco: var(--color-guaria);
 
   /* curvas de animación: arranca rápido y frena suave */
   --curva-salida: cubic-bezier(0.22, 1, 0.36, 1);
@@ -192,6 +199,12 @@ select {
 :focus-visible {
   outline: 2px solid var(--color-foco);
   outline-offset: 3px;
+}
+
+/* ===== Texto seleccionado con el mouse: rosado guaria en vez del azul del navegador ===== */
+::selection {
+  background-color: var(--color-guaria-suave);
+  color: var(--color-guaria);
 }
 
 /* ===== Texto solo para lectores de pantalla ===== */
@@ -244,6 +257,18 @@ select {
   }
   to {
     clip-path: inset(0 0 0 0);
+    transform: scale(1);
+  }
+}
+
+/* Florecer una foto: se abre desde el centro como un pétalo, mientras se aleja apenas. */
+@keyframes foto-florecer {
+  from {
+    clip-path: circle(0% at 50% 55%);
+    transform: scale(1.08);
+  }
+  to {
+    clip-path: circle(75% at 50% 55%);
     transform: scale(1);
   }
 }
