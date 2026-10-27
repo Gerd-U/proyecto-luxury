@@ -66,6 +66,15 @@ export function getLocations(apartments: readonly Apartment[]): string[] {
   );
 }
 
+/** Cuántas residencias hay en cada zona ("Escazú, San José" → 7). */
+export function getLocationCounts(apartments: readonly Apartment[]): Record<string, number> {
+  const counts: Record<string, number> = {};
+  for (const apartment of apartments) {
+    counts[apartment.location] = (counts[apartment.location] ?? 0) + 1;
+  }
+  return counts;
+}
+
 export function getPriceBounds(apartments: readonly Apartment[]): PriceBounds {
   if (apartments.length === 0) {
     return { min: 0, max: PRICE_STEP };

@@ -1,0 +1,151 @@
+/* ===== MAPA DE COSTA RICA: el filtro de zonas del catálogo ===== */
+/* Contorno real del país en línea fina; cada zona es un punto turquesa. */
+
+/* El mapa ocupa todo el ancho de su espacio y nunca se deforma. */
+.cr-map {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* El contorno del país: línea fina turquesa oscuro y un tinte turquesa casi invisible por dentro. */
+.cr-map__land {
+  fill: rgba(11, 114, 133, 0.04);
+  stroke: var(--color-turquesa-oscuro);
+  stroke-width: 1;
+  stroke-linejoin: round;
+}
+
+/* Área invisible más grande alrededor de cada punto: más fácil de tocar con el dedo. */
+.cr-map__hit {
+  fill: transparent;
+}
+
+/* Cada zona y el Valle Central se pueden tocar. */
+.cr-map__zone,
+.cr-map__cluster {
+  cursor: pointer;
+}
+
+/* El punto de cada zona del Pacífico: turquesa con borde oscuro. */
+.cr-map__dot {
+  fill: var(--color-turquesa);
+  stroke: var(--color-turquesa-oscuro);
+  stroke-width: 1;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    fill 0.3s ease,
+    transform 0.4s var(--curva-suave);
+}
+
+/* Zona elegida (o Valle Central activo): el punto se oscurece y crece un poco, con un aro arena alrededor. */
+.cr-map__zone.is-selected .cr-map__dot,
+.cr-map__cluster.is-active .cr-map__dot {
+  fill: var(--color-turquesa-oscuro);
+  stroke: var(--color-arena);
+  stroke-width: 1.5;
+  transform: scale(1.35);
+}
+
+/* El texto "Valle Central · 17" junto a su punto, siempre visible. */
+.cr-map__region {
+  font-family: var(--fuente-titulos);
+  font-size: 13px;
+  font-weight: 600;
+  fill: var(--color-texto);
+}
+
+/* El nombre de cada zona del Pacífico: escondido, aparece al pasar por encima o al elegirla. */
+.cr-map__label {
+  font-family: var(--fuente-titulos);
+  font-size: 13px;
+  font-weight: 600;
+  fill: var(--color-turquesa-oscuro);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+/* La zona elegida siempre muestra su nombre. */
+.cr-map__zone.is-selected .cr-map__label {
+  opacity: 1;
+}
+
+/* El aro que se expande una vez alrededor de la zona recién elegida. */
+.cr-map__pulse {
+  fill: none;
+  stroke: var(--color-turquesa);
+  stroke-width: 1;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* Solo con mouse: el punto crece y el nombre aparece al pasar por encima. */
+@media (hover: hover) and (pointer: fine) {
+  .cr-map__zone:hover .cr-map__label {
+    opacity: 1;
+  }
+
+  .cr-map__zone:hover .cr-map__dot {
+    transform: scale(1.25);
+  }
+
+  .cr-map__cluster:hover .cr-map__dot {
+    transform: scale(1.25);
+  }
+}
+
+/* Animaciones (solo sin "reducir movimiento"). */
+@media (prefers-reduced-motion: no-preference) {
+  /* Al cargar, el contorno del país se dibuja como un trazo de pluma. */
+  .cr-map__land {
+    stroke-dasharray: 1;
+    animation: mapa-trazar 2.4s var(--curva-suave) both;
+  }
+
+  /* Los puntos aparecen después del contorno. */
+  .cr-map__dot,
+  .cr-map__region {
+    animation: mapa-punto 0.6s var(--curva-suave) 1s both;
+  }
+
+  /* El aro de la zona elegida se expande y se desvanece una sola vez. */
+  .cr-map__pulse {
+    animation: mapa-pulso 1.1s var(--curva-suave) both;
+  }
+}
+
+/* Animación: el contorno pasa de no verse a estar completo. */
+@keyframes mapa-trazar {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Animación: el punto aparece. */
+@keyframes mapa-punto {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Animación: el aro crece al triple y se borra. */
+@keyframes mapa-pulso {
+  from {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(3);
+  }
+}

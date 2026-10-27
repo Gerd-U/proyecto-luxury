@@ -275,20 +275,10 @@
   }
 }
 
-/* Computadora: panel de filtros a la izquierda (300px) y cards a la derecha. */
+/* Computadora: la banda del mapa arriba y las cards debajo, a todo el ancho. */
 @media (min-width: 1024px) {
   .catalog__layout {
-    grid-template-columns: 300px 1fr;
-    align-items: start;
-    gap: 3.5rem;
-  }
-
-  /* El panel acompaña el scroll; si la pantalla es baja, hace scroll por dentro. */
-  .catalog__filters {
-    position: sticky;
-    top: 96px;
-    max-height: calc(100vh - 112px);
-    overflow-y: auto;
+    gap: 4rem;
   }
 
   /* En computadora el botón "Filtros" ya no hace falta. */

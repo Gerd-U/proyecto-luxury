@@ -13,6 +13,7 @@ import {
   buildParams,
   countActiveFilters,
   filterApartments,
+  getLocationCounts,
   getLocations,
   getPriceBounds,
   readFiltersFromParams,
@@ -34,6 +35,7 @@ function ApartmentsPage() {
   const requestedPage = readPageFromParams(searchParams);
 
   const locations = useMemo(() => getLocations(apartments), [apartments]);
+  const locationCounts = useMemo(() => getLocationCounts(apartments), [apartments]);
   const priceBounds = useMemo(() => getPriceBounds(apartments), [apartments]);
 
   const filteredApartments = useMemo(
@@ -105,6 +107,7 @@ function ApartmentsPage() {
               id={FILTERS_ID}
               filters={filters}
               locations={locations}
+              locationCounts={locationCounts}
               priceBounds={priceBounds}
               activeCount={activeCount}
               onChange={updateFilters}
