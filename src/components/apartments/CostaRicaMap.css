@@ -1,5 +1,5 @@
 /* ===== MAPA DE COSTA RICA: el filtro de zonas del catálogo ===== */
-/* Contorno real del país en línea fina; cada zona es un punto turquesa. */
+/* Contorno real del país en línea fina ciruela; cada zona es un punto lila (pétalo de guaria). */
 
 /* El mapa ocupa todo el ancho de su espacio y nunca se deforma. */
 .cr-map {
@@ -9,10 +9,10 @@
   overflow: visible;
 }
 
-/* El contorno del país: línea fina turquesa oscuro y un tinte turquesa casi invisible por dentro. */
+/* El contorno del país: línea fina ciruela medio y un tinte morado casi invisible por dentro. */
 .cr-map__land {
-  fill: rgba(11, 114, 133, 0.04);
-  stroke: var(--color-turquesa-oscuro);
+  fill: rgba(116, 25, 107, 0.05);
+  stroke: var(--color-ciruela-medio);
   stroke-width: 1;
   stroke-linejoin: round;
 }
@@ -28,10 +28,10 @@
   cursor: pointer;
 }
 
-/* El punto de cada zona del Pacífico: turquesa con borde oscuro. */
+/* El punto de cada zona: lila de pétalo con el borde morado del pétalo. */
 .cr-map__dot {
-  fill: var(--color-turquesa);
-  stroke: var(--color-turquesa-oscuro);
+  fill: var(--color-guaria-petalo);
+  stroke: var(--color-guaria-borde);
   stroke-width: 1;
   transform-box: fill-box;
   transform-origin: center;
@@ -40,10 +40,10 @@
     transform 0.4s var(--curva-suave);
 }
 
-/* Zona elegida (o Valle Central activo): el punto se oscurece y crece un poco, con un aro arena alrededor. */
+/* Zona elegida (o Valle Central activo): el punto se vuelve morado guaria y crece un poco, con un aro arena alrededor. */
 .cr-map__zone.is-selected .cr-map__dot,
 .cr-map__cluster.is-active .cr-map__dot {
-  fill: var(--color-turquesa-oscuro);
+  fill: var(--color-guaria);
   stroke: var(--color-arena);
   stroke-width: 1.5;
   transform: scale(1.35);
@@ -54,7 +54,7 @@
   font-family: var(--fuente-titulos);
   font-size: 13px;
   font-weight: 600;
-  fill: var(--color-texto);
+  fill: var(--color-ciruela);
 }
 
 /* El nombre de cada zona del Pacífico: escondido, aparece al pasar por encima o al elegirla. */
@@ -62,7 +62,7 @@
   font-family: var(--fuente-titulos);
   font-size: 13px;
   font-weight: 600;
-  fill: var(--color-turquesa-oscuro);
+  fill: var(--color-guaria);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.25s ease;
@@ -73,10 +73,10 @@
   opacity: 1;
 }
 
-/* El aro que se expande una vez alrededor de la zona recién elegida. */
+/* El aro lila que se expande una vez alrededor de la zona recién elegida (como un pétalo que abre). */
 .cr-map__pulse {
   fill: none;
-  stroke: var(--color-turquesa);
+  stroke: var(--color-guaria-petalo);
   stroke-width: 1;
   opacity: 0;
   transform-box: fill-box;

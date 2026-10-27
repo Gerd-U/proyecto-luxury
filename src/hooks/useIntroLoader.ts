@@ -51,6 +51,8 @@ export function useIntroLoader(): IntroLoaderState {
     if (!isVisible) return;
 
     const root = document.documentElement;
+    // Ancho de la barra de scroll antes de esconderla (0 en teléfonos); la intro lo usa para centrarse.
+    root.style.setProperty("--barra", `${window.innerWidth - root.clientWidth}px`);
     root.style.overflow = "hidden";
 
     const handleKeyDown = (): void => setIsLeaving(true);
@@ -58,6 +60,7 @@ export function useIntroLoader(): IntroLoaderState {
 
     return () => {
       root.style.overflow = "";
+      root.style.removeProperty("--barra");
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isVisible]);

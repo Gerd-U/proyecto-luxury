@@ -33,12 +33,12 @@
   overflow: hidden;
 }
 
-/* El relleno turquesa de la barra: empieza vacío (escala 0). */
+/* El relleno morado de la barra: empieza vacío (escala 0). */
 .key-facts__bar span {
   display: block;
   height: 100%;
   border-radius: inherit;
-  background-color: var(--color-turquesa);
+  background-color: var(--color-guaria);
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 1s var(--curva-salida);

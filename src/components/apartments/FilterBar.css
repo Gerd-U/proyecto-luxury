@@ -1,12 +1,12 @@
 /* ===== FILTROS: el mapa de Costa Rica y, al lado, la zona elegida y los demás filtros ===== */
 /* En computadora es una banda de todo el ancho arriba de los resultados; en teléfono se abre
-   con el botón "Filtros". Sin cajas: solo líneas finas, serif para lo que se elige y Inter pequeña
+   con el botón "Filtros". Sin cajas: solo líneas finas, serif para lo que se elige y Jost pequeña
    para las etiquetas. */
 
 /* El formulario completo: mapa arriba y controles abajo (teléfono). */
 .filter-bar {
-  --filtros-linea: rgba(30, 43, 45, 0.15);
-  --color-foco: var(--color-turquesa-oscuro);
+  --filtros-linea: rgba(43, 15, 41, 0.15);
+  --color-foco: var(--color-guaria);
   display: grid;
   gap: 2rem;
   color: var(--color-texto);
@@ -48,11 +48,11 @@
   color: var(--color-texto);
 }
 
-/* Cuántas residencias hay en esa zona, en turquesa. */
+/* Cuántas residencias hay en esa zona, en morado. */
 .filter-bar__current-count {
   margin-top: 0.5rem;
   font-size: 0.95rem;
-  color: var(--color-turquesa-oscuro);
+  color: var(--color-ciruela-medio);
 }
 
 /* ----- Grupos y etiquetas ----- */
@@ -106,9 +106,9 @@
   transition: color 0.3s ease;
 }
 
-/* Región tocada en el mapa: su nombre se pone turquesa para invitar a elegir una de sus zonas. */
+/* Región tocada en el mapa: su nombre se pone morado para invitar a elegir una de sus zonas. */
 .filter-bar__region.is-focused .filter-bar__region-name {
-  color: var(--color-turquesa-oscuro);
+  color: var(--color-ciruela-medio);
 }
 
 /* Cada zona, cada número de habitaciones: el radio real se esconde pero sigue funcionando. */
@@ -127,7 +127,7 @@
   opacity: 0;
 }
 
-/* El nombre de la zona en serif, con una línea turquesa debajo que crece al elegirla. */
+/* El nombre de la zona en serif, con una línea morada debajo que crece al elegirla. */
 .filter-bar__zone span,
 .filter-bar__number span {
   display: inline-flex;
@@ -138,7 +138,7 @@
   font-size: 1.2rem;
   font-weight: 600;
   color: var(--color-texto);
-  background-image: linear-gradient(var(--color-turquesa-oscuro), var(--color-turquesa-oscuro));
+  background-image: linear-gradient(var(--color-guaria), var(--color-guaria));
   background-position: left 82%;
   background-repeat: no-repeat;
   background-size: 0% 1px;
@@ -156,10 +156,10 @@
   color: var(--color-texto-suave);
 }
 
-/* Opción elegida: turquesa oscuro y subrayada de punta a punta. */
+/* Opción elegida: morado guaria y subrayada de punta a punta. */
 .filter-bar__zone input:checked + span,
 .filter-bar__number input:checked + span {
-  color: var(--color-turquesa-oscuro);
+  color: var(--color-guaria);
   background-size: 100% 1px;
 }
 
@@ -209,12 +209,12 @@
   gap: 1rem;
 }
 
-/* El valor elegido ("$2,000,000" o "Sin límite"), en serif turquesa. */
+/* El valor elegido ("$2,000,000" o "Sin límite"), en serif morado. */
 .filter-bar__price-value {
   font-family: var(--fuente-titulos);
   font-size: 1.4rem;
   font-weight: 600;
-  color: var(--color-turquesa-oscuro);
+  color: var(--color-ciruela-medio);
 }
 
 /* El precio como una regla: línea fina con marcas cada 10 % (dibujadas como fondo). */
@@ -224,7 +224,7 @@
   margin: 0;
   background:
     linear-gradient(var(--filtros-linea), var(--filtros-linea)) center / 100% 1px no-repeat,
-    repeating-linear-gradient(to right, rgba(30, 43, 45, 0.3) 0 1px, transparent 1px 10%) center / 100% 9px no-repeat;
+    repeating-linear-gradient(to right, rgba(43, 15, 41, 0.3) 0 1px, transparent 1px 10%) center / 100% 9px no-repeat;
   cursor: pointer;
   -webkit-appearance: none;
   appearance: none;
@@ -242,12 +242,12 @@
   background: transparent;
 }
 
-/* La marca que se arrastra: una raya vertical turquesa, como la aguja de una regla. */
+/* La marca que se arrastra: una raya vertical morado, como la aguja de una regla. */
 .filter-bar__range::-webkit-slider-thumb {
   width: 3px;
   height: 24px;
   border-radius: 0;
-  background-color: var(--color-turquesa-oscuro);
+  background-color: var(--color-ciruela-medio);
   box-shadow: 0 0 0 4px var(--color-arena);
   -webkit-appearance: none;
   appearance: none;
@@ -259,7 +259,7 @@
   height: 24px;
   border: none;
   border-radius: 0;
-  background-color: var(--color-turquesa-oscuro);
+  background-color: var(--color-ciruela-medio);
 }
 
 /* Con teclado: contorno de foco alrededor de la regla. */
@@ -278,7 +278,7 @@
 
 /* ----- Búsqueda y limpiar ----- */
 
-/* La búsqueda: sin caja, solo una línea debajo y una lupa turquesa a la izquierda. */
+/* La búsqueda: sin caja, solo una línea debajo y una lupa morado a la izquierda. */
 .filter-bar__search {
   width: 100%;
   min-height: 46px;
@@ -286,10 +286,10 @@
   border: none;
   border-radius: 0;
   background-color: transparent;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='none' stroke='%230b7285' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='8' cy='8' r='6'/%3E%3Cpath d='m12.5 12.5 4 4'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='none' stroke='%2374196b' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='8' cy='8' r='6'/%3E%3Cpath d='m12.5 12.5 4 4'/%3E%3C/svg%3E");
   background-position: left center;
   background-repeat: no-repeat;
-  box-shadow: inset 0 -1px 0 rgba(30, 43, 45, 0.25);
+  box-shadow: inset 0 -1px 0 rgba(43, 15, 41, 0.25);
   color: var(--color-texto);
   font-size: 1rem;
   transition: box-shadow 0.25s var(--curva-suave);
@@ -300,10 +300,10 @@
   color: var(--color-texto-suave);
 }
 
-/* La búsqueda mientras escribes: la línea de abajo se vuelve turquesa y más gruesa. */
+/* La búsqueda mientras escribes: la línea de abajo se vuelve morado y más gruesa. */
 .filter-bar__search:focus {
   outline: none;
-  box-shadow: inset 0 -2px 0 var(--color-turquesa-oscuro);
+  box-shadow: inset 0 -2px 0 var(--color-ciruela-medio);
 }
 
 /* "Limpiar filtros": un enlace de texto subrayado (no un botón-caja). */
@@ -313,7 +313,7 @@
   padding: 0;
   border: none;
   background-color: transparent;
-  color: var(--color-turquesa-oscuro);
+  color: var(--color-ciruela-medio);
   font-weight: 600;
   text-decoration: underline;
   text-decoration-thickness: 1px;

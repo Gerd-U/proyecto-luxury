@@ -1,12 +1,12 @@
 /* ===== LOGO: la guaria morada (header, footer, intro y estados vacíos) ===== */
-/* Los morados son la única excepción a la paleta del sitio: solo los usa el logo. */
+/* Los morados viven en global.css (--color-guaria-*): el logo los usa completos y el resto del sitio como acento. */
 
 /* El logo y sus colores: pétalo lila, borde morado, labelo morado profundo y garganta clara. */
 .brand-mark {
-  --guaria-petalo: #c066ae;
-  --guaria-borde: #8b2f7f;
-  --guaria-labelo: #74196b;
-  --guaria-garganta: #f8e3f2;
+  --guaria-petalo: var(--color-guaria-petalo);
+  --guaria-borde: var(--color-guaria-borde);
+  --guaria-labelo: var(--color-guaria);
+  --guaria-garganta: var(--color-guaria-suave);
   display: block;
   flex-shrink: 0;
   overflow: visible;

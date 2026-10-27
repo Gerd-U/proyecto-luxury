@@ -69,7 +69,7 @@
   height: 52px;
   border: none;
   border-radius: 50%;
-  background-color: var(--color-texto);
+  background-color: var(--color-ciruela);
   color: var(--color-arena);
   font-size: 1.2rem;
   cursor: pointer;
@@ -90,10 +90,10 @@
   cursor: not-allowed;
 }
 
-/* Solo con mouse: la flecha se vuelve turquesa al pasar por encima. */
+/* Solo con mouse: la flecha se vuelve morado al pasar por encima. */
 @media (hover: hover) and (pointer: fine) {
   .gallery__button:hover:not(:disabled) {
-    background-color: var(--color-turquesa-oscuro);
+    background-color: var(--color-ciruela-medio);
   }
 }
 

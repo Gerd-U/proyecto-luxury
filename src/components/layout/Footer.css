@@ -1,9 +1,9 @@
 /* ===== FOOTER: el cierre de todas las páginas, mínimo ===== */
 
-/* El footer: fondo turquesa oscuro con texto arena. Las variables guardan los colores
+/* El footer: fondo ciruela con texto arena. Las variables guardan los colores
    para usarlos abajo (texto, texto suave y líneas finas); el foco del teclado va en arena. */
 .footer {
-  --footer-fondo: var(--color-turquesa-oscuro);
+  --footer-fondo: var(--color-ciruela);
   --footer-texto: var(--color-arena);
   --footer-suave: rgba(245, 235, 221, 0.75);
   --footer-linea: rgba(245, 235, 221, 0.2);
@@ -70,7 +70,7 @@
   justify-self: start;
   width: 2rem;
   height: 1px;
-  background-color: var(--color-dorado-oscuro);
+  background-color: var(--color-guaria-petalo);
 }
 
 /* Los enlaces de páginas: en teléfono, uno debajo del otro (fáciles de tocar). */

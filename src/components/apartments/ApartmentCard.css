@@ -24,7 +24,7 @@
   left: 0;
   right: 0;
   height: 1px;
-  background-color: rgba(30, 43, 45, 0.1);
+  background-color: rgba(43, 15, 41, 0.1);
 }
 
 /* Retraso de entrada para las cards 2 a 5: así entran una tras otra. */
@@ -80,7 +80,7 @@
 .apartment-card__location {
   margin-bottom: 0.35rem;
   font-size: 0.9rem;
-  color: var(--color-texto-suave);
+  color: var(--color-guaria);
 }
 
 /* El nombre de la residencia, grande. */
@@ -147,13 +147,13 @@
   color: var(--color-texto-suave);
 }
 
-/* El número grande de cada dato, en turquesa oscuro. */
+/* El número grande de cada dato, en ciruela. */
 .apartment-card__facts dd {
   font-family: var(--fuente-titulos);
   font-size: 2rem;
   font-weight: 600;
   line-height: 1;
-  color: var(--color-turquesa-oscuro);
+  color: var(--color-ciruela-medio);
 }
 
 /* El "m²" del área, más pequeño que el número. */
@@ -170,10 +170,10 @@
   color: var(--color-texto);
 }
 
-/* El guion dorado antes de cada amenidad. */
+/* El guion lila antes de cada amenidad. */
 .apartment-card__amenities li::before {
   content: "— ";
-  color: var(--color-dorado-oscuro);
+  color: var(--color-guaria-petalo);
 }
 
 /* El "+4 más" al final de las amenidades, en gris. */
@@ -224,7 +224,7 @@
   align-items: center;
   gap: 0.4rem;
   font-weight: 600;
-  color: var(--color-turquesa-oscuro);
+  color: var(--color-ciruela-medio);
 }
 
 /* La flecha de "Ver residencia", lista para moverse. */
@@ -233,8 +233,11 @@
   transition: transform 0.3s var(--curva-salida);
 }
 
-/* Al presionar la card, la foto se hunde un poquito (confirma el toque). */
-.apartment-card:active .apartment-card__media {
+/* Al presionar la card, la foto se hunde un poquito (confirma el toque).
+   Se hunde la IMAGEN y no el marco: un transform en el marco crea un nuevo "contexto de apilamiento",
+   el corazón queda por debajo de la capa del enlace y el clic se pierde. Tampoco se hunde si lo
+   que se aprieta es el corazón. */
+.apartment-card:active:not(:has(.favorite-button:active)) .apartment-card__image {
   transform: scale(0.99);
   transition: transform 0.16s ease-out;
 }

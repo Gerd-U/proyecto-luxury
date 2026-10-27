@@ -4,7 +4,7 @@
    Aquí se guardan los colores propios del formulario, todos sacados de la paleta. */
 .contact-page {
   /* línea de cada campo en reposo: tinta al 28 % */
-  --contacto-linea: rgba(30, 43, 45, 0.28);
+  --contacto-linea: rgba(43, 15, 41, 0.28);
   /* error: el rojo de la paleta oscurecido con la tinta, más sobrio (≈7:1 sobre arena) */
   --contacto-error: #92271f;
   --contacto-error: color-mix(in srgb, var(--color-error) 78%, var(--color-texto));
@@ -15,10 +15,6 @@
   padding: 3rem var(--espacio-pequeno) 5rem;
 }
 
-/* Texto seleccionado dentro de Contacto: turquesa suave en vez del azul del navegador. */
-.contact-page ::selection {
-  background-color: rgba(11, 114, 133, 0.18);
-}
 
 /* ----- Presentación (columna izquierda en computadora) ----- */
 
@@ -47,14 +43,14 @@
   color: var(--color-texto-suave);
 }
 
-/* Una línea turquesa corta debajo de la frase: cierra la presentación sin adornos. */
+/* Una línea morado corta debajo de la frase: cierra la presentación sin adornos. */
 .contact-header::after {
   content: "";
   display: block;
   width: 3rem;
   height: 1px;
   margin-top: 2.5rem;
-  background-color: var(--color-turquesa-oscuro);
+  background-color: var(--color-ciruela-medio);
 }
 
 /* ----- Formulario ----- */
@@ -93,9 +89,9 @@
   transform: translateY(-1.75rem) scale(0.78);
 }
 
-/* Mientras escribís, la etiqueta se pone turquesa: avisa cuál campo está activo. */
+/* Mientras escribís, la etiqueta se pone morado: avisa cuál campo está activo. */
 .form-group:focus-within label {
-  color: var(--color-turquesa-oscuro);
+  color: var(--color-ciruela-medio);
 }
 
 /* El "(opcional)" del teléfono, más claro. */
@@ -104,7 +100,7 @@
   opacity: 0.8;
 }
 
-/* Los campos: sin caja, solo una línea fina abajo. La línea turquesa está dibujada
+/* Los campos: sin caja, solo una línea fina abajo. La línea morado está dibujada
    como fondo con ancho 0 y crece al enfocar. Letra de 16 px o más para que el celular no haga zoom. */
 .form-group input,
 .form-group textarea {
@@ -116,13 +112,13 @@
   border-bottom: 1px solid var(--contacto-linea);
   border-radius: 0;
   background-color: transparent;
-  background-image: linear-gradient(var(--color-turquesa-oscuro), var(--color-turquesa-oscuro));
+  background-image: linear-gradient(var(--color-ciruela-medio), var(--color-ciruela-medio));
   background-position: left bottom;
   background-repeat: no-repeat;
   background-size: 0% 2px;
   color: var(--color-texto);
   font-size: 1.05rem;
-  caret-color: var(--color-turquesa-oscuro);
+  caret-color: var(--color-ciruela-medio);
   /* deja espacio arriba y abajo al desplazarse al campo: el teclado del celular no lo tapa */
   scroll-margin-block: 6rem 35vh;
   appearance: none;
@@ -138,7 +134,7 @@
   resize: vertical;
 }
 
-/* Al enfocar: la línea turquesa recorre el campo de izquierda a derecha (ese es el foco visible). */
+/* Al enfocar: la línea morado recorre el campo de izquierda a derecha (ese es el foco visible). */
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
@@ -155,7 +151,7 @@
 
 /* ----- Errores (junto a cada campo) ----- */
 
-/* Campo con error: la línea de abajo y la turquesa toman el tono de error. */
+/* Campo con error: la línea de abajo y la morado toman el tono de error. */
 .form-group [aria-invalid="true"] {
   border-bottom-color: var(--contacto-error);
   background-image: linear-gradient(var(--contacto-error), var(--contacto-error));
@@ -190,13 +186,13 @@
 /* ----- Propiedad prellenada desde el detalle ----- */
 
 /* Si llegaste desde una residencia, el campo se vuelve una franja arena más oscura
-   con una línea turquesa arriba: es lo primero que se reconoce del formulario. */
+   con una línea morado arriba: es lo primero que se reconoce del formulario. */
 .form-group--prefilled {
   --relleno-x: 1.1rem;
   padding-top: 1.6rem;
   padding-bottom: 0.9rem;
   background-color: rgba(226, 214, 196, 0.55);
-  box-shadow: inset 0 1px 0 var(--color-turquesa-oscuro);
+  box-shadow: inset 0 1px 0 var(--color-ciruela-medio);
 }
 
 /* En la franja, la etiqueta queda un poco más abajo por el relleno extra. */
@@ -204,12 +200,12 @@
   top: 2.25rem;
 }
 
-/* El nombre de la residencia: en la letra de títulos, grande y turquesa. */
+/* El nombre de la residencia: en la letra de títulos, grande y morado. */
 .form-group--prefilled input {
   font-family: var(--fuente-titulos);
   font-size: 1.6rem;
   font-weight: 600;
-  color: var(--color-turquesa-oscuro);
+  color: var(--color-ciruela-medio);
   border-bottom-color: transparent;
   text-overflow: ellipsis;
 }
@@ -234,7 +230,7 @@
   padding: 1rem 2.25rem;
   border: 0;
   border-radius: 2px;
-  background-color: var(--color-texto);
+  background-color: var(--color-ciruela);
   color: var(--color-arena);
   font-size: 0.78rem;
   font-weight: 600;
@@ -259,10 +255,10 @@
   transform: scale(0.98);
 }
 
-/* Solo con mouse: el botón pasa a turquesa oscuro y la flecha se corre. */
+/* Solo con mouse: el botón pasa a ciruela y la flecha se corre. */
 @media (hover: hover) and (pointer: fine) {
   .contact-button:hover {
-    background-color: var(--color-turquesa-oscuro);
+    background-color: var(--color-ciruela-medio);
   }
 
   .contact-button:hover .contact-button__arrow {
@@ -272,10 +268,10 @@
 
 /* ----- Confirmación (reemplaza al formulario) ----- */
 
-/* El bloque de "Gracias": con una línea turquesa arriba que se dibuja al aparecer. */
+/* El bloque de "Gracias": con una línea morado arriba que se dibuja al aparecer. */
 .form-success {
   padding-top: 2.5rem;
-  background-image: linear-gradient(var(--color-turquesa-oscuro), var(--color-turquesa-oscuro));
+  background-image: linear-gradient(var(--color-ciruela-medio), var(--color-ciruela-medio));
   background-repeat: no-repeat;
   background-size: 4rem 1px;
 }
@@ -302,10 +298,10 @@
   line-height: 1.6;
 }
 
-/* El nombre de la residencia dentro del texto, en turquesa. */
+/* El nombre de la residencia dentro del texto, en morado. */
 .form-success strong {
   font-weight: 600;
-  color: var(--color-turquesa-oscuro);
+  color: var(--color-ciruela-medio);
 }
 
 /* "Escribir otro mensaje": enlace de texto con una línea fina debajo. */
@@ -319,7 +315,7 @@
   background-position: left 85%;
   background-repeat: no-repeat;
   background-size: 100% 1px;
-  color: var(--color-turquesa-oscuro);
+  color: var(--color-ciruela-medio);
   font-weight: 600;
   cursor: pointer;
   transition: background-size 0.35s var(--curva-suave);

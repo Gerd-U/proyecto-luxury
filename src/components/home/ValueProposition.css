@@ -2,11 +2,11 @@
 /* Idea: la sección se recorre como una casa. Primero se abre una VENTANA grande al mar (la promesa
    de la vista) y después las tres promesas llegan como láminas que se apilan una sobre otra al bajar. */
 
-/* La sección completa con fondo turquesa oscuro; aquí el foco del teclado es dorado. */
+/* La sección completa con fondo ciruela (el morado casi negro de la guaria); aquí el foco del teclado es lila. */
 .value {
-  --color-foco: var(--color-dorado);
+  --color-foco: var(--color-guaria-petalo);
   padding: 6rem var(--espacio-pequeno) 0;
-  background-color: var(--color-turquesa-oscuro);
+  background-color: var(--color-ciruela);
   color: var(--color-texto-claro);
 }
 
@@ -81,7 +81,7 @@
   min-height: clamp(320px, 55vh, 520px);
   padding: 2.5rem 1.75rem;
   /* sombra suave hacia arriba: la lámina que llega se ve encima de la anterior sin un corte duro */
-  box-shadow: 0 -12px 32px rgba(30, 43, 45, 0.18);
+  box-shadow: 0 -12px 32px rgba(20, 6, 19, 0.35);
 }
 
 /* Primera lámina (Vista): arena con texto tinta. */
@@ -90,17 +90,19 @@
   color: var(--color-texto);
 }
 
-/* Segunda lámina (Privacidad): tinta con texto arena; se pega un poco más abajo para que asome la anterior. */
+/* Las láminas florecen de claro a intenso: arena, ciruela medio y el morado guaria. */
+
+/* Segunda lámina (Privacidad): ciruela medio con texto arena; se pega un poco más abajo para que asome la anterior. */
 .value__item:nth-child(2) {
   top: calc(84px + 1.5rem);
-  background-color: var(--color-texto);
+  background-color: var(--color-ciruela-medio);
   color: var(--color-arena);
 }
 
-/* Tercera lámina (Acompañamiento): turquesa con texto blanco; asoman las dos anteriores. */
+/* Tercera lámina (Acompañamiento): morado guaria con texto blanco; asoman las dos anteriores. */
 .value__item:nth-child(3) {
   top: calc(84px + 3rem);
-  background-color: var(--color-turquesa);
+  background-color: var(--color-guaria);
   color: var(--color-texto-claro);
 }
 
