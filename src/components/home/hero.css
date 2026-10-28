@@ -1,0 +1,270 @@
+
+
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-end;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+  color: var(--color-texto-claro);
+  background-color: var(--color-ciruela);
+}
+
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+
+.hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 60%;
+  transform: scale(1.08);
+  transition: transform 2.6s var(--curva-salida);
+}
+
+
+.hero--ready .hero__media img {
+  transform: scale(1);
+}
+
+
+.hero__veil {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(to top, rgba(43, 15, 41, 0.7) 0%, rgba(43, 15, 41, 0.25) 28%, transparent 50%),
+    linear-gradient(to bottom, rgba(43, 15, 41, 0.35) 0%, transparent 18%);
+}
+
+
+.hero__content {
+  display: grid;
+  gap: 2rem;
+  width: 100%;
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+  padding: 7rem var(--espacio-pequeno) 3rem;
+}
+
+
+.hero__title {
+  font-size: clamp(2.6rem, 8.5vw, 7.5rem);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--color-texto-claro);
+  
+  text-shadow: 0 2px 24px rgba(43, 15, 41, 0.45);
+}
+
+
+.hero__line {
+  display: block;
+}
+
+
+.hero__mask {
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+  margin-right: 0.22em;
+  vertical-align: top;
+}
+
+
+.hero__word {
+  display: inline-block;
+  transform: translateY(105%);
+  transition: transform 1s var(--curva-salida);
+  transition-delay: calc(150ms + var(--i) * 80ms);
+}
+
+
+.hero--ready .hero__word {
+  transform: translateY(0);
+}
+
+
+.hero__aside {
+  display: grid;
+  gap: 1.75rem;
+  max-width: 30rem;
+}
+
+
+.hero__aside,
+.hero__facts {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.8s ease 0.7s,
+    transform 0.8s var(--curva-salida) 0.7s;
+}
+
+
+.hero--ready .hero__aside,
+.hero--ready .hero__facts {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.hero__lead {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 48px;
+  padding: 0 1.75rem;
+  background-color: var(--color-guaria);
+  color: var(--color-blanco);
+  font-weight: 600;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+
+.hero__cta:hover {
+  background-color: var(--color-arena);
+  color: var(--color-ciruela);
+}
+
+
+.hero__arrow {
+  display: inline-block;
+  transition: transform 0.3s var(--curva-salida);
+}
+
+
+.hero__cta:hover .hero__arrow {
+  transform: translateX(4px);
+}
+
+
+.hero__cta:active {
+  transform: scale(0.98);
+}
+
+
+.hero__link {
+  color: var(--color-texto-claro);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.5);
+  text-underline-offset: 6px;
+  transition: text-decoration-color 0.3s ease;
+}
+
+
+.hero__link:hover {
+  color: var(--color-texto-claro);
+  text-decoration-color: var(--color-guaria-petalo);
+}
+
+
+.hero__facts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+
+@media (min-width: 768px) {
+  .hero__facts {
+    font-size: 0.9rem;
+  }
+}
+
+
+.hero__fact {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: baseline;
+  gap: 0.35em;
+}
+
+
+.hero__fact:last-child {
+  flex-direction: row;
+}
+
+
+.hero__fact + .hero__fact::after {
+  content: "·";
+  order: 2;
+  margin: 0 0.4em;
+  opacity: 0.6;
+}
+
+.hero__fact:last-child::after {
+  order: -1;
+}
+
+
+.hero__fact dt {
+  text-transform: lowercase;
+}
+
+
+.hero__fact dd {
+  font-weight: 600;
+  color: var(--color-texto-claro);
+}
+
+
+@media (min-width: 768px) {
+  .hero__content {
+    padding: 8rem var(--espacio-mediano) 4rem;
+  }
+}
+
+
+@media (min-width: 1024px) {
+  .hero__content {
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+    gap: 3rem 4rem;
+    padding-bottom: 5rem;
+  }
+
+  .hero__title {
+    grid-column: 1 / -1;
+  }
+
+  .hero__facts {
+    grid-row: 2;
+    grid-column: 1;
+  }
+
+  .hero__aside {
+    grid-row: 2;
+    grid-column: 2;
+    justify-self: end;
+  }
+}

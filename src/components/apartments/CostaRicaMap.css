@@ -1,0 +1,162 @@
+
+
+
+
+.cr-map {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+
+.cr-map__land {
+  fill: rgba(116, 25, 107, 0.05);
+  stroke: var(--color-ciruela-medio);
+  stroke-width: 1;
+  stroke-linejoin: round;
+}
+
+
+.cr-map__hit {
+  fill: transparent;
+}
+
+
+.cr-map__zone,
+.cr-map__cluster {
+  cursor: pointer;
+}
+
+
+.cr-map__dot {
+  fill: var(--color-guaria-petalo);
+  stroke: var(--color-guaria-borde);
+  stroke-width: 1;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    fill 0.3s ease,
+    transform 0.4s var(--curva-suave);
+}
+
+
+.cr-map__zone.is-selected .cr-map__dot,
+.cr-map__cluster.is-active .cr-map__dot {
+  fill: var(--color-guaria);
+  stroke: var(--color-arena);
+  stroke-width: 1.5;
+  transform: scale(1.35);
+}
+
+
+.cr-map__region {
+  font-family: var(--fuente-titulos);
+  font-size: 13px;
+  font-weight: 600;
+  fill: var(--color-ciruela);
+  transition: fill-opacity 0.25s ease;
+}
+
+
+.cr-map:has(.cr-map__zone.is-selected) .cr-map__cluster:not(.is-active) .cr-map__region {
+  fill-opacity: 0;
+}
+
+
+.cr-map__label {
+  font-family: var(--fuente-titulos);
+  font-size: 13px;
+  font-weight: 600;
+  fill: var(--color-guaria);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+
+.cr-map__zone.is-selected .cr-map__label {
+  opacity: 1;
+}
+
+
+.cr-map__pulse {
+  fill: none;
+  stroke: var(--color-guaria-petalo);
+  stroke-width: 1;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+
+@media (hover: hover) and (pointer: fine) {
+  .cr-map__zone:hover .cr-map__label {
+    opacity: 1;
+  }
+
+  .cr-map__zone:hover .cr-map__dot {
+    transform: scale(1.25);
+  }
+
+  .cr-map__cluster:hover .cr-map__dot {
+    transform: scale(1.25);
+  }
+
+  
+  .cr-map:has(.cr-map__zone.is-selected) .cr-map__cluster:not(.is-active):hover .cr-map__region {
+    fill-opacity: 1;
+  }
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+  
+  .cr-map__land {
+    stroke-dasharray: 1;
+    animation: mapa-trazar 2.4s var(--curva-suave) both;
+  }
+
+  
+  .cr-map__dot,
+  .cr-map__region {
+    animation: mapa-punto 0.6s var(--curva-suave) 1s both;
+  }
+
+  
+  .cr-map__pulse {
+    animation: mapa-pulso 1.1s var(--curva-suave) both;
+  }
+}
+
+
+@keyframes mapa-trazar {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+
+@keyframes mapa-punto {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+@keyframes mapa-pulso {
+  from {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(3);
+  }
+}

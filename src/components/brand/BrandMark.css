@@ -1,0 +1,78 @@
+
+
+
+
+.brand-mark {
+  --guaria-petalo: var(--color-guaria-petalo);
+  --guaria-borde: var(--color-guaria-borde);
+  --guaria-labelo: var(--color-guaria);
+  --guaria-garganta: var(--color-guaria-suave);
+  display: block;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+
+.brand-mark__petal {
+  fill: var(--guaria-petalo);
+  stroke: var(--guaria-borde);
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+}
+
+
+.brand-mark__lip {
+  fill: var(--guaria-labelo);
+}
+
+
+.brand-mark__throat {
+  fill: var(--guaria-garganta);
+}
+
+
+
+
+.brand-mark--animated .brand-mark__petal {
+  fill-opacity: 0;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation:
+    petalo-dibujar 0.9s var(--curva-salida) forwards,
+    petalo-llenar 0.6s ease forwards;
+  animation-delay:
+    calc(var(--i) * 110ms),
+    calc(500ms + var(--i) * 110ms);
+}
+
+
+.brand-mark--animated .brand-mark__lip,
+.brand-mark--animated .brand-mark__throat {
+  opacity: 0;
+  transform: scale(0.4);
+  transform-box: fill-box;
+  transform-origin: 50% 0%;
+  animation: labelo-abrir 0.7s var(--curva-salida) 0.55s forwards;
+}
+
+
+@keyframes petalo-dibujar {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+
+@keyframes petalo-llenar {
+  to {
+    fill-opacity: 1;
+  }
+}
+
+
+@keyframes labelo-abrir {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

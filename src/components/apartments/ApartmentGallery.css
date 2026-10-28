@@ -1,0 +1,110 @@
+
+
+
+.gallery__track {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+
+.gallery__track::-webkit-scrollbar {
+  display: none;
+}
+
+
+.gallery__slide {
+  flex: 0 0 88%;
+  aspect-ratio: 4 / 3;
+  scroll-snap-align: start;
+  overflow: hidden;
+  background-color: var(--color-borde);
+}
+
+
+.gallery__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.gallery__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+
+.gallery__counter {
+  font-family: var(--fuente-titulos);
+  font-size: 1.6rem;
+  color: var(--color-texto-suave);
+}
+
+
+.gallery__counter strong {
+  font-size: 2.4rem;
+  font-weight: 500;
+  color: var(--color-texto);
+}
+
+
+.gallery__buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+
+.gallery__button {
+  display: inline-grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--color-ciruela);
+  color: var(--color-arena);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.16s ease-out,
+    opacity 0.2s ease;
+}
+
+
+.gallery__button:active:not(:disabled) {
+  transform: scale(0.92);
+}
+
+
+.gallery__button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+
+@media (hover: hover) and (pointer: fine) {
+  .gallery__button:hover:not(:disabled) {
+    background-color: var(--color-ciruela-medio);
+  }
+}
+
+
+@media (min-width: 900px) {
+  .gallery__track {
+    gap: 1.5rem;
+  }
+
+  .gallery__slide {
+    flex-basis: 72%;
+    aspect-ratio: 16 / 10;
+  }
+}

@@ -1,0 +1,237 @@
+
+
+
+.favorites {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem var(--espacio-pequeno) 5rem;
+}
+
+
+.favorites__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  margin-bottom: 3.5rem;
+}
+
+
+.favorites__title {
+  font-size: clamp(3rem, 9vw, 6rem);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--color-texto);
+}
+
+
+.favorites__count {
+  font-family: var(--fuente-titulos);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-ciruela-medio);
+}
+
+
+.favorites__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem 0 1rem;
+  text-align: center;
+}
+
+
+.favorites__empty-mark {
+  margin-bottom: 0.5rem;
+  color: var(--color-guaria);
+  animation: guaria-mecer 4s ease-in-out infinite alternate;
+  transform-origin: 50% 90%;
+}
+
+
+@keyframes guaria-mecer {
+  from {
+    transform: rotate(-4deg);
+  }
+  to {
+    transform: rotate(4deg);
+  }
+}
+
+
+.favorites__empty-title {
+  max-width: 16ch;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1.02;
+  color: var(--color-texto);
+}
+
+
+.favorites__empty-text {
+  max-width: 38ch;
+  line-height: 1.6;
+  color: var(--color-texto);
+}
+
+
+.favorites__cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  margin-top: 0.5rem;
+  padding: 0 1.75rem;
+  background-color: var(--color-guaria);
+  color: var(--color-texto-claro);
+  font-weight: 600;
+  transition:
+    background-color 0.2s ease,
+    transform 0.16s ease-out;
+}
+
+
+.favorites__cta:hover {
+  background-color: var(--color-ciruela-medio);
+  color: var(--color-texto-claro);
+}
+
+
+.favorites__cta:active {
+  transform: scale(0.97);
+}
+
+
+.favorites__suggestions {
+  width: 100%;
+  margin-top: 4rem;
+  text-align: left;
+}
+
+
+.favorites__suggestions-title {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: var(--color-texto);
+}
+
+
+.favorites__suggestion-list {
+  display: grid;
+  gap: 2rem;
+}
+
+
+.favorites__suggestion {
+  display: grid;
+  gap: 0.25rem;
+  color: var(--color-texto);
+}
+
+
+.favorites__suggestion:hover {
+  color: var(--color-texto);
+}
+
+
+.favorites__suggestion img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  margin-bottom: 0.75rem;
+  transition: transform 0.9s var(--curva-salida);
+}
+
+
+.favorites__suggestion-name {
+  font-family: var(--fuente-titulos);
+  font-size: 1.5rem;
+  line-height: 1.1;
+}
+
+
+.favorites__suggestion-place {
+  font-size: 0.9rem;
+  color: var(--color-texto-suave);
+}
+
+
+.favorites__toast-region {
+  position: fixed;
+  left: 50%;
+  bottom: 1.5rem;
+  z-index: 95;
+  width: min(92vw, 30rem);
+  transform: translateX(-50%);
+}
+
+
+.favorites__toast {
+  --color-foco: var(--color-guaria-petalo);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 0.75rem 0.75rem 1.25rem;
+  background-color: var(--color-ciruela);
+  color: var(--color-arena);
+  box-shadow: 0 12px 32px rgba(43, 15, 41, 0.25);
+  animation: aviso-entrar 0.3s var(--curva-salida);
+}
+
+
+.favorites__toast p {
+  color: var(--color-arena);
+}
+
+
+@keyframes aviso-entrar {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.favorites__undo {
+  min-height: 44px;
+  padding: 0 1.25rem;
+  border: none;
+  border-radius: 999px;
+  background-color: var(--color-guaria);
+  color: var(--color-blanco);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.16s ease-out;
+}
+
+
+.favorites__undo:active {
+  transform: scale(0.95);
+}
+
+
+@media (min-width: 768px) {
+  .favorites {
+    padding: 4rem var(--espacio-mediano) 6rem;
+  }
+
+  .favorites__suggestion-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+@media (hover: hover) and (pointer: fine) {
+  .favorites__suggestion:hover img {
+    transform: scale(1.03);
+  }
+}
