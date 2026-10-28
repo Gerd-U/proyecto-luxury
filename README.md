@@ -11,7 +11,8 @@ Desarrollo de Software IV · Proyecto #1 · II Ciclo 2026
 |---|---|
 | Sitio publicado (Vercel) | [COMPLETAR] |
 | Repositorio | https://github.com/Gerd-U/proyecto-luxury |
-| Evidencia en Android | [COMPLETAR] |
+| Evidencia en Android | <img width="472" height="922" alt="image" src="https://github.com/user-attachments/assets/52792cf4-3620-4fdc-bc32-795219874397" />
+ |
 
 ## Equipo
 
@@ -125,11 +126,11 @@ npx cap open android   # abre Android Studio
 
 Desde Android Studio, pulsa **Run** sobre el emulador o el dispositivo. Para generar un APK de prueba: **Build > Build APK(s)**.
 
-Configuración (`capacitor.config.ts`): `appId` `[COMPLETAR: com.laguaria.residencias]` y `appName` `[COMPLETAR: Residencias La Guaria]`.
+Configuración (`capacitor.config.ts`): `appId` `com.laguaria.residencias` y `appName` `Residencias La Guaria`.
 
 ## Publicación en Vercel
 
-El proyecto se publica desde la rama `[COMPLETAR]` con el comando `npm run build` y la carpeta de salida `dist`. El archivo `vercel.json` redirige todas las rutas a `index.html`, para que las rutas de la SPA (por ejemplo `/apartamentos/3`) funcionen también al recargar el navegador.
+El proyecto se publica desde la rama `main` con el comando `npm run build` y la carpeta de salida `dist`. El archivo `vercel.json` redirige todas las rutas a `index.html`, para que las rutas de la SPA (por ejemplo `/apartamentos/3`) funcionen también al recargar el navegador.
 
 ## Estructura del proyecto
 
@@ -186,7 +187,7 @@ Los datos de las residencias son de ejemplo y se usan con fines académicos.
 ## Identidad visual
 
 - **Nombre y logotipo:** la guaria morada es la flor nacional de Costa Rica; el logotipo (`BrandMark`) está inspirado en ella.
-- **Paleta:** ciruela `#2b0f29`, guaria `#74196b`, pétalo `#c066ae`, arena `#f5ebdd` y verde `#4e8f6b`. Los tonos profundos y la arena cálida transmiten sobriedad y lujo.
+- **Paleta:** ciruela `#2b0f29`, guaria `#74196b`, pétalo `#c066ae`, arena `#f5ebdd`. Los tonos profundos y la arena cálida transmiten sobriedad y lujo.
 - **Tipografías:** una serif de contraste (Cormorant Garamond) para los títulos y una sans geométrica (Jost) para el texto.
 
 ## Flujo de trabajo con Git
