@@ -26,7 +26,8 @@
 /* "Tu próximo hogar comienza aquí": grande, serif y apretado, como los títulos del Inicio. */
 .contact-header h1 {
   max-width: 11ch;
-  font-size: clamp(2.8rem, 7vw, 5rem);
+  /* min(7vw, 8vh): se achica también en pantallas bajitas (laptops), para dejarle sitio a la foto. */
+  font-size: clamp(2.8rem, min(7vw, 8vh), 5rem);
   font-weight: 500;
   line-height: 0.95;
   letter-spacing: -0.025em;
@@ -35,7 +36,7 @@
 }
 
 /* La frase debajo del título, cómoda de leer. */
-.contact-header p {
+.contact-header > p {
   max-width: 34ch;
   margin-top: 1.5rem;
   font-size: 1.1rem;
@@ -51,6 +52,12 @@
   height: 1px;
   margin-top: 2.5rem;
   background-color: var(--color-ciruela-medio);
+}
+
+/* Con la tarjeta de visita, la línea sobra: la tarjeta ya cierra la presentación
+   (y como ::after va al final, quedaría debajo de la tarjeta). */
+.contact-header:has(.visit-card)::after {
+  display: none;
 }
 
 /* ----- Formulario ----- */
@@ -85,7 +92,9 @@
 
 /* Al enfocar el campo o cuando ya tiene texto, la etiqueta sube y se achica. */
 .form-group:focus-within label,
-.form-group:has(input:not(:placeholder-shown), textarea:not(:placeholder-shown)) label {
+.form-group:has(input:not(:placeholder-shown), textarea:not(:placeholder-shown)) label,
+/* El select no tiene placeholder (siempre muestra una opción): su etiqueta vive arriba. */
+.form-group--select label {
   transform: translateY(-1.75rem) scale(0.78);
 }
 
@@ -103,6 +112,7 @@
 /* Los campos: sin caja, solo una línea fina abajo. La línea morado está dibujada
    como fondo con ancho 0 y crece al enfocar. Letra de 16 px o más para que el celular no haga zoom. */
 .form-group input,
+.form-group select,
 .form-group textarea {
   display: block;
   width: 100%;
@@ -136,9 +146,228 @@
 
 /* Al enfocar: la línea morado recorre el campo de izquierda a derecha (ese es el foco visible). */
 .form-group input:focus,
+.form-group select:focus,
 .form-group textarea:focus {
   outline: none;
   background-size: 100% 2px;
+}
+
+/* ----- Select de residencias ----- */
+
+/* El select lleva DOS fondos: la línea morado del foco (la misma de los otros campos)
+   y una flechita dibujada en SVG a la derecha. Cada valor de background-* va en el mismo orden. */
+.form-group select {
+  padding-right: calc(var(--relleno-x) + 1.75rem);
+  background-image:
+    linear-gradient(var(--color-ciruela-medio), var(--color-ciruela-medio)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%234a1745' stroke-width='1.4'/%3E%3C/svg%3E");
+  background-position:
+    left bottom,
+    right calc(var(--relleno-x) + 0.25rem) center;
+  background-size:
+    0% 2px,
+    0.75rem;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+/* Al enfocar, solo crece la línea; la flecha se queda igual. */
+.form-group select:focus {
+  background-size:
+    100% 2px,
+    0.75rem;
+}
+
+/* Mientras carga el catálogo, el select queda apagado. */
+.form-group select:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+/* ----- La lista que se abre (las opciones) ----- */
+
+/* Para todos los navegadores: aunque la lista sea la de Windows, al menos en arena y letra ciruela
+   (y en la letra normal, no la grande de la residencia prellenada). */
+.form-group select option {
+  background-color: var(--color-arena);
+  color: var(--color-texto);
+  font-family: var(--fuente-texto);
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+/* Chrome y Edge nuevos dejan pintar la lista COMPLETA con "appearance: base-select".
+   @supports pregunta si el navegador lo entiende: si no, se ignora todo este bloque y queda lo de arriba. */
+@supports (appearance: base-select) {
+  /* Se activa en el select y en su lista (::picker(select) es la caja que se abre). */
+  .form-group select,
+  .form-group select::picker(select) {
+    appearance: base-select;
+  }
+
+  /* El navegador trae su propia flechita: la escondemos porque ya dibujamos la nuestra. */
+  .form-group select::picker-icon {
+    display: none;
+  }
+
+  /* La caja de la lista: arena, borde fino, esquinas casi rectas y la sombra suave del sitio.
+     Si hay muchas residencias, se recorre con scroll (barra fina en lila). */
+  .form-group select::picker(select) {
+    max-height: 20rem;
+    margin-top: 0.4rem;
+    padding: 0.35rem 0;
+    overflow-y: auto;
+    border: 1px solid var(--color-borde);
+    border-radius: 2px;
+    background-color: var(--color-arena);
+    box-shadow: var(--sombra);
+    scrollbar-color: var(--color-guaria-petalo) transparent;
+    scrollbar-width: thin;
+  }
+
+  /* Cada residencia: cómoda de tocar y separada de la siguiente por una línea casi invisible. */
+  .form-group select option {
+    padding: 0.7rem 1.1rem;
+    border-bottom: 1px solid rgba(43, 15, 41, 0.06);
+    background-color: transparent;
+    font-size: 0.95rem;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .form-group select option:last-child {
+    border-bottom: 0;
+  }
+
+  /* Al pasar el mouse o moverse con las flechas: fondo rosado de la guaria y letra morada (en vez del azul). */
+  .form-group select option:hover,
+  .form-group select option:focus-visible {
+    outline: none;
+    background-color: var(--color-guaria-suave);
+    color: var(--color-guaria);
+  }
+
+  /* La residencia elegida: en morado guaria y un poco más gruesa. */
+  .form-group select option:checked {
+    color: var(--color-guaria);
+    font-weight: 500;
+  }
+
+  /* El chequecito de la elegida, también en guaria. */
+  .form-group select option::checkmark {
+    color: var(--color-guaria);
+  }
+
+  /* "Aún no sé, quiero una recomendación": en serif itálica, para separarla de las residencias. */
+  .form-group select option:first-child {
+    font-family: var(--fuente-titulos);
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--color-texto-suave);
+  }
+
+  /* Al abrirse, la lista baja apenas y aparece suave (solo sin "reducir movimiento"). */
+  @media (prefers-reduced-motion: no-preference) {
+    .form-group select::picker(select) {
+      transition:
+        opacity 0.25s ease,
+        translate 0.35s var(--curva-suave);
+    }
+
+    /* @starting-style dice "desde dónde arranca" la transición cuando la lista recién aparece. */
+    @starting-style {
+      .form-group select:open::picker(select) {
+        opacity: 0;
+        translate: 0 -6px;
+      }
+    }
+  }
+}
+
+/* ----- Chips: motivo ----- */
+
+/* El grupo de opciones: el fieldset sin su caja de navegador. */
+.form-choices {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* La pregunta del grupo: del mismo tamaño y color que una etiqueta ya flotada.
+   El float es un truco: sin él, el navegador dibuja el legend "encima" del borde y no respeta el margen. */
+.form-choices__legend {
+  float: left;
+  width: 100%;
+  margin-bottom: 0.85rem;
+  padding: 0;
+  font-size: 0.82rem;
+  color: var(--color-texto-suave);
+}
+
+/* La fila de chips: se acomodan solos y bajan de línea si no caben. */
+.form-choices__options {
+  clear: both;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+/* Cada chip es un label (todo el chip se puede tocar) con forma de píldora. */
+.form-chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.5rem 1.15rem;
+  border: 1px solid var(--contacto-linea);
+  border-radius: 999px;
+  font-size: 0.95rem;
+  color: var(--color-texto);
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.16s ease-out;
+}
+
+/* El radio real se esconde SIN display: none, para que el teclado y el lector de pantalla lo sigan usando
+   (misma técnica que .sr-only de global.css). */
+.form-chip__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+/* El chip elegido: se rellena de ciruela con letras arena (:has mira si el radio de adentro está marcado). */
+.form-chip:has(:checked) {
+  border-color: var(--color-ciruela);
+  background-color: var(--color-ciruela);
+  color: var(--color-arena);
+}
+
+/* Foco con teclado: como el radio está escondido, el contorno se dibuja en el chip. */
+.form-chip:has(:focus-visible) {
+  outline: 2px solid var(--color-foco);
+  outline-offset: 3px;
+}
+
+/* Al presionar, el chip se hunde un poco. */
+.form-chip:active {
+  transform: scale(0.97);
+}
+
+/* Solo con mouse: el borde del chip se oscurece al pasar por encima. */
+@media (hover: hover) and (pointer: fine) {
+  .form-chip:hover:not(:has(:checked)) {
+    border-color: var(--color-ciruela-medio);
+  }
 }
 
 /* Autocompletar del navegador: evita el fondo amarillo/celeste que rompe el diseño. */
@@ -201,7 +430,8 @@
 }
 
 /* El nombre de la residencia: en la letra de títulos, grande y morado. */
-.form-group--prefilled input {
+.form-group--prefilled input,
+.form-group--prefilled select {
   font-family: var(--fuente-titulos);
   font-size: 1.6rem;
   font-weight: 600;
@@ -304,6 +534,28 @@
   color: var(--color-ciruela-medio);
 }
 
+/* ----- Aviso de envío simulado (lo pide el enunciado) ----- */
+
+/* Nota pequeña bajo el botón: se lee claro pero no compite con el formulario.
+   (En la confirmación el aviso es un párrafo normal, con el mismo estilo de siempre.) */
+.form-demo-note {
+  max-width: 52ch;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--color-texto-suave);
+}
+
+/* Bajo el botón, más pegada a él que el espacio normal entre campos (es su aclaración). */
+.contact-button + .form-demo-note {
+  margin-top: -1.25rem;
+}
+
+/* "Envío simulado." en morado guaria, para que sea lo primero que se lee de la nota. */
+.form-demo-note strong {
+  font-weight: 600;
+  color: var(--color-guaria);
+}
+
 /* "Escribir otro mensaje": enlace de texto con una línea fina debajo. */
 .form-success__again {
   min-height: 2.75rem;
@@ -333,12 +585,12 @@
 @media (prefers-reduced-motion: no-preference) {
   /* Presentación: título, frase y línea entran subiendo, una tras otra. */
   .contact-header h1,
-  .contact-header p,
+  .contact-header > p,
   .contact-header::after {
     animation: aparecer-subiendo 0.9s var(--curva-suave) both;
   }
 
-  .contact-header p {
+  .contact-header > p {
     animation-delay: 0.08s;
   }
 
@@ -358,6 +610,7 @@
   .contact-form > :nth-child(5) { animation-delay: 0.44s; }
   .contact-form > :nth-child(6) { animation-delay: 0.5s; }
   .contact-form > :nth-child(7) { animation-delay: 0.56s; }
+  .contact-form > :nth-child(8) { animation-delay: 0.62s; }
 
   /* La franja de la propiedad prellenada se "pinta" de izquierda a derecha al llegar. */
   .form-group--prefilled {
@@ -386,6 +639,7 @@
   .form-success > :nth-child(1) { animation-delay: 0.15s; }
   .form-success > :nth-child(2) { animation-delay: 0.27s; }
   .form-success > :nth-child(3) { animation-delay: 0.39s; }
+  .form-success > :nth-child(4) { animation-delay: 0.51s; }
 }
 
 /* Animación: el error baja 4 px mientras aparece. */
@@ -436,7 +690,8 @@
 
   /* El mensaje y el botón usan todo el ancho. */
   .form-group--full,
-  .contact-button {
+  .contact-button,
+  .form-demo-note {
     grid-column: 1 / -1;
   }
 
@@ -466,6 +721,22 @@
   .contact-header {
     position: sticky;
     top: 7rem;
+  }
+
+  /* Con la ventana de la residencia, la columna mide justo lo que queda de pantalla bajo el menú
+     (svh = alto real de la pantalla) y se acomoda en columna: título, frase y la foto estirándose
+     hasta abajo. Así la foto se ve SIEMPRE mientras se baja por el formulario. */
+  .contact-header:has(.visit-card) {
+    display: flex;
+    flex-direction: column;
+    height: calc(100svh - 10.5rem);
+    min-height: 34rem;
+  }
+
+  /* En esa columna el título puede usar todo el ancho: queda en 3 líneas en vez de 4
+     y le deja más alto a la foto. */
+  .contact-header:has(.visit-card) h1 {
+    max-width: none;
   }
 
   /* El formulario arranca un poco más abajo que el título: ritmo editorial. */

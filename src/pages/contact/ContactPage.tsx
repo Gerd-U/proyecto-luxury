@@ -3,8 +3,8 @@ import type { ChangeEvent, FormEvent } from "react";
 import { useSearchParams } from "react-router-dom";
 import VisitCard from "../../components/contact/VisitCard";
 import { useApartments } from "../../hooks/useApartments";
-import type { ContactForm, Horario, Motivo } from "../../types/contact";
-import { HORARIO_LABEL, MOTIVO_LABEL } from "../../types/contact";
+import type { ContactForm, Motivo } from "../../types/contact";
+import { MOTIVO_LABEL } from "../../types/contact";
 import "./ContactPage.css";
 
 type FormErrors = Partial<Record<keyof ContactForm, string>>;
@@ -13,33 +13,9 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const PHONE_PATTERN = /^\+?[\d\s-]{8,}$/;
 
 const MOTIVOS = Object.keys(MOTIVO_LABEL) as Motivo[];
-const HORARIOS = Object.keys(HORARIO_LABEL) as Exclude<Horario, "">[];
-
-const FOCUS_ID: Partial<Record<keyof ContactForm, string>> = {
-  horario: "horario-manana",
-};
-
-function hoyISO(): string {
-  const hoy = new Date();
-  const mes = String(hoy.getMonth() + 1).padStart(2, "0");
-  const dia = String(hoy.getDate()).padStart(2, "0");
-  return `${hoy.getFullYear()}-${mes}-${dia}`;
-}
 
 function validate(form: ContactForm): FormErrors {
   const errors: FormErrors = {};
-
-  if (form.motivo === "visita") {
-    if (form.fecha === "") {
-      errors.fecha = "Elige el día en que te gustaría visitarla.";
-    } else if (form.fecha < hoyISO()) {
-      errors.fecha = "Esa fecha ya pasó: elige hoy o un día próximo.";
-    }
-
-    if (form.horario === "") {
-      errors.horario = "Elige si prefieres la mañana o la tarde.";
-    }
-  }
 
   if (form.nombre.trim().length < 2) {
     errors.nombre = "Escribe tu nombre completo.";
@@ -58,7 +34,7 @@ function validate(form: ContactForm): FormErrors {
     errors.telefono = "Revisa el teléfono: usa solo números, mínimo 8.";
   }
 
-  if (form.motivo !== "visita" && form.mensaje.trim().length < 10) {
+  if (form.mensaje.trim().length < 10) {
     errors.mensaje = "Cuéntanos un poco más (mínimo 10 caracteres).";
   }
 
@@ -75,9 +51,7 @@ function ContactPage() {
     correo: "",
     telefono: "",
     propiedad: propiedadInicial,
-    motivo: "visita",
-    fecha: "",
-    horario: "",
+    motivo: "informacion",
     mensaje: "",
   };
 
@@ -125,7 +99,7 @@ function ContactPage() {
       | keyof ContactForm
       | undefined;
     if (firstInvalid) {
-      document.getElementById(FOCUS_ID[firstInvalid] ?? firstInvalid)?.focus();
+      document.getElementById(firstInvalid)?.focus();
       return;
     }
 
@@ -153,14 +127,12 @@ function ContactPage() {
     <div className="contact-page">
       <section className="contact-header">
         <h1>Tu próximo hogar comienza aquí</h1>
-        <p>Cuéntanos qué residencia te interesa y cuándo quieres conocerla.</p>
+        <p>Cuéntanos qué residencia te interesa y qué necesitas saber.</p>
 
         <VisitCard
           apartment={apartamento}
           nombre={form.nombre}
           motivo={form.motivo}
-          fecha={form.fecha}
-          horario={form.horario}
           confirmada={enviado}
         />
       </section>
@@ -172,9 +144,8 @@ function ContactPage() {
               Gracias, {form.nombre.trim().split(/\s+/)[0]}.
             </h2>
             <p>
-              {form.motivo === "visita"
-                ? "Tu solicitud de visita quedó registrada. Te escribiremos para confirmar el día y la hora."
-                : "Tu consulta quedó registrada. Pronto nos pondremos en contacto contigo."}
+              <strong>Envío simulado.</strong> Este sitio es un proyecto académico:
+              tu consulta no se mandó a ningún lado y nadie te va a contactar.
             </p>
             <button
               className="form-success__again"
@@ -244,60 +215,6 @@ function ContactPage() {
               )}
             </div>
 
-            {form.motivo === "visita" && (
-              <div className="form-visit form-group--full">
-                <div className="form-group">
-                  <label htmlFor="fecha">Día de la visita</label>
-                  <input
-                    id="fecha"
-                    name="fecha"
-                    type="date"
-                    min={hoyISO()}
-                    value={form.fecha}
-                    onChange={handleChange}
-                    aria-invalid={errors.fecha ? true : undefined}
-                    aria-describedby={describedBy("fecha")}
-                  />
-                  {errors.fecha && (
-                    <p className="form-error" id="fecha-error">
-                      {errors.fecha}
-                    </p>
-                  )}
-                </div>
-
-                <fieldset
-                  className="form-choices"
-                  aria-invalid={errors.horario ? true : undefined}
-                  aria-describedby={describedBy("horario")}
-                >
-                  <legend className="form-choices__legend">Horario</legend>
-                  <div className="form-choices__options">
-                    {HORARIOS.map((horario) => (
-                      <label key={horario} className="form-chip">
-                        <input
-                          id={`horario-${horario}`}
-                          className="form-chip__input"
-                          type="radio"
-                          name="horario"
-                          value={horario}
-                          checked={form.horario === horario}
-                          onChange={handleChange}
-                        />
-                        <span className="form-chip__label">
-                          {HORARIO_LABEL[horario]}
-                        </span>
-                      </label>
-                    ))}
-                  </div>
-                  {errors.horario && (
-                    <p className="form-error" id="horario-error">
-                      {errors.horario}
-                    </p>
-                  )}
-                </fieldset>
-              </div>
-            )}
-
             <div className="form-group">
               <label htmlFor="nombre">Nombre completo</label>
               <input
@@ -361,12 +278,7 @@ function ContactPage() {
             </div>
 
             <div className="form-group form-group--full">
-              <label htmlFor="mensaje">
-                Mensaje{" "}
-                {form.motivo === "visita" && (
-                  <span className="form-optional">(opcional)</span>
-                )}
-              </label>
+              <label htmlFor="mensaje">Mensaje</label>
               <textarea
                 id="mensaje"
                 name="mensaje"
@@ -385,13 +297,16 @@ function ContactPage() {
             </div>
 
             <button className="contact-button" type="submit">
-              {form.motivo === "visita"
-                ? "Solicitar visita"
-                : "Enviar consulta"}{" "}
+              Enviar consulta{" "}
               <span className="contact-button__arrow" aria-hidden="true">
                 →
               </span>
             </button>
+
+            <p className="form-demo-note">
+              <strong>Envío simulado.</strong> Este formulario es de demostración:
+              al enviarlo no se manda ningún dato.
+            </p>
           </form>
         )}
       </section>
