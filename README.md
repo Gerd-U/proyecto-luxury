@@ -9,10 +9,9 @@ Desarrollo de Software IV · Proyecto #1 · II Ciclo 2026
 
 | | |
 |---|---|
-| Sitio publicado (Vercel) | [COMPLETAR] |
+| Sitio publicado (Vercel) | https://residencias-la-guaria.vercel.app |
 | Repositorio | https://github.com/Gerd-U/proyecto-luxury |
-| Evidencia en Android | <img width="472" height="922" alt="image" src="https://github.com/user-attachments/assets/52792cf4-3620-4fdc-bc32-795219874397" />
- |
+| Evidencia en Android | <img width="472" height="922" alt="image" src="https://github.com/user-attachments/assets/52792cf4-3620-4fdc-bc32-795219874397" />|
 
 ## Equipo
 
