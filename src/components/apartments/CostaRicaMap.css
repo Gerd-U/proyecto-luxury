@@ -49,12 +49,21 @@
   transform: scale(1.35);
 }
 
-/* El texto "Valle Central · 17" junto a su punto, siempre visible. */
+/* El texto "Valle Central · 17" junto a su punto: visible mientras no haya otra zona elegida. */
 .cr-map__region {
   font-family: var(--fuente-titulos);
   font-size: 13px;
   font-weight: 600;
   fill: var(--color-ciruela);
+  transition: fill-opacity 0.25s ease;
+}
+
+/* Si se eligió una zona del Pacífico (y el Valle no está activo), el nombre del Valle se apaga
+   para que solo se lea la zona elegida.
+   Ojo: se usa fill-opacity y NO opacity, porque la animación "mapa-punto" (con "both") deja
+   opacity: 1 pegado al terminar, y una animación así le gana a cualquier opacity normal. */
+.cr-map:has(.cr-map__zone.is-selected) .cr-map__cluster:not(.is-active) .cr-map__region {
+  fill-opacity: 0;
 }
 
 /* El nombre de cada zona del Pacífico: escondido, aparece al pasar por encima o al elegirla. */
@@ -95,6 +104,13 @@
 
   .cr-map__cluster:hover .cr-map__dot {
     transform: scale(1.25);
+  }
+
+  /* Aunque esté apagado, el nombre del Valle vuelve al pasar por encima (como las zonas del Pacífico).
+     Repite el selector largo de la regla que lo apaga y le suma :hover, para pesar más que ella
+     (con solo ".cr-map__cluster:hover .cr-map__region" perdería por especificidad). */
+  .cr-map:has(.cr-map__zone.is-selected) .cr-map__cluster:not(.is-active):hover .cr-map__region {
+    fill-opacity: 1;
   }
 }
 
