@@ -29,7 +29,6 @@ function ApartmentGallery({ photos, name }: ApartmentGalleryProps) {
     }
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     track.scrollTo({
-      // La tira es el contenedor relativo de cada foto.
       left: slide.offsetLeft,
       behavior: reduceMotion ? "auto" : "smooth",
     });

@@ -24,7 +24,7 @@ interface BackTarget {
   label: string;
 }
 
-/** Recupera la página de origen o usa el catálogo como respaldo. */
+// vuelve al origen o al catálogo
 function getBackTarget(state: unknown): BackTarget {
   if (typeof state === "object" && state !== null && "from" in state) {
     const from = state.from;
@@ -61,7 +61,6 @@ function ApartmentDetail({
   const { id, name, location, price, image, gallery, description, amenities } =
     apartment;
 
-  // La barra fija aparece cuando el hero sale de pantalla.
   const [heroRef, isHeroInView] = useInView<HTMLElement>({
     initialInView: true,
   });
@@ -71,7 +70,6 @@ function ApartmentDetail({
   const [galleryRef, galleryVisible] = useInView<HTMLElement>(reveal);
   const [amenitiesRef, amenitiesVisible] = useInView<HTMLElement>(reveal);
 
-  // Si no hay galería, muestra la foto principal.
   const photos = gallery && gallery.length > 0 ? gallery : [image];
   const contactPath = getContactPath(apartment);
   const revealClass = (visible: boolean): string =>
@@ -282,7 +280,7 @@ function ApartmentDetailPage() {
   const apartment = apartments[index];
   const next = apartments[(index + 1) % apartments.length];
 
-  // Cambiar de residencia reinicia las secciones y la galería.
+  // la clave reinicia secciones y galería al cambiar residencia
   return (
     <ApartmentDetail
       key={apartment.id}

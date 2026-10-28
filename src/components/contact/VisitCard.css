@@ -1,8 +1,7 @@
-/* ===== LA VENTANA DE LA RESIDENCIA: foto sobre la arena con su pie de foto ===== */
-/* Sin caja, sin borde, sin fondo propio: igual que la "ventana" del Inicio, la foto va directo
-   sobre la página. Debajo, un pie de foto de revista que se completa mientras escribís. */
 
-/* El conjunto: foto arriba y pie de foto abajo, uno tras otro. */
+
+
+
 .visit-card {
   position: relative;
   display: flex;
@@ -11,9 +10,9 @@
   margin-top: 2rem;
 }
 
-/* ----- Foto ----- */
 
-/* El marco: en teléfono, una franja panorámica a todo el ancho. Esquinas casi rectas como el resto del sitio. */
+
+
 .visit-card__media {
   position: relative;
   aspect-ratio: 16 / 10;
@@ -22,7 +21,7 @@
   background-color: var(--color-borde);
 }
 
-/* La foto llena el marco sin deformarse. */
+
 .visit-card__photo {
   display: block;
   width: 100%;
@@ -30,7 +29,7 @@
   object-fit: cover;
 }
 
-/* La línea guaria de la confirmación: dibujada dentro del borde de abajo de la foto, empieza sin ancho. */
+
 .visit-card__media::after {
   content: "";
   position: absolute;
@@ -43,9 +42,9 @@
   transform-origin: left;
 }
 
-/* ----- Pie de foto ----- */
 
-/* Nombre y zona a la izquierda; el motivo a la derecha (grid-area los acomoda sin cambiar el TSX). */
+
+
 .visit-card__body {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
@@ -57,7 +56,7 @@
   align-items: baseline;
 }
 
-/* El motivo ("Agendar visita"): pequeño, morado guaria, alineado con el nombre. */
+
 .visit-card__kicker {
   grid-area: motivo;
   font-size: 0.8rem;
@@ -66,7 +65,7 @@
   white-space: nowrap;
 }
 
-/* Nombre de la residencia: serif, la voz de los títulos del sitio. */
+
 .visit-card__title {
   grid-area: titulo;
   font-family: var(--fuente-titulos);
@@ -78,7 +77,7 @@
   text-wrap: balance;
 }
 
-/* La zona, debajo del nombre. */
+
 .visit-card__place {
   grid-area: zona;
   margin-top: 0.25rem;
@@ -86,9 +85,9 @@
   color: var(--color-texto-suave);
 }
 
-/* ----- Línea de datos: "Para Ana · Domingo 1 de noviembre · Tarde" ----- */
 
-/* Los datos van en UNA línea (o las que hagan falta), separados por puntos medios. */
+
+
 .visit-card__details {
   grid-area: datos;
   display: flex;
@@ -102,21 +101,20 @@
   color: var(--color-texto);
 }
 
-/* Cada dato es una pieza más de la frase. */
+
 .visit-card__row {
   display: flex;
   align-items: baseline;
   gap: 0.6rem;
 }
 
-/* El puntito medio entre un dato y el siguiente. */
+
 .visit-card__row + .visit-card__row::before {
   content: "·";
   color: var(--color-guaria);
 }
 
-/* "Para", "Fecha", "Horario" no se ven (la frase se entiende sola), pero el lector de pantalla
-   los sigue leyendo al confirmar: misma técnica que .sr-only de global.css. */
+
 .visit-card__row dt {
   position: absolute;
   width: 1px;
@@ -126,37 +124,35 @@
   white-space: nowrap;
 }
 
-/* El nombre lleva "Para" delante, que sí se lee bien en la frase. */
+
 .visit-card__row:first-child dd::before {
   content: "Para ";
   color: var(--color-texto-suave);
 }
 
-/* La fecha empieza en mayúscula ("Domingo 1 de noviembre"). */
+
 .visit-card__row dd::first-letter {
   text-transform: uppercase;
 }
 
-/* Un dato que todavía falta no se muestra: la frase se va armando a medida que se llena el formulario. */
+
 .visit-card__row:has(.visit-card__empty) {
   display: none;
 }
 
-/* Si todavía no hay ningún dato lleno, tampoco se dibuja la línea de arriba.
-   (Se pregunta por los dd: un :has() no puede ir adentro de otro :has().) */
+
 .visit-card__details:not(:has(dd:not(.visit-card__empty))) {
   display: none;
 }
 
-/* ----- Confirmada (después de enviar) ----- */
 
-/* La línea guaria cruza el borde de abajo de la foto: la visita ya es oficial. */
+
+
 .visit-card--confirmada .visit-card__media::after {
   transform: scaleX(1);
 }
 
-/* El sello: un círculo arena con la guaria y "Recibida", estampado sobre la esquina de la foto,
-   un poco torcido como un sello de verdad. */
+
 .visit-card__seal {
   position: absolute;
   top: -1rem;
@@ -174,13 +170,13 @@
   transform: rotate(-8deg);
 }
 
-/* La guaria dentro del sello. */
+
 .visit-card__seal-mark {
   width: 2.2rem;
   height: 2.2rem;
 }
 
-/* "Recibida": letra pequeña espaciada, en morado. */
+
 .visit-card__seal-text {
   font-size: 0.65rem;
   font-weight: 600;
@@ -189,26 +185,25 @@
   color: var(--color-guaria);
 }
 
-/* ----- Animaciones (solo si la persona no pidió "reducir movimiento") ----- */
+
 @media (prefers-reduced-motion: no-preference) {
-  /* Cada vez que cambia la residencia, React crea una foto nueva y esta se destapa de abajo
-     hacia arriba (keyframe global, el mismo efecto de la ficha). */
+  
   .visit-card__photo {
     animation: foto-destapar 1s var(--curva-suave) both;
   }
 
-  /* La línea guaria se dibuja de izquierda a derecha. */
+  
   .visit-card__media::after {
     transition: transform 0.9s var(--curva-suave) 0.15s;
   }
 
-  /* El sello cae desde grande y más torcido, y se asienta: el momento de la confirmación. */
+  
   .visit-card__seal {
     animation: sello-caer 0.7s var(--curva-suave) 0.45s both;
   }
 }
 
-/* Animación: el sello baja de tamaño y se endereza un poco, como al estamparlo. */
+
 @keyframes sello-caer {
   from {
     opacity: 0;
@@ -223,25 +218,23 @@
   }
 }
 
-/* ----- Tamaños de pantalla ----- */
 
-/* Teléfono y tableta: la ventana va ARRIBA del formulario, así que mientras se llena
-   no repite los datos (ya están en los campos de abajo). Al confirmar, vuelven. */
+
+
 @media (max-width: 1023px) {
   .visit-card:not(.visit-card--confirmada) .visit-card__details {
     display: none;
   }
 }
 
-/* Computadora: la ventana se estira y ocupa todo el alto que le sobra a la columna
-   (la columna mide lo que queda de pantalla; ver ContactPage.css). */
+
 @media (min-width: 1024px) {
   .visit-card {
     flex: 1;
     min-height: 0;
   }
 
-  /* Sin proporción fija: crece para llenar el espacio, pero nunca menos de 8rem. */
+  
   .visit-card__media {
     flex: 1;
     min-height: 8rem;

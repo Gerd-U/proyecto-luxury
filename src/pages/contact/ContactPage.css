@@ -1,11 +1,10 @@
-/* ===== CONTACTO: presentación a un lado y formulario de líneas finas al otro ===== */
 
-/* La página completa: fondo arena (el del sitio), centrada y con aire.
-   Aquí se guardan los colores propios del formulario, todos sacados de la paleta. */
+
+
 .contact-page {
-  /* línea de cada campo en reposo: tinta al 28 % */
+  
   --contacto-linea: rgba(43, 15, 41, 0.28);
-  /* error: el rojo de la paleta oscurecido con la tinta, más sobrio (≈7:1 sobre arena) */
+  
   --contacto-error: #92271f;
   --contacto-error: color-mix(in srgb, var(--color-error) 78%, var(--color-texto));
   display: grid;
@@ -16,17 +15,17 @@
 }
 
 
-/* ----- Presentación (columna izquierda en computadora) ----- */
 
-/* El bloque del título y la frase. */
+
+
 .contact-header {
   max-width: 34rem;
 }
 
-/* "Tu próximo hogar comienza aquí": grande, serif y apretado, como los títulos del Inicio. */
+
 .contact-header h1 {
   max-width: 11ch;
-  /* min(7vw, 8vh): se achica también en pantallas bajitas (laptops), para dejarle sitio a la foto. */
+  
   font-size: clamp(2.8rem, min(7vw, 8vh), 5rem);
   font-weight: 500;
   line-height: 0.95;
@@ -35,7 +34,7 @@
   text-wrap: balance;
 }
 
-/* La frase debajo del título, cómoda de leer. */
+
 .contact-header > p {
   max-width: 34ch;
   margin-top: 1.5rem;
@@ -44,7 +43,7 @@
   color: var(--color-texto-suave);
 }
 
-/* Una línea morado corta debajo de la frase: cierra la presentación sin adornos. */
+
 .contact-header::after {
   content: "";
   display: block;
@@ -54,29 +53,27 @@
   background-color: var(--color-ciruela-medio);
 }
 
-/* Con la tarjeta de visita, la línea sobra: la tarjeta ya cierra la presentación
-   (y como ::after va al final, quedaría debajo de la tarjeta). */
+
 .contact-header:has(.visit-card)::after {
   display: none;
 }
 
-/* ----- Formulario ----- */
 
-/* El formulario: en teléfono, un campo debajo de otro con bastante aire. */
+
+
 .contact-form {
   display: grid;
   gap: 2.25rem;
 }
 
-/* Cada campo: deja espacio arriba para que la etiqueta suba ahí.
-   --relleno-x es el margen interno (solo lo usa la propiedad destacada). */
+
 .form-group {
   --relleno-x: 0px;
   position: relative;
   padding-top: 1.4rem;
 }
 
-/* La etiqueta: empieza DENTRO del campo, como si fuera el texto de ayuda. */
+
 .form-group label {
   position: absolute;
   top: 2.05rem;
@@ -90,27 +87,26 @@
     color 0.25s ease;
 }
 
-/* Al enfocar el campo o cuando ya tiene texto, la etiqueta sube y se achica. */
+
 .form-group:focus-within label,
 .form-group:has(input:not(:placeholder-shown), textarea:not(:placeholder-shown)) label,
-/* El select no tiene placeholder (siempre muestra una opción): su etiqueta vive arriba. */
+
 .form-group--select label {
   transform: translateY(-1.75rem) scale(0.78);
 }
 
-/* Mientras escribís, la etiqueta se pone morado: avisa cuál campo está activo. */
+
 .form-group:focus-within label {
   color: var(--color-ciruela-medio);
 }
 
-/* El "(opcional)" del teléfono, más claro. */
+
 .form-optional {
   font-size: 0.85em;
   opacity: 0.8;
 }
 
-/* Los campos: sin caja, solo una línea fina abajo. La línea morado está dibujada
-   como fondo con ancho 0 y crece al enfocar. Letra de 16 px o más para que el celular no haga zoom. */
+
 .form-group input,
 .form-group select,
 .form-group textarea {
@@ -129,7 +125,7 @@
   color: var(--color-texto);
   font-size: 1.05rem;
   caret-color: var(--color-ciruela-medio);
-  /* deja espacio arriba y abajo al desplazarse al campo: el teclado del celular no lo tapa */
+  
   scroll-margin-block: 6rem 35vh;
   appearance: none;
   transition:
@@ -137,14 +133,14 @@
     border-color 0.25s ease;
 }
 
-/* El mensaje: más alto y solo se estira hacia abajo. */
+
 .form-group textarea {
   min-height: 8.5rem;
   line-height: 1.6;
   resize: vertical;
 }
 
-/* Al enfocar: la línea morado recorre el campo de izquierda a derecha (ese es el foco visible). */
+
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
@@ -152,10 +148,9 @@
   background-size: 100% 2px;
 }
 
-/* ----- Select de residencias ----- */
 
-/* El select lleva DOS fondos: la línea morado del foco (la misma de los otros campos)
-   y una flechita dibujada en SVG a la derecha. Cada valor de background-* va en el mismo orden. */
+
+
 .form-group select {
   padding-right: calc(var(--relleno-x) + 1.75rem);
   background-image:
@@ -171,23 +166,22 @@
   cursor: pointer;
 }
 
-/* Al enfocar, solo crece la línea; la flecha se queda igual. */
+
 .form-group select:focus {
   background-size:
     100% 2px,
     0.75rem;
 }
 
-/* Mientras carga el catálogo, el select queda apagado. */
+
 .form-group select:disabled {
   opacity: 0.6;
   cursor: progress;
 }
 
-/* ----- La lista que se abre (las opciones) ----- */
 
-/* Para todos los navegadores: aunque la lista sea la de Windows, al menos en arena y letra ciruela
-   (y en la letra normal, no la grande de la residencia prellenada). */
+
+
 .form-group select option {
   background-color: var(--color-arena);
   color: var(--color-texto);
@@ -196,22 +190,20 @@
   font-weight: 400;
 }
 
-/* Chrome y Edge nuevos dejan pintar la lista COMPLETA con "appearance: base-select".
-   @supports pregunta si el navegador lo entiende: si no, se ignora todo este bloque y queda lo de arriba. */
+
 @supports (appearance: base-select) {
-  /* Se activa en el select y en su lista (::picker(select) es la caja que se abre). */
+  
   .form-group select,
   .form-group select::picker(select) {
     appearance: base-select;
   }
 
-  /* El navegador trae su propia flechita: la escondemos porque ya dibujamos la nuestra. */
+  
   .form-group select::picker-icon {
     display: none;
   }
 
-  /* La caja de la lista: arena, borde fino, esquinas casi rectas y la sombra suave del sitio.
-     Si hay muchas residencias, se recorre con scroll (barra fina en lila). */
+  
   .form-group select::picker(select) {
     max-height: 20rem;
     margin-top: 0.4rem;
@@ -225,7 +217,7 @@
     scrollbar-width: thin;
   }
 
-  /* Cada residencia: cómoda de tocar y separada de la siguiente por una línea casi invisible. */
+  
   .form-group select option {
     padding: 0.7rem 1.1rem;
     border-bottom: 1px solid rgba(43, 15, 41, 0.06);
@@ -240,7 +232,7 @@
     border-bottom: 0;
   }
 
-  /* Al pasar el mouse o moverse con las flechas: fondo rosado de la guaria y letra morada (en vez del azul). */
+  
   .form-group select option:hover,
   .form-group select option:focus-visible {
     outline: none;
@@ -248,18 +240,18 @@
     color: var(--color-guaria);
   }
 
-  /* La residencia elegida: en morado guaria y un poco más gruesa. */
+  
   .form-group select option:checked {
     color: var(--color-guaria);
     font-weight: 500;
   }
 
-  /* El chequecito de la elegida, también en guaria. */
+  
   .form-group select option::checkmark {
     color: var(--color-guaria);
   }
 
-  /* "Aún no sé, quiero una recomendación": en serif itálica, para separarla de las residencias. */
+  
   .form-group select option:first-child {
     font-family: var(--fuente-titulos);
     font-size: 1.05rem;
@@ -267,7 +259,7 @@
     color: var(--color-texto-suave);
   }
 
-  /* Al abrirse, la lista baja apenas y aparece suave (solo sin "reducir movimiento"). */
+  
   @media (prefers-reduced-motion: no-preference) {
     .form-group select::picker(select) {
       transition:
@@ -275,7 +267,7 @@
         translate 0.35s var(--curva-suave);
     }
 
-    /* @starting-style dice "desde dónde arranca" la transición cuando la lista recién aparece. */
+    
     @starting-style {
       .form-group select:open::picker(select) {
         opacity: 0;
@@ -285,9 +277,9 @@
   }
 }
 
-/* ----- Chips: motivo ----- */
 
-/* El grupo de opciones: el fieldset sin su caja de navegador. */
+
+
 .form-choices {
   min-width: 0;
   margin: 0;
@@ -295,8 +287,7 @@
   border: 0;
 }
 
-/* La pregunta del grupo: del mismo tamaño y color que una etiqueta ya flotada.
-   El float es un truco: sin él, el navegador dibuja el legend "encima" del borde y no respeta el margen. */
+
 .form-choices__legend {
   float: left;
   width: 100%;
@@ -306,7 +297,7 @@
   color: var(--color-texto-suave);
 }
 
-/* La fila de chips: se acomodan solos y bajan de línea si no caben. */
+
 .form-choices__options {
   clear: both;
   display: flex;
@@ -314,7 +305,7 @@
   gap: 0.6rem;
 }
 
-/* Cada chip es un label (todo el chip se puede tocar) con forma de píldora. */
+
 .form-chip {
   position: relative;
   display: inline-flex;
@@ -333,8 +324,7 @@
     transform 0.16s ease-out;
 }
 
-/* El radio real se esconde SIN display: none, para que el teclado y el lector de pantalla lo sigan usando
-   (misma técnica que .sr-only de global.css). */
+
 .form-chip__input {
   position: absolute;
   width: 1px;
@@ -345,32 +335,32 @@
   white-space: nowrap;
 }
 
-/* El chip elegido: se rellena de ciruela con letras arena (:has mira si el radio de adentro está marcado). */
+
 .form-chip:has(:checked) {
   border-color: var(--color-ciruela);
   background-color: var(--color-ciruela);
   color: var(--color-arena);
 }
 
-/* Foco con teclado: como el radio está escondido, el contorno se dibuja en el chip. */
+
 .form-chip:has(:focus-visible) {
   outline: 2px solid var(--color-foco);
   outline-offset: 3px;
 }
 
-/* Al presionar, el chip se hunde un poco. */
+
 .form-chip:active {
   transform: scale(0.97);
 }
 
-/* Solo con mouse: el borde del chip se oscurece al pasar por encima. */
+
 @media (hover: hover) and (pointer: fine) {
   .form-chip:hover:not(:has(:checked)) {
     border-color: var(--color-ciruela-medio);
   }
 }
 
-/* Autocompletar del navegador: evita el fondo amarillo/celeste que rompe el diseño. */
+
 .form-group input:-webkit-autofill {
   -webkit-text-fill-color: var(--color-texto);
   transition:
@@ -378,20 +368,20 @@
     background-color 600000s 0s;
 }
 
-/* ----- Errores (junto a cada campo) ----- */
 
-/* Campo con error: la línea de abajo y la morado toman el tono de error. */
+
+
 .form-group [aria-invalid="true"] {
   border-bottom-color: var(--contacto-error);
   background-image: linear-gradient(var(--contacto-error), var(--contacto-error));
 }
 
-/* La etiqueta del campo con error también cambia de tono. */
+
 .form-group:has([aria-invalid="true"]) label {
   color: var(--contacto-error);
 }
 
-/* El mensaje de error: pequeño, debajo del campo, con una rayita delante. */
+
 .form-error {
   display: flex;
   align-items: baseline;
@@ -402,7 +392,7 @@
   color: var(--contacto-error);
 }
 
-/* La rayita del error: una línea dibujada, no un ícono de alerta. */
+
 .form-error::before {
   content: "";
   flex: none;
@@ -412,10 +402,9 @@
   transform: translateY(-0.3em);
 }
 
-/* ----- Propiedad prellenada desde el detalle ----- */
 
-/* Si llegaste desde una residencia, el campo se vuelve una franja arena más oscura
-   con una línea morado arriba: es lo primero que se reconoce del formulario. */
+
+
 .form-group--prefilled {
   --relleno-x: 1.1rem;
   padding-top: 1.6rem;
@@ -424,12 +413,12 @@
   box-shadow: inset 0 1px 0 var(--color-ciruela-medio);
 }
 
-/* En la franja, la etiqueta queda un poco más abajo por el relleno extra. */
+
 .form-group--prefilled label {
   top: 2.25rem;
 }
 
-/* El nombre de la residencia: en la letra de títulos, grande y morado. */
+
 .form-group--prefilled input,
 .form-group--prefilled select {
   font-family: var(--fuente-titulos);
@@ -440,7 +429,7 @@
   text-overflow: ellipsis;
 }
 
-/* La notita "Elegida desde la ficha…" debajo del nombre. */
+
 .form-group__note {
   margin-top: 0.35rem;
   padding: 0 var(--relleno-x);
@@ -448,9 +437,9 @@
   color: var(--color-texto-suave);
 }
 
-/* ----- Botón ----- */
 
-/* "Enviar consulta": bloque tinta con letras arena espaciadas, a todo el ancho en teléfono. */
+
+
 .contact-button {
   display: inline-flex;
   align-items: center;
@@ -472,7 +461,7 @@
     transform 0.16s ease-out;
 }
 
-/* La flecha del botón, lista para moverse. */
+
 .contact-button__arrow {
   display: inline-block;
   font-size: 1.1em;
@@ -480,12 +469,12 @@
   transition: transform 0.35s var(--curva-suave);
 }
 
-/* Al presionar, el botón se hunde un poco (confirma el toque). */
+
 .contact-button:active {
   transform: scale(0.98);
 }
 
-/* Solo con mouse: el botón pasa a ciruela y la flecha se corre. */
+
 @media (hover: hover) and (pointer: fine) {
   .contact-button:hover {
     background-color: var(--color-ciruela-medio);
@@ -496,9 +485,9 @@
   }
 }
 
-/* ----- Confirmación (reemplaza al formulario) ----- */
 
-/* El bloque de "Gracias": con una línea morado arriba que se dibuja al aparecer. */
+
+
 .form-success {
   padding-top: 2.5rem;
   background-image: linear-gradient(var(--color-ciruela-medio), var(--color-ciruela-medio));
@@ -506,7 +495,7 @@
   background-size: 4rem 1px;
 }
 
-/* "Gracias, Ana.": grande y serif, la misma voz del título de la página. */
+
 .form-success h2 {
   font-size: clamp(2.4rem, 5vw, 3.75rem);
   font-weight: 500;
@@ -515,12 +504,12 @@
   color: var(--color-texto);
 }
 
-/* El título recibe el foco por código: sin contorno (no lo activó el teclado). */
+
 .form-success h2:focus {
   outline: none;
 }
 
-/* El texto de la confirmación, debajo del "Gracias". */
+
 .form-success p {
   max-width: 44ch;
   margin-top: 1.25rem;
@@ -528,16 +517,15 @@
   line-height: 1.6;
 }
 
-/* El nombre de la residencia dentro del texto, en morado. */
+
 .form-success strong {
   font-weight: 600;
   color: var(--color-ciruela-medio);
 }
 
-/* ----- Aviso de envío simulado (lo pide el enunciado) ----- */
 
-/* Nota pequeña bajo el botón: se lee claro pero no compite con el formulario.
-   (En la confirmación el aviso es un párrafo normal, con el mismo estilo de siempre.) */
+
+
 .form-demo-note {
   max-width: 52ch;
   font-size: 0.85rem;
@@ -545,18 +533,18 @@
   color: var(--color-texto-suave);
 }
 
-/* Bajo el botón, más pegada a él que el espacio normal entre campos (es su aclaración). */
+
 .contact-button + .form-demo-note {
   margin-top: -1.25rem;
 }
 
-/* "Envío simulado." en morado guaria, para que sea lo primero que se lee de la nota. */
+
 .form-demo-note strong {
   font-weight: 600;
   color: var(--color-guaria);
 }
 
-/* "Escribir otro mensaje": enlace de texto con una línea fina debajo. */
+
 .form-success__again {
   min-height: 2.75rem;
   margin-top: 2rem;
@@ -573,7 +561,7 @@
   transition: background-size 0.35s var(--curva-suave);
 }
 
-/* Con mouse, la línea se recoge hacia la derecha al pasar por encima. */
+
 @media (hover: hover) and (pointer: fine) {
   .form-success__again:hover {
     background-position: right 85%;
@@ -581,9 +569,9 @@
   }
 }
 
-/* ----- Animaciones (solo si la persona no pidió "reducir movimiento") ----- */
+
 @media (prefers-reduced-motion: no-preference) {
-  /* Presentación: título, frase y línea entran subiendo, una tras otra. */
+  
   .contact-header h1,
   .contact-header > p,
   .contact-header::after {
@@ -598,7 +586,7 @@
     animation-delay: 0.16s;
   }
 
-  /* Formulario: cada campo y el botón entran en cascada (60 ms entre cada uno). */
+  
   .contact-form > * {
     animation: aparecer-subiendo 0.8s var(--curva-suave) both;
   }
@@ -612,7 +600,7 @@
   .contact-form > :nth-child(7) { animation-delay: 0.56s; }
   .contact-form > :nth-child(8) { animation-delay: 0.62s; }
 
-  /* La franja de la propiedad prellenada se "pinta" de izquierda a derecha al llegar. */
+  
   .form-group--prefilled {
     background-image: linear-gradient(rgba(226, 214, 196, 0.55), rgba(226, 214, 196, 0.55));
     background-color: transparent;
@@ -622,12 +610,12 @@
       franja-pintar 0.9s var(--curva-suave) 0.7s both;
   }
 
-  /* El mensaje de error aparece suave, bajando apenas. */
+  
   .form-error {
     animation: error-aparecer 0.3s var(--curva-suave) both;
   }
 
-  /* Confirmación: la línea se dibuja y después entran el título, el texto y el enlace. */
+  
   .form-success {
     animation: linea-dibujar 0.7s var(--curva-suave) both;
   }
@@ -642,7 +630,7 @@
   .form-success > :nth-child(4) { animation-delay: 0.51s; }
 }
 
-/* Animación: el error baja 4 px mientras aparece. */
+
 @keyframes error-aparecer {
   from {
     opacity: 0;
@@ -654,7 +642,7 @@
   }
 }
 
-/* Animación: el fondo arena de la propiedad crece de 0 a todo el ancho. */
+
 @keyframes franja-pintar {
   from {
     background-size: 0% 100%;
@@ -664,7 +652,7 @@
   }
 }
 
-/* Animación: la línea de la confirmación crece de 0 a 4rem. */
+
 @keyframes linea-dibujar {
   from {
     background-size: 0 1px;
@@ -674,9 +662,9 @@
   }
 }
 
-/* ----- Tamaños de pantalla ----- */
 
-/* Tableta: los campos cortos van de dos en dos (nombre | correo, teléfono | propiedad). */
+
+
 @media (min-width: 768px) {
   .contact-page {
     gap: 4.5rem;
@@ -688,27 +676,26 @@
     gap: 2.5rem 2.5rem;
   }
 
-  /* El mensaje y el botón usan todo el ancho. */
+  
   .form-group--full,
   .contact-button,
   .form-demo-note {
     grid-column: 1 / -1;
   }
 
-  /* El botón vuelve a su tamaño natural, alineado a la izquierda. */
+  
   .contact-button {
     justify-self: start;
   }
 
-  /* Si la propiedad viene prellenada, ocupa todo el ancho (los nombres son largos)
-     y el teléfono también, para que no quede un hueco al lado. */
+  
   .form-group--prefilled,
   .contact-form:has(.form-group--prefilled) .form-group:has(#telefono) {
     grid-column: 1 / -1;
   }
 }
 
-/* Computadora: presentación a la izquierda (se queda quieta al bajar) y formulario a la derecha. */
+
 @media (min-width: 1024px) {
   .contact-page {
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
@@ -717,15 +704,13 @@
     padding-top: 5.5rem;
   }
 
-  /* La presentación se queda pegada arriba mientras se recorre el formulario. */
+  
   .contact-header {
     position: sticky;
     top: 7rem;
   }
 
-  /* Con la ventana de la residencia, la columna mide justo lo que queda de pantalla bajo el menú
-     (svh = alto real de la pantalla) y se acomoda en columna: título, frase y la foto estirándose
-     hasta abajo. Así la foto se ve SIEMPRE mientras se baja por el formulario. */
+  
   .contact-header:has(.visit-card) {
     display: flex;
     flex-direction: column;
@@ -733,13 +718,12 @@
     min-height: 34rem;
   }
 
-  /* En esa columna el título puede usar todo el ancho: queda en 3 líneas en vez de 4
-     y le deja más alto a la foto. */
+  
   .contact-header:has(.visit-card) h1 {
     max-width: none;
   }
 
-  /* El formulario arranca un poco más abajo que el título: ritmo editorial. */
+  
   .contact-content {
     padding-top: 0.75rem;
   }

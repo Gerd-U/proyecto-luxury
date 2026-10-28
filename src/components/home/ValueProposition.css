@@ -1,8 +1,7 @@
-/* ===== PROPUESTA DE VALOR: "Lo que te prometemos" (Inicio, después de la presentación) ===== */
-/* Idea: la sección se recorre como una casa. Primero se abre una VENTANA grande al mar (la promesa
-   de la vista) y después las tres promesas llegan como láminas que se apilan una sobre otra al bajar. */
 
-/* La sección completa con fondo ciruela (el morado casi negro de la guaria); aquí el foco del teclado es lila. */
+
+
+
 .value {
   --color-foco: var(--color-guaria-petalo);
   padding: 6rem var(--espacio-pequeno) 0;
@@ -10,22 +9,20 @@
   color: var(--color-texto-claro);
 }
 
-/* Contenedor centrado: la introducción arriba y las láminas abajo. */
+
 .value__inner {
   max-width: var(--ancho-max);
   margin: 0 auto;
 }
 
-/* La introducción: título y frase centrados, y la ventana debajo a todo el ancho. */
+
 .value__intro {
   display: grid;
   justify-items: center;
   text-align: center;
 }
 
-/* "Lo que te prometemos" grande: es el momento fuerte de la sección.
-   min(7vw, 11vh) hace que se achique tanto en pantallas angostas como en pantallas bajas
-   (laptops pequeñas); nunca pasa de 6rem. */
+
 .value__title {
   max-width: 11ch;
   font-size: clamp(2.8rem, min(7vw, 11vh), 6rem);
@@ -35,7 +32,7 @@
   color: var(--color-arena);
 }
 
-/* La frase debajo del título, centrada y cómoda de leer. */
+
 .value__lead {
   max-width: 38ch;
   margin-top: 1.75rem;
@@ -44,8 +41,7 @@
   color: rgba(245, 235, 221, 0.88);
 }
 
-/* La ventana: la foto del ventanal en formato panorámico, a todo el ancho del contenedor.
-   max-height evita que ocupe más de la mitad de la pantalla en monitores grandes. */
+
 .value__photo {
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -54,7 +50,7 @@
   overflow: hidden;
 }
 
-/* La foto dentro de la ventana: llena el marco y apunta al mar. */
+
 .value__photo img {
   width: 100%;
   height: 100%;
@@ -62,52 +58,50 @@
   object-position: 50% 55%;
 }
 
-/* La lista de promesas: las láminas van una debajo de la otra, sin espacio entre ellas. */
+
 .value__list {
   display: grid;
   margin-top: 5rem;
   padding-bottom: 6rem;
 }
 
-/* Cada promesa es una lámina que se queda pegada arriba al bajar (sticky);
-   la siguiente sube y la tapa, como hojas que se apilan. */
+
 .value__item {
   position: sticky;
   top: 84px;
   display: grid;
   align-content: end;
   gap: 1.25rem;
-  /* alta pero con tope: entre 320px y 520px según la altura de la pantalla */
+  
   min-height: clamp(320px, 55vh, 520px);
   padding: 2.5rem 1.75rem;
-  /* sombra suave hacia arriba: la lámina que llega se ve encima de la anterior sin un corte duro */
+  
   box-shadow: 0 -12px 32px rgba(20, 6, 19, 0.35);
 }
 
-/* Primera lámina (Vista): arena con texto tinta. */
+
 .value__item:nth-child(1) {
   background-color: var(--color-arena);
   color: var(--color-texto);
 }
 
-/* Las láminas florecen de claro a intenso: arena, ciruela medio y el morado guaria. */
 
-/* Segunda lámina (Privacidad): ciruela medio con texto arena; se pega un poco más abajo para que asome la anterior. */
+
+
 .value__item:nth-child(2) {
   top: calc(84px + 1.5rem);
   background-color: var(--color-ciruela-medio);
   color: var(--color-arena);
 }
 
-/* Tercera lámina (Acompañamiento): morado guaria con texto blanco; asoman las dos anteriores. */
+
 .value__item:nth-child(3) {
   top: calc(84px + 3rem);
   background-color: var(--color-guaria);
   color: var(--color-texto-claro);
 }
 
-/* La palabra de cada promesa, grande como un cartel. Se ajusta al ancho y a la altura
-   de la pantalla (lo que sea menor), con tope de 7rem; "Acompañamiento" cabe en una línea. */
+
 .value__name {
   font-size: clamp(2.6rem, min(7.5vw, 12vh), 7rem);
   font-weight: 500;
@@ -117,7 +111,7 @@
   hyphens: auto;
 }
 
-/* El texto de cada promesa, en el mismo color de su lámina. */
+
 .value__text {
   max-width: 34ch;
   font-size: 1.15rem;
@@ -126,10 +120,10 @@
   opacity: 0.9;
 }
 
-/* Al hacer scroll (navegadores que lo soportan, sin "reducir movimiento"). */
+
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    /* El título y la frase suben y aparecen. */
+    
     .value__title,
     .value__lead {
       animation: aparecer-subiendo var(--curva-suave) both;
@@ -137,15 +131,14 @@
       animation-range: entry 10% cover 30%;
     }
 
-    /* La ventana se ABRE mientras bajas: arranca rápido y frena suave al final (curva suave),
-       repartida en un tramo largo de scroll para que no se sienta brusca. */
+    
     .value__photo {
       animation: ventana-abrir var(--curva-suave) both;
       animation-timeline: view();
       animation-range: entry 0% cover 55%;
     }
 
-    /* La foto se aleja poquito mientras la ventana se abre (sensación de asomarse). */
+    
     .value__photo img {
       animation: ventana-alejar var(--curva-suave) both;
       animation-timeline: view();
@@ -154,7 +147,7 @@
   }
 }
 
-/* Animación: de una ventana entreabierta a la ventana completa (con esquinas que se enderezan). */
+
 @keyframes ventana-abrir {
   from {
     clip-path: inset(6% 22% 6% 22% round 4px);
@@ -164,7 +157,7 @@
   }
 }
 
-/* Animación: la foto empieza un poco ampliada y vuelve a su tamaño. */
+
 @keyframes ventana-alejar {
   from {
     transform: scale(1.12);
@@ -174,7 +167,7 @@
   }
 }
 
-/* Tableta: más aire y la ventana más panorámica. */
+
 @media (min-width: 768px) {
   .value {
     padding: 8rem var(--espacio-mediano) 0;
@@ -189,8 +182,7 @@
   }
 }
 
-/* Computadora: la ventana más panorámica y láminas más altas; en cada lámina la palabra ocupa
-   todo el ancho y el texto queda abajo a la derecha, como el pie de un cartel. */
+
 @media (min-width: 1024px) {
   .value__photo {
     aspect-ratio: 16 / 7;

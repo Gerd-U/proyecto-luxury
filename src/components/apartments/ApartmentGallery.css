@@ -1,6 +1,6 @@
-/* ===== GALERÍA "Recorrido": sección de fotos en el Detalle ===== */
 
-/* La tira horizontal de fotos que se desliza; al soltar, cada foto se "imanta" (scroll-snap). */
+
+
 .gallery__track {
   position: relative;
   display: flex;
@@ -11,12 +11,12 @@
   overscroll-behavior-x: contain;
 }
 
-/* Esconde la barra de scroll de la tira (Chrome, Android, Safari). */
+
 .gallery__track::-webkit-scrollbar {
   display: none;
 }
 
-/* Cada foto de la tira: casi todo el ancho, deja ver un pedazo de la siguiente. */
+
 .gallery__slide {
   flex: 0 0 88%;
   aspect-ratio: 4 / 3;
@@ -25,14 +25,14 @@
   background-color: var(--color-borde);
 }
 
-/* La imagen dentro de cada foto: llena el espacio sin deformarse. */
+
 .gallery__slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* Fila de abajo de la galería: contador a la izquierda y flechas a la derecha. */
+
 .gallery__controls {
   display: flex;
   align-items: center;
@@ -41,27 +41,27 @@
   margin-top: 1.25rem;
 }
 
-/* El contador "/ 04" (total de fotos), en gris. */
+
 .gallery__counter {
   font-family: var(--fuente-titulos);
   font-size: 1.6rem;
   color: var(--color-texto-suave);
 }
 
-/* El número de la foto actual ("02"), más grande y oscuro. */
+
 .gallery__counter strong {
   font-size: 2.4rem;
   font-weight: 500;
   color: var(--color-texto);
 }
 
-/* Las dos flechas, una al lado de la otra. */
+
 .gallery__buttons {
   display: flex;
   gap: 0.5rem;
 }
 
-/* Cada flecha: botón redondo oscuro. */
+
 .gallery__button {
   display: inline-grid;
   place-items: center;
@@ -79,25 +79,25 @@
     opacity 0.2s ease;
 }
 
-/* Al presionar una flecha, se hunde un poquito. */
+
 .gallery__button:active:not(:disabled) {
   transform: scale(0.92);
 }
 
-/* Flecha apagada cuando no hay más fotos para ese lado. */
+
 .gallery__button:disabled {
   opacity: 0.3;
   cursor: not-allowed;
 }
 
-/* Solo con mouse: la flecha se vuelve morado al pasar por encima. */
+
 @media (hover: hover) and (pointer: fine) {
   .gallery__button:hover:not(:disabled) {
     background-color: var(--color-ciruela-medio);
   }
 }
 
-/* Computadora: fotos más panorámicas y un poco más de espacio entre ellas. */
+
 @media (min-width: 900px) {
   .gallery__track {
     gap: 1.5rem;

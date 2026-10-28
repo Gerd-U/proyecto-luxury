@@ -49,7 +49,6 @@ function FilterBar({
   onChange,
   onClear,
 }: FilterBarProps) {
-  // Región elegida en el mapa o en el índice; filtra todas sus zonas.
   const focusedRegion = filters.region;
   const priceValue = filters.maxPrice ?? priceBounds.max;
 

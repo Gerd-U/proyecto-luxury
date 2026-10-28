@@ -9,15 +9,14 @@ export interface IntroLoaderState {
   skip: () => void;
 }
 
-// Se reinicia con cada recarga: así la intro sale cada vez que se carga Inicio,
-// pero no al volver a Inicio navegando dentro de la app.
+// evita repetir la intro al navegar dentro de la app
 let hasPlayedThisLoad = false;
 
 function prefersReducedMotion(): boolean {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-// La intro solo se muestra si la página se cargó (o recargó) en Inicio ("/").
+// muestra la intro si la carga inicial fue en inicio
 function pageLoadedAtHome(): boolean {
   const [entry] = performance.getEntriesByType("navigation");
   return !entry || new URL(entry.name).pathname === "/";
@@ -51,7 +50,7 @@ export function useIntroLoader(): IntroLoaderState {
     if (!isVisible) return;
 
     const root = document.documentElement;
-    // Ancho de la barra de scroll antes de esconderla (0 en teléfonos); la intro lo usa para centrarse.
+    // guarda el ancho del scroll para centrar la intro
     root.style.setProperty("--barra", `${window.innerWidth - root.clientWidth}px`);
     root.style.overflow = "hidden";
 

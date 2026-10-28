@@ -17,7 +17,6 @@ export default function FavoriteButton({
 }: FavoriteButtonProps) {
   const { isFavorite, toggleFavorite } = useFavorites();
   const active = isFavorite(apartmentId);
-  // Activa el pulso después del clic.
   const [justToggled, setJustToggled] = useState<boolean>(false);
 
   const target = apartmentName ?? "esta residencia";

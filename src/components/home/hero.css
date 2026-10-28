@@ -1,6 +1,6 @@
-/* ===== HERO: la primera pantalla del Inicio ===== */
 
-/* La sección completa: ocupa toda la pantalla y pone el contenido abajo. */
+
+
 .hero {
   position: relative;
   isolation: isolate;
@@ -13,14 +13,14 @@
   background-color: var(--color-ciruela);
 }
 
-/* Capa de la foto de fondo: cubre todo el hero, detrás del texto. */
+
 .hero__media {
   position: absolute;
   inset: 0;
   z-index: -2;
 }
 
-/* La foto de la piscina: llena la pantalla y empieza un poco ampliada. */
+
 .hero__media img {
   width: 100%;
   height: 100%;
@@ -30,13 +30,12 @@
   transition: transform 2.6s var(--curva-salida);
 }
 
-/* Cuando termina la intro, la foto se asienta despacio a su tamaño normal. */
+
 .hero--ready .hero__media img {
   transform: scale(1);
 }
 
-/* Velo ciruela solo donde hace falta: una franja abajo (detrás del texto, el botón y los datos)
-   y otra finita arriba (detrás del menú). El centro queda limpio para que la foto se vea con su luz. */
+
 .hero__veil {
   position: absolute;
   inset: 0;
@@ -46,7 +45,7 @@
     linear-gradient(to bottom, rgba(43, 15, 41, 0.35) 0%, transparent 18%);
 }
 
-/* Contenedor del texto, centrado y con espacio para que no lo tape el header. */
+
 .hero__content {
   display: grid;
   gap: 2rem;
@@ -56,23 +55,23 @@
   padding: 7rem var(--espacio-pequeno) 3rem;
 }
 
-/* El título grande "Vivir donde florece Costa Rica". */
+
 .hero__title {
   font-size: clamp(2.6rem, 8.5vw, 7.5rem);
   font-weight: 500;
   line-height: 0.95;
   letter-spacing: -0.02em;
   color: var(--color-texto-claro);
-  /* sombra suave y corrida hacia abajo: separa las letras del brillo del mar sin oscurecer la foto */
+  
   text-shadow: 0 2px 24px rgba(43, 15, 41, 0.45);
 }
 
-/* Cada línea del título va en su propio renglón. */
+
 .hero__line {
   display: block;
 }
 
-/* "Ventanita" de cada palabra: la esconde mientras está abajo. */
+
 .hero__mask {
   display: inline-block;
   overflow: hidden;
@@ -81,7 +80,7 @@
   vertical-align: top;
 }
 
-/* Cada palabra del título: empieza escondida abajo (--i es su orden). */
+
 .hero__word {
   display: inline-block;
   transform: translateY(105%);
@@ -89,19 +88,19 @@
   transition-delay: calc(150ms + var(--i) * 80ms);
 }
 
-/* Cuando el hero está listo, las palabras suben una tras otra. */
+
 .hero--ready .hero__word {
   transform: translateY(0);
 }
 
-/* Columna con la frase y los botones (a la derecha en computadora). */
+
 .hero__aside {
   display: grid;
   gap: 1.75rem;
   max-width: 30rem;
 }
 
-/* La frase, los botones y los datos empiezan invisibles y un poco abajo. */
+
 .hero__aside,
 .hero__facts {
   opacity: 0;
@@ -111,21 +110,21 @@
     transform 0.8s var(--curva-salida) 0.7s;
 }
 
-/* Cuando el hero está listo, aparecen después del título. */
+
 .hero--ready .hero__aside,
 .hero--ready .hero__facts {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* La frase que explica qué es Residencias La Guaria. */
+
 .hero__lead {
   font-size: 1.05rem;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.9);
 }
 
-/* Fila con el botón "Ver residencias" y el enlace "Agendar una visita". */
+
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
@@ -133,7 +132,7 @@
   gap: 1.5rem;
 }
 
-/* Botón morado guaria "Ver residencias". */
+
 .hero__cta {
   display: inline-flex;
   align-items: center;
@@ -148,29 +147,29 @@
     color 0.3s ease;
 }
 
-/* Botón "Ver residencias" al pasar el mouse: se vuelve arena con texto ciruela. */
+
 .hero__cta:hover {
   background-color: var(--color-arena);
   color: var(--color-ciruela);
 }
 
-/* La flecha → dentro del botón. */
+
 .hero__arrow {
   display: inline-block;
   transition: transform 0.3s var(--curva-salida);
 }
 
-/* Al pasar el mouse por el botón, la flecha se corre a la derecha. */
+
 .hero__cta:hover .hero__arrow {
   transform: translateX(4px);
 }
 
-/* Al presionar el botón, se hunde un poquito. */
+
 .hero__cta:active {
   transform: scale(0.98);
 }
 
-/* Enlace subrayado "Agendar una visita", al lado del botón. */
+
 .hero__link {
   color: var(--color-texto-claro);
   text-decoration: underline;
@@ -179,14 +178,13 @@
   transition: text-decoration-color 0.3s ease;
 }
 
-/* Enlace "Agendar una visita" al pasar el mouse: el subrayado se pone lila. */
+
 .hero__link:hover {
   color: var(--color-texto-claro);
   text-decoration-color: var(--color-guaria-petalo);
 }
 
-/* Los datos del catálogo como UNA línea discreta tipo pie de foto ("20 Residencias · 7 Ubicaciones · Desde…"),
-   en vez de tres números grandes de "estadísticas". */
+
 .hero__facts {
   display: flex;
   flex-wrap: wrap;
@@ -196,14 +194,14 @@
   color: rgba(255, 255, 255, 0.85);
 }
 
-/* Desde tableta, la línea de datos un poco más grande. */
+
 @media (min-width: 768px) {
   .hero__facts {
     font-size: 0.9rem;
   }
 }
 
-/* Cada dato: el número va antes de la palabra ("20 Residencias"). */
+
 .hero__fact {
   display: flex;
   flex-direction: row-reverse;
@@ -211,12 +209,12 @@
   gap: 0.35em;
 }
 
-/* El último dato se lee en orden normal: "desde $293,500". */
+
 .hero__fact:last-child {
   flex-direction: row;
 }
 
-/* Un punto separador antes de cada dato (menos el primero). "order" lo deja siempre a la izquierda. */
+
 .hero__fact + .hero__fact::after {
   content: "·";
   order: 2;
@@ -228,25 +226,25 @@
   order: -1;
 }
 
-/* La palabra de cada dato ("Residencias"), en minúscula para que se lea como frase. */
+
 .hero__fact dt {
   text-transform: lowercase;
 }
 
-/* El número de cada dato, apenas más marcado. */
+
 .hero__fact dd {
   font-weight: 600;
   color: var(--color-texto-claro);
 }
 
-/* Tableta: más margen alrededor del contenido. */
+
 @media (min-width: 768px) {
   .hero__content {
     padding: 8rem var(--espacio-mediano) 4rem;
   }
 }
 
-/* Computadora: título arriba a todo el ancho; abajo, datos a la izquierda y frase a la derecha. */
+
 @media (min-width: 1024px) {
   .hero__content {
     grid-template-columns: 1fr 1fr;

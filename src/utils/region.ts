@@ -15,7 +15,6 @@ export const REGION_OPTIONS: RegionOption[] = [
 
 const PACIFIC_PROVINCES: string[] = ["Guanacaste", "Puntarenas"];
 
-/** Determina la región a partir de la provincia. */
 export function getRegion(location: string): Region {
   const province = location.split(",").pop()?.trim() ?? "";
   return PACIFIC_PROVINCES.includes(province) ? "pacifico" : "valle";

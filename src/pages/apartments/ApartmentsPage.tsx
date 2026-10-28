@@ -26,7 +26,7 @@ const FILTERS_ID = "filtros-catalogo";
 
 function ApartmentsPage() {
   const { apartments, isLoading, error, retry } = useApartments();
-  // La URL conserva los filtros al volver del detalle.
+  // conserva los filtros en la url al volver del detalle
   const [searchParams, setSearchParams] = useSearchParams();
   const [isPanelOpen, setIsPanelOpen] = useState<boolean>(false);
   const resultsRef = useRef<HTMLDivElement | null>(null);
@@ -44,7 +44,7 @@ function ApartmentsPage() {
   );
 
   const totalPages = getTotalPages(filteredApartments.length);
-  // Evita mostrar una página vacía si cambian los resultados.
+  // limita la página al total de resultados
   const currentPage = Math.min(requestedPage, totalPages);
   const visibleApartments = paginate(filteredApartments, currentPage);
   const activeCount = countActiveFilters(filters);
@@ -52,7 +52,6 @@ function ApartmentsPage() {
   const firstShown = (currentPage - 1) * ITEMS_PER_PAGE + 1;
   const lastShown = firstShown + visibleApartments.length - 1;
 
-  // Los filtros nuevos empiezan en la primera página.
   const updateFilters = (nextFilters: ApartmentFilters): void => {
     setSearchParams(buildParams(nextFilters, 1), { replace: true });
   };

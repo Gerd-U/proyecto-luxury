@@ -12,7 +12,6 @@ export interface PriceBounds {
 
 export const PRICE_STEP = 50_000;
 
-/** Claves de los filtros en la URL. */
 const PARAM = {
   search: "q",
   location: "zona",
@@ -22,7 +21,7 @@ const PARAM = {
   page: "pagina",
 } as const;
 
-/** Ignora mayúsculas y tildes al buscar. */
+// quita tildes y normaliza mayúsculas
 export function normalizeText(text: string): string {
   return text
     .normalize("NFD")
@@ -73,7 +72,6 @@ export function getLocations(apartments: readonly Apartment[]): string[] {
   );
 }
 
-/** Cuántas residencias hay en cada zona ("Escazú, San José" → 7). */
 export function getLocationCounts(apartments: readonly Apartment[]): Record<string, number> {
   const counts: Record<string, number> = {};
   for (const apartment of apartments) {
@@ -105,7 +103,6 @@ function readRegion(value: string | null): Region | null {
   return value === "valle" || value === "pacifico" ? value : null;
 }
 
-/** Los parámetros no válidos se ignoran. */
 export function readFiltersFromParams(params: URLSearchParams): ApartmentFilters {
   return {
     search: params.get(PARAM.search) ?? DEFAULT_FILTERS.search,

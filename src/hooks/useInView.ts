@@ -6,14 +6,13 @@ interface UseInViewOptions {
   initialInView?: boolean;
 }
 
-/** Indica si el elemento está dentro de la pantalla. */
 export function useInView<T extends HTMLElement>({
   once = false,
   rootMargin = "0px",
   initialInView = false,
 }: UseInViewOptions = {}): [RefObject<T | null>, boolean] {
   const ref = useRef<T | null>(null);
-  // Sin soporte, se asume que el elemento está visible.
+  // sin observer, trata el elemento como visible
   const [isInView, setIsInView] = useState<boolean>(
     () => typeof IntersectionObserver === "undefined" || initialInView,
   );

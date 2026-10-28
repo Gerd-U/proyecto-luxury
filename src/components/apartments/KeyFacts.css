@@ -1,20 +1,20 @@
-/* ===== FICHA "La ficha": datos clave en el Detalle (debajo del hero) ===== */
 
-/* La cuadrícula de los 4 datos: 2 columnas en teléfono. */
+
+
 .key-facts {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2.5rem 1.5rem;
 }
 
-/* La etiqueta pequeña de cada dato ("Habitaciones"). */
+
 .key-facts__label {
   margin-bottom: 0.4rem;
   font-size: 0.9rem;
   color: var(--color-texto-suave);
 }
 
-/* El número grande de cada dato ("5", "1 019 m²"). */
+
 .key-facts__value {
   font-family: var(--fuente-titulos);
   font-size: clamp(2.4rem, 5vw, 3.6rem);
@@ -24,7 +24,7 @@
   color: var(--color-texto);
 }
 
-/* El fondo de la barra de comparación, debajo del número. */
+
 .key-facts__bar {
   height: 6px;
   margin: 1rem 0 0.6rem;
@@ -33,7 +33,7 @@
   overflow: hidden;
 }
 
-/* El relleno morado de la barra: empieza vacío (escala 0). */
+
 .key-facts__bar span {
   display: block;
   height: 100%;
@@ -45,18 +45,18 @@
   transition-delay: calc(var(--i) * 120ms);
 }
 
-/* Cuando la ficha entra en pantalla, cada barra crece hasta su --ratio (0,6 = 60 %). */
+
 .key-facts--visible .key-facts__bar span {
   transform: scaleX(var(--ratio));
 }
 
-/* La frase del puesto debajo de la barra ("3.ª más amplia de 20"). */
+
 .key-facts__rank {
   font-size: 0.85rem;
   color: var(--color-texto);
 }
 
-/* Computadora: los 4 datos en una sola fila. */
+
 @media (min-width: 900px) {
   .key-facts {
     grid-template-columns: repeat(4, 1fr);
