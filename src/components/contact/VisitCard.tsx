@@ -1,9 +1,9 @@
 import BrandMark from "../brand/BrandMark";
 import type { Apartment } from "../../types/apartment";
-import type { Horario, Motivo } from "../../types/contact";
-import { HORARIO_LABEL, MOTIVO_LABEL } from "../../types/contact";
+import type { Motivo } from "../../types/contact";
+import { MOTIVO_LABEL } from "../../types/contact";
 
-//Falta importar el css de la visit card
+import "./VisitCard.css";
 
 const FOTO_RESPALDO = "/images/home/hero-guaria.jpg";
 
@@ -11,29 +11,16 @@ interface VisitCardProps {
   apartment?: Apartment;
   nombre: string;
   motivo: Motivo;
-  fecha: string;
-  horario: Horario;
   confirmada?: boolean;
-}
-
-function formatearFecha(fecha: string): string {
-  return new Date(`${fecha}T00:00`).toLocaleDateString("es-CR", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-  });
 }
 
 function VisitCard({
   apartment,
   nombre,
   motivo,
-  fecha,
-  horario,
   confirmada = false,
 }: VisitCardProps) {
   const primerNombre = nombre.trim().split(/\s+/)[0] ?? "";
-  const esVisita = motivo === "visita";
 
   return (
     <article
@@ -66,30 +53,13 @@ function VisitCard({
               {primerNombre || "tu nombre"}
             </dd>
           </div>
-
-          {esVisita && (
-            <>
-              <div className="visit-card__row">
-                <dt>Fecha</dt>
-                <dd className={fecha ? undefined : "visit-card__empty"}>
-                  {fecha ? formatearFecha(fecha) : "por elegir"}
-                </dd>
-              </div>
-              <div className="visit-card__row">
-                <dt>Horario</dt>
-                <dd className={horario ? undefined : "visit-card__empty"}>
-                  {horario ? HORARIO_LABEL[horario] : "por elegir"}
-                </dd>
-              </div>
-            </>
-          )}
         </dl>
       </div>
 
       {confirmada && (
         <div className="visit-card__seal">
           <BrandMark size={48} className="visit-card__seal-mark" />
-          <span className="visit-card__seal-text">Recibida</span>
+          <span className="visit-card__seal-text">Simulada</span>
         </div>
       )}
     </article>
