@@ -1,12 +1,12 @@
-/* ===== PRESENTACIÓN: "Lujo que se cuida como una guaria" (Inicio, debajo del hero) ===== */
 
-/* La sección completa, sobre fondo arena, con espacio arriba y abajo. */
+
+
 .brand-intro {
   padding: 6rem var(--espacio-pequeno);
   background-color: var(--color-arena);
 }
 
-/* Contenedor centrado: en teléfono el texto va arriba y las fotos abajo. */
+
 .brand-intro__inner {
   display: grid;
   gap: 3.5rem;
@@ -14,7 +14,7 @@
   margin: 0 auto;
 }
 
-/* El título de la sección, grande y en ciruela. */
+
 .brand-intro__title {
   max-width: 16ch;
   margin-bottom: 1.75rem;
@@ -25,7 +25,7 @@
   color: var(--color-ciruela-medio);
 }
 
-/* La frase-manifiesto sobre la guaria, en letra de títulos, debajo del título. */
+
 .brand-intro__statement {
   max-width: 34ch;
   margin-bottom: 2.5rem;
@@ -35,13 +35,13 @@
   color: var(--color-texto);
 }
 
-/* Los dos párrafos cortos (quiénes somos / cómo trabajamos), uno debajo del otro. */
+
 .brand-intro__columns {
   display: grid;
   gap: 1.25rem;
 }
 
-/* Cada uno de esos párrafos: ancho cómodo de lectura. */
+
 .brand-intro__columns p {
   max-width: 38ch;
   font-size: 1rem;
@@ -49,19 +49,19 @@
   color: var(--color-texto);
 }
 
-/* Zona de las dos fotos; deja espacio abajo para la foto pequeña. */
+
 .brand-intro__photos {
   position: relative;
   padding-bottom: 3rem;
 }
 
-/* Marco de cada foto: recorta lo que se sale al hacer zoom. */
+
 .brand-intro__photo {
   overflow: hidden;
   background-color: var(--color-borde);
 }
 
-/* La imagen dentro del marco: llena el marco sin deformarse. */
+
 .brand-intro__photo img {
   width: 100%;
   height: 100%;
@@ -69,18 +69,18 @@
   transition: transform 1.2s var(--curva-suave);
 }
 
-/* Al pasar el mouse sobre una foto, se acerca un poquito. */
+
 .brand-intro__photo:hover img {
   transform: scale(1.04);
 }
 
-/* Foto grande (sala al atardecer), vertical, a la izquierda. */
+
 .brand-intro__photo--main {
   aspect-ratio: 4 / 5;
   width: 85%;
 }
 
-/* Foto pequeña (casa en la ladera), cuadrada, encima de la grande en la esquina de abajo. */
+
 .brand-intro__photo--small {
   position: absolute;
   right: 0;
@@ -90,7 +90,7 @@
   border: 8px solid var(--color-arena);
 }
 
-/* Tableta: más espacio y los dos párrafos lado a lado. */
+
 @media (min-width: 768px) {
   .brand-intro {
     padding: 8rem var(--espacio-mediano);
@@ -102,7 +102,7 @@
   }
 }
 
-/* Computadora: texto a la izquierda y fotos a la derecha. */
+
 @media (min-width: 1024px) {
   .brand-intro__inner {
     grid-template-columns: 1.1fr 1fr;
@@ -111,10 +111,10 @@
   }
 }
 
-/* Al hacer scroll (navegadores que lo soportan, sin "reducir movimiento"): la sección se arma por partes. */
+
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    /* Título, frase y párrafos suben y aparecen, cada uno un poco después del anterior. */
+    
     .brand-intro__title,
     .brand-intro__statement,
     .brand-intro__columns p {
@@ -131,14 +131,14 @@
       animation-range: entry 30% cover 40%;
     }
 
-    /* La foto grande florece: se abre desde el centro como un pétalo… */
+    
     .brand-intro__photo--main {
       animation: foto-florecer var(--curva-suave) both;
       animation-timeline: view();
       animation-range: entry 0% cover 40%;
     }
 
-    /* …y la pequeña lo hace un poco después, como una segunda capa. */
+    
     .brand-intro__photo--small {
       animation: foto-florecer var(--curva-suave) both;
       animation-timeline: view();

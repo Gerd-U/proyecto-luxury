@@ -10,7 +10,7 @@ function HomePage() {
   const { apartments, isLoading, error, retry } = useApartments();
   const intro = useIntroLoader();
 
-  // El hero se anima cuando el telón de la intro empieza a subir.
+  // activa el hero cuando empieza a salir la intro
   const isHeroReady = !intro.isVisible || intro.isLeaving;
 
   return (

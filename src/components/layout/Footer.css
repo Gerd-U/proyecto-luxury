@@ -1,7 +1,6 @@
-/* ===== FOOTER: el cierre de todas las páginas, mínimo ===== */
 
-/* El footer: fondo ciruela con texto arena. Las variables guardan los colores
-   para usarlos abajo (texto, texto suave y líneas finas); el foco del teclado va en arena. */
+
+
 .footer {
   --footer-fondo: var(--color-ciruela);
   --footer-texto: var(--color-arena);
@@ -13,12 +12,12 @@
   color: var(--footer-texto);
 }
 
-/* En Inicio la última sección ya trae su espacio: sin margen arriba. */
+
 .layout__main:has(.home) + .footer {
   margin-top: 0;
 }
 
-/* La franja principal: en teléfono y tableta, todo apilado y centrado. */
+
 .footer__inner {
   display: grid;
   justify-items: center;
@@ -29,7 +28,7 @@
   text-align: center;
 }
 
-/* La marca: la guaria a la izquierda; el nombre y una rayita debajo, a la derecha. */
+
 .footer__brand {
   display: grid;
   grid-template-columns: auto auto;
@@ -42,17 +41,17 @@
   color: var(--footer-texto);
 }
 
-/* La marca al pasar el mouse: no cambia de color. */
+
 .footer__brand:hover {
   color: var(--footer-texto);
 }
 
-/* La guaria morada del logo. */
+
 .footer__mark {
   grid-area: flor;
 }
 
-/* "Residencias La Guaria" en letra de títulos, con un poco de aire entre letras. */
+
 .footer__name {
   grid-area: nombre;
   align-self: end;
@@ -63,7 +62,7 @@
   letter-spacing: 0.02em;
 }
 
-/* La rayita fina debajo del nombre (como en la referencia). */
+
 .footer__rule {
   grid-area: raya;
   align-self: start;
@@ -73,7 +72,7 @@
   background-color: var(--color-guaria-petalo);
 }
 
-/* Los enlaces de páginas: en teléfono, uno debajo del otro (fáciles de tocar). */
+
 .footer__links {
   display: flex;
   flex-direction: column;
@@ -81,7 +80,7 @@
   gap: 0.15rem;
 }
 
-/* Cada enlace: letra pequeña en mayúsculas, espaciada y fina, con una línea escondida debajo. */
+
 .footer__link {
   position: relative;
   display: inline-block;
@@ -93,7 +92,7 @@
   color: var(--footer-texto);
 }
 
-/* La línea debajo del enlace: empieza con ancho 0 y anclada a la izquierda. */
+
 .footer__link::after {
   content: "";
   position: absolute;
@@ -107,7 +106,7 @@
   transition: transform 0.4s var(--curva-suave);
 }
 
-/* Enlace al pasar el mouse: la línea crece de izquierda a derecha (el color no cambia). */
+
 .footer__link:hover {
   color: var(--footer-texto);
 }
@@ -116,7 +115,7 @@
   transform: scaleX(1);
 }
 
-/* La página en la que estás: en negrita y con la línea completa. */
+
 .footer__link--active {
   font-weight: 700;
 }
@@ -125,13 +124,13 @@
   transform: scaleX(1);
 }
 
-/* Las redes sociales en fila. */
+
 .footer__social {
   display: flex;
   gap: 0.5rem;
 }
 
-/* Cada ícono: zona de 44px para tocar cómodo con el dedo, del color del texto. */
+
 .footer__social-link {
   display: inline-grid;
   place-items: center;
@@ -144,12 +143,12 @@
     transform 0.3s var(--curva-suave);
 }
 
-/* Al presionar un ícono, se hunde un poquito. */
+
 .footer__social-link:active {
   transform: scale(0.92);
 }
 
-/* Solo con mouse: el ícono se vuelve blanco y sube apenas. */
+
 @media (hover: hover) and (pointer: fine) {
   .footer__social-link:hover {
     color: var(--color-blanco);
@@ -157,7 +156,7 @@
   }
 }
 
-/* La franja de abajo: una línea fina arriba y solo el texto de derechos, centrado. */
+
 .footer__bottom {
   max-width: var(--ancho-max);
   margin: 0 auto;
@@ -166,14 +165,14 @@
   text-align: center;
 }
 
-/* El texto de derechos, pequeño y en gris (arena un poco transparente). */
+
 .footer__bottom p {
   font-size: 0.8rem;
   letter-spacing: 0.02em;
   color: var(--footer-suave);
 }
 
-/* Tableta: más aire a los lados y los enlaces en una sola fila, separados por puntitos. */
+
 @media (min-width: 768px) {
   .footer__inner {
     padding: 4.5rem var(--espacio-mediano) 3.5rem;
@@ -184,7 +183,7 @@
     gap: 0;
   }
 
-  /* Un puntito suave entre enlace y enlace. */
+  
   .footer__links li + li::before {
     content: "·";
     margin: 0 0.9rem;
@@ -197,7 +196,7 @@
   }
 }
 
-/* Computadora: una sola franja de tres columnas — marca | enlaces | redes. */
+
 @media (min-width: 1024px) {
   .footer__inner {
     grid-template-columns: 1fr auto 1fr;
@@ -207,18 +206,18 @@
     text-align: left;
   }
 
-  /* La marca a la izquierda. */
+  
   .footer__brand {
     justify-self: start;
   }
 
-  /* Las redes a la derecha. */
+  
   .footer__social {
     justify-self: end;
   }
 }
 
-/* Pantallas anchas: la línea de abajo con el mismo ancho que la franja de arriba. */
+
 @media (min-width: 1264px) {
   .footer__bottom {
     max-width: calc(var(--ancho-max) - var(--espacio-mediano) * 2);

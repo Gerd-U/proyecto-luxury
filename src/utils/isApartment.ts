@@ -1,6 +1,6 @@
 import type { Apartment } from "../types/apartment";
 
-/** Comprueba que el valor recibido tenga la estructura de Apartment. */
+// valida la estructura recibida del json
 export function isApartment(value: unknown): value is Apartment {
   if (typeof value !== "object" || value === null) {
     return false;

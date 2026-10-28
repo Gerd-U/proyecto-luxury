@@ -16,7 +16,6 @@ const NAV_ITEMS: NavItem[] = [
   { to: "/contacto", label: "Contacto" },
 ];
 
-/** A partir de este ancho el menú se muestra completo (igual que en Header.css). */
 const DESKTOP_QUERY = "(min-width: 900px)";
 
 function Header() {
@@ -24,7 +23,6 @@ function Header() {
   const { pathname } = useLocation();
   const isScrolled = useScrolled(40);
 
-  // En Inicio el header flota transparente sobre la foto hasta hacer scroll.
   const isHome = pathname === "/";
   const isOverHero = isHome && !isScrolled && !isMenuOpen;
 
@@ -36,8 +34,7 @@ function Header() {
     setIsMenuOpen(false);
   };
 
-  // Con el menú móvil abierto: Escape lo cierra, la página de atrás no
-  // hace scroll y, si la pantalla crece a escritorio, se cierra solo.
+  // cierra el menú con escape o al cambiar a escritorio
   useEffect(() => {
     if (!isMenuOpen) {
       return;

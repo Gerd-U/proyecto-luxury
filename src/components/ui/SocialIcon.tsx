@@ -2,16 +2,10 @@ import type { SocialNetwork } from "../../types/footer";
 
 interface SocialIconProps {
   network: SocialNetwork;
-  /** Tamaño en píxeles (ancho y alto). */
   size?: number;
   className?: string;
 }
 
-/**
- * Íconos de línea propios (sin librerías). Usan currentColor, así toman
- * el color del texto donde se pongan. Son decorativos: el nombre de la red
- * lo da el aria-label del enlace que los contiene.
- */
 function SocialIcon({ network, size = 22, className = "" }: SocialIconProps) {
   return (
     <svg

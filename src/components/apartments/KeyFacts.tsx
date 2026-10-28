@@ -51,7 +51,7 @@ const FACTS: FactDefinition[] = [
   },
 ];
 
-/** Los valores iguales comparten puesto. */
+// los valores iguales comparten puesto
 function getRank(value: number, values: number[]): number {
   return values.filter((other) => other > value).length + 1;
 }

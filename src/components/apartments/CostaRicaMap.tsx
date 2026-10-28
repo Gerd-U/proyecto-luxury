@@ -5,14 +5,13 @@ import "./CostaRicaMap.css";
 
 interface CostaRicaMapProps {
   zones: MapZone[];
-  /** La "location" elegida, o "" si son todas. */
   selected: string;
   focusedRegion: Region | null;
   onSelectZone: (location: string) => void;
   onSelectRegion: (region: Region) => void;
 }
 
-// El mapa es un atajo visual para mouse y tacto; el índice de zonas es el control accesible.
+// el índice permite elegir zonas sin usar el mapa
 function CostaRicaMap({
   zones,
   selected,
@@ -49,7 +48,7 @@ function CostaRicaMap({
           onClick={() => onSelectRegion("valle")}
         >
           <circle className="cr-map__hit" cx={valleyCenter.x} cy={valleyCenter.y} r={16} />
-          {/* El key hace que el aro se repita cada vez que cambia la zona elegida del Valle. */}
+          {/* reinicia el pulso cuando cambia la zona */}
           {isValleyActive && (
             <circle
               key={selected || "valle"}

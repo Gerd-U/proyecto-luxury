@@ -2,26 +2,17 @@ import type { StyleWithVars } from "../../types/css";
 import "./BrandMark.css";
 
 interface BrandMarkProps {
-  /** Tamaño en píxeles (ancho y alto). */
   size?: number;
-  /** Si se da, el logo se anuncia a lectores de pantalla con este texto. */
   title?: string;
-  /** Activa la animación de pétalos que se abren (la usa el loader). */
   animated?: boolean;
   className?: string;
 }
 
 interface Petal {
   d: string;
-  /** Rotación alrededor del centro de la flor, en grados. */
   rotate: number;
 }
 
-/*
- * La guaria morada (Guarianthe skinneri), flor nacional de Costa Rica, simplificada:
- * un sépalo arriba, dos pétalos anchos a los lados, dos sépalos abajo y el labelo
- * (la "boca" de la orquídea) en un morado más profundo con la garganta clara.
- */
 const SEPAL = "M32 30 C28 22 28 11 32 5 C36 11 36 22 32 30 Z";
 const PETAL_LEFT = "M30 31 C22 31 11 26 7 18 C16 16 26 21 30 31 Z";
 const PETAL_RIGHT = "M34 31 C42 31 53 26 57 18 C48 16 38 21 34 31 Z";

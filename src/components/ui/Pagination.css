@@ -1,6 +1,6 @@
-/* ===== PAGINACIÓN: debajo de las cards en Apartamentos ===== */
 
-/* La barra completa: "Página 2 de 4" a un lado y los botones al otro, con una línea fina arriba. */
+
+
 .pagination {
   display: flex;
   flex-wrap: wrap;
@@ -14,32 +14,32 @@
   background-repeat: no-repeat;
 }
 
-/* El texto "Página 2 de 4", en letra de títulos. */
+
 .pagination__status {
   font-family: var(--fuente-titulos);
   font-size: 1.4rem;
   color: var(--color-texto);
 }
 
-/* El número de la página actual dentro de ese texto, en morado. */
+
 .pagination__status strong {
   color: var(--color-ciruela-medio);
 }
 
-/* Fila con flecha izquierda, números y flecha derecha. */
+
 .pagination__controls {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-/* La fila de números de página. */
+
 .pagination__pages {
   display: flex;
   gap: 0.35rem;
 }
 
-/* Cada número y cada flecha: botón redondo de 44px. */
+
 .pagination__page,
 .pagination__arrow {
   display: inline-grid;
@@ -58,31 +58,31 @@
     transform 0.16s ease-out;
 }
 
-/* Las flechas ← → llevan fondo blanco para distinguirlas de los números. */
+
 .pagination__arrow {
   background-color: var(--color-blanco);
   font-size: 1.1rem;
 }
 
-/* Al presionar un número o una flecha, se hunde un poquito. */
+
 .pagination__page:active,
 .pagination__arrow:active:not(:disabled) {
   transform: scale(0.92);
 }
 
-/* La página actual: rellena de morado. */
+
 .pagination__page--active {
   background-color: var(--color-guaria);
   color: var(--color-texto-claro);
 }
 
-/* Flecha apagada en la primera o la última página. */
+
 .pagination__arrow:disabled {
   opacity: 0.35;
   cursor: not-allowed;
 }
 
-/* Solo con mouse: los botones se oscurecen un poco al pasar por encima. */
+
 @media (hover: hover) and (pointer: fine) {
   .pagination__page:not(.pagination__page--active):hover,
   .pagination__arrow:hover:not(:disabled) {

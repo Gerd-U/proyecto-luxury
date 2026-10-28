@@ -1,6 +1,6 @@
-/* ===== BOTÓN DE FAVORITO (corazón): en las cards, en el Inicio y en el Detalle ===== */
 
-/* El botón redondo de 44px (tamaño cómodo para el dedo). */
+
+
 .favorite-button {
   display: inline-grid;
   place-items: center;
@@ -16,19 +16,19 @@
     transform 0.16s ease-out;
 }
 
-/* Versión clara: fondo blanco, se usa sobre fotos y fondos arena. */
+
 .favorite-button--light {
   background-color: rgba(255, 255, 255, 0.92);
   color: var(--color-texto);
 }
 
-/* Versión oscura: fondo transparente, se usa sobre el hero oscuro del Detalle. */
+
 .favorite-button--dark {
   background-color: rgba(245, 235, 221, 0.12);
   color: var(--color-arena);
 }
 
-/* El corazón: solo el contorno (sin guardar). */
+
 .favorite-button__icon {
   fill: transparent;
   stroke: currentColor;
@@ -37,18 +37,18 @@
   transition: fill 0.2s ease;
 }
 
-/* El corazón guardado (aria-pressed="true"): relleno lila de pétalo de guaria. */
+
 .favorite-button[aria-pressed="true"] .favorite-button__icon {
   fill: var(--color-guaria-petalo);
   stroke: var(--color-guaria-borde);
 }
 
-/* Al presionar el botón, se hunde un poquito. */
+
 .favorite-button:active {
   transform: scale(0.92);
 }
 
-/* Solo con mouse: el fondo del botón cambia un poco al pasar por encima. */
+
 @media (hover: hover) and (pointer: fine) {
   .favorite-button--light:hover {
     background-color: var(--color-blanco);
@@ -59,12 +59,12 @@
   }
 }
 
-/* Cuando se acaba de tocar, el corazón florece. */
+
 .favorite-button--pulse .favorite-button__icon {
   animation: corazon-florecer 0.5s var(--curva-salida);
 }
 
-/* Animación de florecer: se encoge, se abre más grande con un brillo lila y vuelve a su tamaño. */
+
 @keyframes corazon-florecer {
   0% {
     transform: scale(0.8);

@@ -4,7 +4,7 @@ import { isApartment } from "../utils/isApartment";
 
 const DATA_URL = "/data/apartments.json";
 
-// Evita volver a cargar el catálogo al abrir otra página.
+// reutiliza el catálogo entre páginas
 let cachedApartments: Apartment[] | null = null;
 
 export interface UseApartmentsResult {
@@ -29,7 +29,7 @@ export function useApartments(): UseApartmentsResult {
       return;
     }
 
-    // Cancela la petición si el componente se desmonta.
+    // cancela la petición al desmontar
     const controller = new AbortController();
 
     async function loadApartments(): Promise<void> {
@@ -39,7 +39,6 @@ export function useApartments(): UseApartmentsResult {
           throw new Error(`No pudimos cargar el catálogo (error ${response.status}).`);
         }
 
-        // Sustituye el error técnico por un mensaje claro.
         const data: unknown = await response.json().catch(() => {
           throw new Error("No pudimos leer el catálogo. Intenta de nuevo en un momento.");
         });

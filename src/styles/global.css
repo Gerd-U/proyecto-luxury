@@ -5,16 +5,14 @@
   --color-blanco: #ffffff;
   --color-verde: #4e8f6b;
 
-  /* La guaria morada: el acento de la marca. Se usa poco (lo elegido, lo activo, el foco). */
-  --color-guaria: #74196b; /* labelo: morado profundo, sirve hasta para texto pequeño */
-  --color-guaria-petalo: #c066ae; /* pétalo lila: solo decoración, no para texto */
-  --color-guaria-borde: #8b2f7f; /* borde del pétalo */
-  --color-guaria-suave: #f8e3f2; /* garganta: rosado casi blanco, para fondos */
+  --color-guaria: #74196b; /* sirve para texto pequeño */
+  --color-guaria-petalo: #c066ae; /* solo decoración, no para texto */
+  --color-guaria-borde: #8b2f7f; 
+  --color-guaria-suave: #f8e3f2; 
 
-  /* Ciruela: el labelo casi negro. Es el fondo de las secciones oscuras; sobre él va el lila del pétalo
-     (lila sobre ciruela 4,8:1; arena sobre ciruela 14,8:1). */
+  /* mantiene contraste con lila y arena */
   --color-ciruela: #2b0f29;
-  --color-ciruela-medio: #4a1745; /* un paso más claro, para alternar superficies */
+  --color-ciruela-medio: #4a1745; 
 
   --color-texto: #2a1727;
   --color-texto-suave: #6b5a68;
@@ -182,32 +180,25 @@ select {
   }
 }
 
-/* ===== Inicio rediseñado: tokens derivados de la paleta ===== */
 :root {
-  /* color del contorno de foco (morado guaria); en secciones oscuras se cambia a lila */
   --color-foco: var(--color-guaria);
 
-  /* curvas de animación: arranca rápido y frena suave */
+  /* curvas para salida, telón y movimiento suave */
   --curva-salida: cubic-bezier(0.22, 1, 0.36, 1);
-  /* telón: arranca lento, acelera y frena (para el loader) */
   --curva-telon: cubic-bezier(0.76, 0, 0.24, 1);
-  /* suave: frena largo y elegante; la usan hovers y apariciones del Inicio */
   --curva-suave: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ===== Foco visible para quien navega con teclado ===== */
 :focus-visible {
   outline: 2px solid var(--color-foco);
   outline-offset: 3px;
 }
 
-/* ===== Texto seleccionado con el mouse: rosado guaria en vez del azul del navegador ===== */
 ::selection {
   background-color: var(--color-guaria-suave);
   color: var(--color-guaria);
 }
 
-/* ===== Texto solo para lectores de pantalla ===== */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -220,7 +211,6 @@ select {
   border: 0;
 }
 
-/* ===== Respeto a "reducir movimiento" del sistema ===== */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -233,11 +223,8 @@ select {
   }
 }
 
-/* ===== APARICIONES AL HACER SCROLL (las usa el Inicio) ===== */
-/* Se aplican con "animation-timeline: view()": avanzan a medida que el elemento entra en pantalla.
-   Si el navegador no lo soporta, el contenido simplemente se ve quieto (nunca queda escondido). */
+/* si el navegador no soporta view(), el contenido queda visible */
 
-/* Aparecer subiendo: de transparente y un poco abajo, a su lugar. */
 @keyframes aparecer-subiendo {
   from {
     opacity: 0;
@@ -249,7 +236,6 @@ select {
   }
 }
 
-/* Destapar una foto: una máscara se abre de abajo hacia arriba mientras la foto se aleja apenas. */
 @keyframes foto-destapar {
   from {
     clip-path: inset(0 0 100% 0);
@@ -261,7 +247,6 @@ select {
   }
 }
 
-/* Florecer una foto: se abre desde el centro como un pétalo, mientras se aleja apenas. */
 @keyframes foto-florecer {
   from {
     clip-path: circle(0% at 50% 55%);
@@ -273,7 +258,6 @@ select {
   }
 }
 
-/* Deslizar desde la izquierda: para palabras grandes que entran de lado. */
 @keyframes deslizar-desde-izquierda {
   from {
     opacity: 0;
@@ -285,15 +269,12 @@ select {
   }
 }
 
-/* ===== TRANSICIÓN DE PÁGINA: la foto de la card viaja hasta el hero del Detalle ===== */
-
-/* Todas las piezas que se animan entre páginas: duran 0,6 s y aceleran/frenan suave. */
 ::view-transition-group(*) {
   animation-duration: 0.6s;
   animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-/* La foto mantiene su recorte mientras cambia de tamaño (si no, se estiraría). */
+/* conserva el recorte de la foto durante la transición */
 ::view-transition-old(*),
 ::view-transition-new(*) {
   height: 100%;
@@ -301,7 +282,6 @@ select {
   overflow: clip;
 }
 
-/* Con "reducir movimiento" del sistema, no hay transición entre páginas. */
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-group(*),
   ::view-transition-old(*),

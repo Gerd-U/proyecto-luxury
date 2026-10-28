@@ -1,6 +1,6 @@
-/* ===== ESTADOS COMPARTIDOS: cargando, error y vacío (se usan en varias páginas) ===== */
 
-/* Bloque de "cargando": círculo que gira y texto, centrados. */
+
+
 .loader {
   display: flex;
   flex-direction: column;
@@ -9,7 +9,7 @@
   padding: var(--espacio-grande) var(--espacio-pequeno);
 }
 
-/* El círculo que gira (borde arena con un tramo morado). */
+
 .loader__spinner {
   width: 40px;
   height: 40px;
@@ -19,19 +19,19 @@
   animation: girar 0.8s linear infinite;
 }
 
-/* El texto "Cargando…" debajo del círculo. */
+
 .loader__text {
   color: var(--color-texto-suave);
 }
 
-/* Animación: una vuelta completa. */
+
 @keyframes girar {
   to {
     transform: rotate(360deg);
   }
 }
 
-/* Caja de error: fondo blanco con una franja roja a la izquierda. */
+
 .error-message {
   display: flex;
   flex-direction: column;
@@ -44,7 +44,7 @@
   box-shadow: inset 4px 0 0 var(--color-error);
 }
 
-/* El mensaje de error, grande y fácil de leer. */
+
 .error-message__text {
   font-family: var(--fuente-titulos);
   font-size: 1.5rem;
@@ -52,7 +52,7 @@
   color: var(--color-texto);
 }
 
-/* El botón "Intentar de nuevo" dentro de la caja de error. */
+
 .error-message__retry {
   min-height: 44px;
   padding: 0 1.5rem;
@@ -67,19 +67,19 @@
     transform 0.16s ease-out;
 }
 
-/* Al presionar "Intentar de nuevo", se hunde un poquito. */
+
 .error-message__retry:active {
   transform: scale(0.97);
 }
 
-/* Solo con mouse: "Intentar de nuevo" se oscurece al pasar por encima. */
+
 @media (hover: hover) and (pointer: fine) {
   .error-message__retry:hover {
     background-color: var(--color-ciruela-medio);
   }
 }
 
-/* Estado vacío (sin resultados / no encontrado): todo centrado. */
+
 .empty-state {
   display: flex;
   flex-direction: column;
@@ -89,13 +89,13 @@
   text-align: center;
 }
 
-/* La ilustración del estado vacío (la guaria), en morado guaria. */
+
 .empty-state__icon {
   margin-bottom: 0.5rem;
   color: var(--color-guaria);
 }
 
-/* El título del estado vacío ("Ninguna residencia coincide"). */
+
 .empty-state__title {
   max-width: 18ch;
   font-size: clamp(2rem, 4vw, 2.8rem);
@@ -104,14 +104,14 @@
   color: var(--color-texto);
 }
 
-/* El mensaje que explica qué hacer, debajo del título. */
+
 .empty-state__message {
   max-width: 38ch;
   line-height: 1.6;
   color: var(--color-texto);
 }
 
-/* El espacio del botón o enlace del estado vacío ("Limpiar filtros"). */
+
 .empty-state__action {
   margin-top: 0.75rem;
 }

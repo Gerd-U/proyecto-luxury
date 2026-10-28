@@ -40,7 +40,7 @@ export default function ApartmentCard({
   const shownAmenities = amenities.slice(0, VISIBLE_AMENITIES);
   const hiddenAmenities = amenities.length - shownAmenities.length;
 
-  // La transición es opcional; el enlace funciona igual sin ella.
+  // el enlace funciona aunque la transición no esté disponible
   const handleOpen = (event: MouseEvent<HTMLAnchorElement>): void => {
     if (!isPlainLeftClick(event) || !canUseViewTransition()) {
       return;
@@ -71,7 +71,6 @@ export default function ApartmentCard({
       <div className="apartment-card__body">
         <p className="apartment-card__location">{location}</p>
         <h2 className="apartment-card__title">
-          {/* El enlace cubre toda la card. */}
           <Link
             to={detailPath}
             state={linkState}

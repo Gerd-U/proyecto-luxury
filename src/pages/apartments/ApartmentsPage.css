@@ -1,20 +1,20 @@
-/* ===== PÁGINA APARTAMENTOS (catálogo) ===== */
 
-/* La página completa: centrada con el ancho máximo del sitio. */
+
+
 .catalog {
   max-width: var(--ancho-max);
   margin: 0 auto;
   padding: 3rem var(--espacio-pequeno) 0;
 }
 
-/* El encabezado de arriba: título, frase y contador, uno debajo del otro. */
+
 .catalog__header {
   display: grid;
   gap: 0.75rem;
   margin-bottom: 3rem;
 }
 
-/* El título enorme "Residencias". */
+
 .catalog__title {
   font-size: clamp(3rem, 9vw, 6.5rem);
   font-weight: 500;
@@ -23,7 +23,7 @@
   color: var(--color-texto);
 }
 
-/* La frase debajo del título. */
+
 .catalog__intro {
   max-width: 44ch;
   font-size: 1.05rem;
@@ -31,7 +31,7 @@
   color: var(--color-texto);
 }
 
-/* El contador "8 de 20 residencias", que cambia mientras filtras. */
+
 .catalog__count {
   font-family: var(--fuente-titulos);
   font-size: 1.5rem;
@@ -39,21 +39,20 @@
   color: var(--color-ciruela-medio);
 }
 
-/* Zona de filtros + resultados (en teléfono, uno debajo del otro). */
+
 .catalog__layout {
   display: grid;
   gap: 2rem;
 }
 
-/* El texto "Mostrando 1–5 de 20" arriba de las cards. */
+
 .catalog__range {
   margin-bottom: 2rem;
   font-size: 0.9rem;
   color: var(--color-texto-suave);
 }
 
-/* Botón "Filtros (n)" que abre y cierra los filtros en teléfono y tableta: sin caja,
-   solo una línea fina arriba y abajo, sobre el fondo arena de la página. */
+
 .catalog__filters-toggle {
   display: flex;
   align-items: center;
@@ -74,12 +73,12 @@
   transition: transform 0.16s ease-out;
 }
 
-/* Al presionar el botón "Filtros", se hunde un poquito. */
+
 .catalog__filters-toggle:active {
   transform: scale(0.99);
 }
 
-/* El "+" o "−" morado a la derecha del botón "Filtros". */
+
 .catalog__filters-icon {
   font-family: var(--fuente-texto);
   font-size: 1.5rem;
@@ -87,23 +86,23 @@
   color: var(--color-guaria);
 }
 
-/* Con los filtros abiertos, dejan aire entre el botón y los controles. */
+
 .catalog__panel.is-open {
   padding: 1.75rem 0 0.5rem;
 }
 
-/* El panel de filtros cerrado (teléfono y tableta): no se ve. */
+
 .catalog__panel {
   display: none;
 }
 
-/* El panel de filtros abierto: aparece bajando un poco. */
+
 .catalog__panel.is-open {
   display: block;
   animation: panel-abrir 0.25s var(--curva-salida);
 }
 
-/* Animación: el panel aparece desde un poco más arriba. */
+
 @keyframes panel-abrir {
   from {
     opacity: 0;
@@ -115,7 +114,7 @@
   }
 }
 
-/* El botón "Limpiar filtros" dentro del estado sin resultados. */
+
 .catalog__clear {
   min-height: 48px;
   padding: 0 1.75rem;
@@ -130,13 +129,12 @@
     transform 0.16s ease-out;
 }
 
-/* Al presionar ese botón, se hunde un poquito. */
+
 .catalog__clear:active {
   transform: scale(0.97);
 }
 
-/* Cierre del catálogo ("¿No ves la que buscas?"): sin caja ni fondo, sobre la misma arena.
-   Se lee como la última "fila" del listado: una línea fina arriba y mucho aire. */
+
 .catalog__contact {
   position: relative;
   display: grid;
@@ -146,7 +144,7 @@
   padding-top: 4rem;
 }
 
-/* La línea fina de arriba: la misma de las divisorias entre cards. */
+
 .catalog__contact::before {
   content: "";
   position: absolute;
@@ -158,7 +156,7 @@
   transform-origin: left;
 }
 
-/* La pregunta, grande y serif: el momento fuerte del final del catálogo. */
+
 .catalog__contact h2 {
   max-width: 12ch;
   font-size: clamp(2.6rem, 6vw, 4.75rem);
@@ -169,7 +167,7 @@
   text-wrap: balance;
 }
 
-/* El texto que explica, cómodo de leer. */
+
 .catalog__contact p {
   max-width: 40ch;
   font-size: 1.05rem;
@@ -177,8 +175,7 @@
   color: var(--color-texto-suave);
 }
 
-/* "Hablar con un asesor →": enlace morado con una línea fina debajo (como "Ver residencia"),
-   alto de 48px para tocarlo cómodo en el celular. */
+
 .catalog__contact-button {
   display: inline-flex;
   align-items: center;
@@ -193,19 +190,19 @@
   transition: background-size 0.4s var(--curva-suave);
 }
 
-/* La flecha después del texto, lista para moverse. */
+
 .catalog__contact-button::after {
   content: "→";
   display: inline-block;
   transition: transform 0.35s var(--curva-suave);
 }
 
-/* Al pasar el mouse no cambia de color (lo pone global.css), solo se mueven la línea y la flecha. */
+
 .catalog__contact-button:hover {
   color: var(--color-ciruela-medio);
 }
 
-/* Solo con mouse: la línea se recoge a la izquierda hasta el texto y la flecha se corre. */
+
 @media (hover: hover) and (pointer: fine) {
   .catalog__contact-button:hover {
     background-size: calc(100% - 1.5rem) 1px;
@@ -216,8 +213,7 @@
   }
 }
 
-/* Al hacer scroll (navegadores que lo soportan, sin "reducir movimiento"):
-   la línea se dibuja de izquierda a derecha y después suben la pregunta, el texto y el enlace. */
+
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     .catalog__contact::before {
@@ -234,7 +230,7 @@
   }
 }
 
-/* Animación: la línea crece desde la izquierda. */
+
 @keyframes cierre-linea {
   from {
     transform: scaleX(0);
@@ -244,7 +240,7 @@
   }
 }
 
-/* Tableta: más margen a los lados y en la franja final. */
+
 @media (min-width: 768px) {
   .catalog {
     padding: 4rem var(--espacio-mediano) 0;
@@ -256,8 +252,7 @@
   }
 }
 
-/* Computadora: la pregunta a la izquierda y, a la derecha, el texto y el enlace abajo
-   (como el pie de las láminas del Inicio). */
+
 @media (min-width: 1024px) {
   .catalog__contact {
     grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
@@ -275,18 +270,18 @@
   }
 }
 
-/* Computadora: la banda del mapa arriba y las cards debajo, a todo el ancho. */
+
 @media (min-width: 1024px) {
   .catalog__layout {
     gap: 4rem;
   }
 
-  /* En computadora el botón "Filtros" ya no hace falta. */
+  
   .catalog__filters-toggle {
     display: none;
   }
 
-  /* En computadora el panel siempre se ve. */
+  
   .catalog__panel,
   .catalog__panel.is-open {
     display: block;

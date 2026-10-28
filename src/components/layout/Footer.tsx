@@ -13,7 +13,6 @@ const NAV_LINKS: FooterLink[] = [
   { label: "Contacto", to: "/contacto" },
 ];
 
-// Enlaces de ejemplo (proyecto académico).
 const SOCIAL_LINKS: SocialLink[] = [
   { network: "instagram", label: "Instagram", href: "https://instagram.com" },
   { network: "facebook", label: "Facebook", href: "https://facebook.com" },
@@ -53,7 +52,6 @@ function Footer() {
 
         <ul className="footer__social" aria-label="Redes sociales">
           {SOCIAL_LINKS.map((social) => {
-            // El correo abre la app de correo; las redes, una pestaña nueva.
             const isEmail = social.network === "email";
             return (
               <li key={social.network}>

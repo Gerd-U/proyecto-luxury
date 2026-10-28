@@ -1,7 +1,7 @@
-/* ===== LOGO: la guaria morada (header, footer, intro y estados vacíos) ===== */
-/* Los morados viven en global.css (--color-guaria-*): el logo los usa completos y el resto del sitio como acento. */
 
-/* El logo y sus colores: pétalo lila, borde morado, labelo morado profundo y garganta clara. */
+
+
+
 .brand-mark {
   --guaria-petalo: var(--color-guaria-petalo);
   --guaria-borde: var(--color-guaria-borde);
@@ -12,7 +12,7 @@
   overflow: visible;
 }
 
-/* Cada pétalo: relleno lila con un borde morado más oscuro que dibuja su forma. */
+
 .brand-mark__petal {
   fill: var(--guaria-petalo);
   stroke: var(--guaria-borde);
@@ -20,19 +20,19 @@
   stroke-linejoin: round;
 }
 
-/* El labelo (la "boca" de la orquídea), en el morado más profundo. */
+
 .brand-mark__lip {
   fill: var(--guaria-labelo);
 }
 
-/* La garganta clara dentro del labelo, como en la flor real. */
+
 .brand-mark__throat {
   fill: var(--guaria-garganta);
 }
 
-/* ===== La guaria que se abre (solo en la intro del Inicio) ===== */
 
-/* Cada pétalo primero se dibuja (solo el borde) y luego se rellena, uno tras otro. */
+
+
 .brand-mark--animated .brand-mark__petal {
   fill-opacity: 0;
   stroke-dasharray: 1;
@@ -45,7 +45,7 @@
     calc(500ms + var(--i) * 110ms);
 }
 
-/* El labelo y la garganta aparecen creciendo desde arriba, al final. */
+
 .brand-mark--animated .brand-mark__lip,
 .brand-mark--animated .brand-mark__throat {
   opacity: 0;
@@ -55,21 +55,21 @@
   animation: labelo-abrir 0.7s var(--curva-salida) 0.55s forwards;
 }
 
-/* Animación: el borde del pétalo se dibuja de punta a punta. */
+
 @keyframes petalo-dibujar {
   to {
     stroke-dashoffset: 0;
   }
 }
 
-/* Animación: el pétalo se llena de color. */
+
 @keyframes petalo-llenar {
   to {
     fill-opacity: 1;
   }
 }
 
-/* Animación: el labelo crece hasta su tamaño. */
+
 @keyframes labelo-abrir {
   to {
     opacity: 1;
